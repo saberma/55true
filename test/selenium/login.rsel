@@ -1,0 +1,5 @@
+setup :fixtures => :users
+
+include_partial 'login', :name => 'po'
+assert_text_present("登录成功.")
+click "link=退出"

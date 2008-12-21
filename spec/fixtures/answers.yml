@@ -1,0 +1,64 @@
+# == Schema Information
+# Schema version: 20081103115406
+#
+# Table name: answers
+#
+#  id          :integer(4)      not null, primary key
+#  content     :string(255)     default(""), not null
+#  question_id :integer(4)      not null
+#  user_id     :integer(4)      not null
+#  created_at  :datetime        
+#  updated_at  :datetime        
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ben_a1:
+  question: po_q1
+  content: 黑色!
+  user: ben
+
+ben_a2:
+  question: po_q2
+  content: 32左右吧,干吗问我哪些啊?坏人!
+  user: ben
+
+ben_a3:
+  question: po_q3
+  content: 没呀
+  user: ben
+
+ben_a4:
+  question: po_q4
+  content: 跑车。。
+  user: ben
+
+ben_a5:
+  question: po_q5
+  content: OPEN的女孩子
+  user: ben
+
+patpat_a1:
+  question: ben_q1
+  content: 自己的老公
+  user: patpat
+
+patpat_a2:
+  question: ben_q2
+  content: 当然是爱我的人咯~
+  user: patpat
+
+patpat_a3:
+  question: ben_q3
+  content: 烦死了！！
+  user: patpat
+
+patpat_a4:
+  question: ben_q4
+  content: 素滴~每天都好无聊哦~
+  user: patpat
+
+patpat_a5:
+  question: ben_q5
+  content: 什么都干一下。
+  user: patpat

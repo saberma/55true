@@ -1,0 +1,124 @@
+# == Schema Information
+# Schema version: 20081103115406
+#
+# Table name: questions
+#
+#  id          :integer(4)      not null, primary key
+#  content     :string(255)     default(""), not null
+#  is_answered :boolean(1)      not null
+#  user_id     :integer(4)      not null
+#  created_at  :datetime        
+#  updated_at  :datetime        
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+po_q1:
+  content: 你今天的低裤什么颜色?
+  user: po
+  is_answered: true
+
+po_q2:
+  content: 你胸围多大?
+  user: po
+  is_answered: true
+
+po_q3:
+  content: 你结婚没?
+  user: po
+  is_answered: true
+
+po_q4:
+  content: 喜欢什么车啊？
+  user: po
+  is_answered: true
+
+po_q5:
+  content: 喜欢怎么样滴女孩子？
+  user: po
+  is_answered: true
+
+po_q6:
+  content: 你的QQ?
+  user: po
+
+po_q7:
+  content: 你妈贵姓？
+  user: po
+
+po_q8:
+  content: 楼上的是不是神经病?
+  user: po
+
+po_q9:
+  content: 今天心情怎么样？
+  user: po
+
+po_q10:
+  content: 我明天在咸阳湖等你，你会来吗？不管我是男是女？
+  user: po
+
+ben_q1:
+  content: 在劲舞要是让你选，你会选很爱自己的老公，还是选做你爱的他的第三者？
+  user: ben
+  is_answered: true
+
+ben_q2:
+  content: 你会选择你爱的人还是爱你的人?
+  user: ben
+  is_answered: true
+
+ben_q3:
+  content: 你烦不?
+  user: ben
+  is_answered: true
+
+ben_q4:
+  content: 你是不是也很烦！？
+  user: ben
+  is_answered: true
+
+ben_q5:
+  content: 你每天都干什么啊?~
+  user: ben
+  is_answered: true
+
+ben_q6:
+  content: 看过快乐男生了吗？如果看过，最支持谁？
+  user: ben
+
+ben_q7:
+  content: 晨晨最可爱是不?~
+  user: ben
+
+ben_q8:
+  content: QQ多少
+  user: ben
+
+ben_q9:
+  content: 加我没有，我是你楼上的楼上的楼上的～
+  user: ben
+
+ben_q10:
+  content: 你觉得偶楼上的是地球人吗?
+  user: ben
+
+patpat_q1:
+  content: 喜欢糖吗
+  user: patpat
+
+patpat_q2:
+  content: 你喜欢吃棒棒糖吗
+  user: patpat
+
+patpat_q3:
+  content: 是乐橙吗？
+  user: patpat
+
+patpat_q4:
+  content: 你有脚气？
+  user: patpat
+
+patpat_q5:
+  content: 祢做过爱吗。？
+  user: patpat

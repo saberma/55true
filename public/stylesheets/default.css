@@ -1,0 +1,138 @@
+a {
+  color: #0078A7;
+  cursor: pointer; }
+
+#header {
+  background: url(/images/header_background.png); }
+  #header a {
+    font-size: 3.2em;
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 5px; }
+  #header #navigation {
+    margin-top: 22px; }
+    #header #navigation a {
+      font-size: 1.2em;
+      color: #ffffff; }
+    #header #navigation ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+      float: right; }
+      #header #navigation ul li {
+        float: left;
+        color: #ffffff;
+        padding: 5px; }
+
+#footer a {
+  font-size: 1em; }
+#footer ul {
+  margin: 50px 270px;
+  list-style: none; }
+  #footer ul li {
+    float: left;
+    padding: 5px; }
+
+#content ul.talk {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%; }
+  #content ul.talk li {
+    margin: 0px;
+    border-bottom: 1px solid #cccccc;
+    font-size: 14px;
+    width: 100%;
+    padding: 5px 0; }
+  #content ul.talk li.even {
+    background-color: #F5F5F5; }
+#content img.head {
+  margin: 3px;
+  padding: 1px;
+  border: 1px #cccccc solid;
+  float: left;
+  width: 48px;
+  height: 48px; }
+#content #newest h4, #content #profile h4 {
+  border-bottom: 1px solid #cccccc;
+  margin: 1.5em 0 0 0;
+  padding-bottom: 0.5em; }
+#content #newest .btnPlay, #content #profile .btnPlay {
+  float: right; }
+#content #register h4, #content #login h4, #content #get_question h4 {
+  border-bottom: 1px solid #cccccc;
+  margin: 1.5em 0 1.5em 0;
+  padding-bottom: 0.5em;
+  font-size: 16px;
+  font-weight: bold; }
+#content #register p, #content #login p, #content #get_question p {
+  margin: 10px 0px; }
+#content #register label, #content #login label, #content #get_question label {
+  margin-right: 15px;
+  width: 155px;
+  float: left;
+  text-align: right;
+  font-size: 14px;
+  font-weight: normal; }
+#content #register input, #content #login input, #content #get_question input {
+  border: 1px solid;
+  border-color: #7c7c7c #c3c3c3 #dddddd #c3c3c3;
+  font-size: 12px;
+  line-height: 120%;
+  width: 280px;
+  height: 18px;
+  color: #444444;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 18px;
+  padding: 3px 4px; }
+#content #register span, #content #login span, #content #get_question span {
+  display: block;
+  margin-left: 170px;
+  color: #666666; }
+#content #register .button, #content #login .button, #content #get_question .button {
+  height: 23px;
+  padding: 0 1.5em;
+  border: 1px solid;
+  border-color: #66acff #094fa1 #094fa1 #66acff;
+  background-color: #0078A7;
+  color: #ffffff;
+  letter-spacing: 0.3em;
+  margin-left: 170px;
+  cursor: pointer; }
+#content #register .checkbox, #content #login .checkbox, #content #get_question .checkbox {
+  width: 15px; }
+#content #register .box, #content #login .box, #content #get_question .box {
+  height: 22em; }
+#content #get_question span {
+  display: inline;
+  margin: 0px;
+  color: #666666; }
+#content #get_question textarea {
+  height: 40px;
+  width: 437px;
+  overflow: hidden;
+  margin-top: 3px;
+  margin-bottom: 0; }
+#content #get_question textarea.question {
+  margin-left: 58px;
+  margin-top: 0;
+  margin-bottom: 10px; }
+#content #get_question #time_warning {
+  margin-left: 58px;
+  padding-bottom: 3px;
+  display: none; }
+#content #get_question #time_remain {
+  color: red; }
+#content .box li {
+  margin: 3px 0 5px 0; }
+  #content .box li div {
+    margin-top: 2px; }
+#content .tip li {
+  padding: 5px; }
+
+.errorExplanation {
+  border: 1px solid #FFCC66;
+  background-color: #FFFFCC;
+  margin-bottom: 1em;
+  padding: 1em; }

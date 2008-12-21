@@ -1,0 +1,12 @@
+setup :fixtures => :all
+
+timeout = MAX_ANSWER_TIME*1000
+
+include_partial 'login', :name => 'po'
+click_and_wait "link=我也玩"
+verify_not_visible 'time_warning'
+pause((timeout * 0.7).ceil)
+verify_visible 'time_warning'
+
+wait_for_text('time_remain', '0')
+include_partial 'logout'

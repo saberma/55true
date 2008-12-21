@@ -1,0 +1,6 @@
+include_partial 'login', :name => 'ben'
+include_partial 'play_no_question'
+
+assert_text_present("接题成功")
+
+include_partial 'logout'

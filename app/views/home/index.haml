@@ -1,0 +1,37 @@
+#newest.span-13
+  = link_to "我也玩", new_answer_path, :class => "btnPlay strong large"
+  - if logged_in?
+    %h4 他们告诉你......
+    %ul.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
+  %h4 大家刚说了......
+  %ul.talk= render :partial => 'answered_question', :collection => @question_list
+
+.span-6.last
+  .box
+    - if logged_in?
+      .clearfix
+        %h4 个性化头像
+        =image_tag(current_user.head, :class => "head")
+        %span.quiet 最大上传2M图片
+        =error_messages_for :user
+        - form_for current_user, :html => { :multipart => true } do |f|
+          =f.file_field :photo, :size => 1
+          =submit_tag '提交', :class => "button"
+      %p.clearfix
+        %h4 你问了......
+        %ul
+          - @user_unanswer_question_list.each do |question|
+            %li
+              %span= question.content
+              %span.quiet= time_ago_in_words(question.created_at)
+    - else
+      %h4 关于真心话
+      %ul
+        %span 游戏风靡于论坛,规则:
+        %li 首先由楼主发贴提问
+        %li 其他人跟贴的内容为
+        %ol
+          %li 回答楼上的问题
+          %li 给楼下的人提问
+      %h4 加入真心话
+      %div= link_to image_tag("button_signup.png"), signup_path

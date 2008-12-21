@@ -1,0 +1,22 @@
+#register
+  .span-13
+    %h4 注册
+    - form_for :user, :url => users_path do |f|
+      %p
+        %label 用户名
+        = f.text_field :login
+        %span 最少3个字
+      %p
+        %label Email
+        = f.text_field :email
+        %span 用于找回密码
+      %p
+        %label 密码
+        = f.password_field 'password'
+        %span 最少4个字符
+      %p
+        = submit_tag '提交', :class => "button"
+
+  .span-6.last
+    .box
+      = error_messages_for :user

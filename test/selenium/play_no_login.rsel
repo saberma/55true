@@ -1,0 +1,3 @@
+open "/"
+click_and_wait "link=我也玩"
+assert_text_present("请先注册或登录")

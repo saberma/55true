@@ -1,0 +1,88 @@
+# == Schema Information
+# Schema version: 20081103115406
+#
+# Table name: unanswered_questions
+#
+#  id          :integer(4)      not null, primary key
+#  question_id :integer(4)      not null
+#  user_id     :integer(4)      not null
+#  player_id   :integer(4)      not null
+#  play_time   :datetime        not null
+#
+
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+DEFAULTS: &PO
+  user: po
+  player: po
+  play_time: <%= 4.minutes.ago.to_s :db %>
+
+DEFAULTS: &BEN
+  user: ben
+  player: ben
+  play_time: <%= 4.minutes.ago.to_s :db %>
+
+DEFAULTS: &PATPAT
+  user: patpat
+  player: patpat
+  play_time: <%= 4.minutes.ago.to_s :db %>
+
+po_uq6:
+  question: po_q6
+  <<: *PO
+
+po_uq7:
+  question: po_q7
+  <<: *PO
+
+po_uq8:
+  question: po_q8
+  <<: *PO
+
+po_uq9:
+  question: po_q9
+  <<: *PO
+
+po_uq10:
+  question: po_q10
+  <<: *PO
+
+ben_uq6:
+  question: ben_q6
+  <<: *BEN
+
+ben_uq7:
+  question: ben_q7
+  <<: *BEN
+
+ben_uq8:
+  question: ben_q8
+  <<: *BEN
+
+ben_uq9:
+  question: ben_q9
+  <<: *BEN
+
+ben_uq10:
+  question: ben_q10
+  <<: *BEN
+
+patpat_uq1:
+  question: patpat_q1
+  <<: *PATPAT
+
+patpat_uq2:
+  question: patpat_q2
+  <<: *PATPAT
+
+patpat_uq3:
+  question: patpat_q3
+  <<: *PATPAT
+
+patpat_uq4:
+  question: patpat_q4
+  <<: *PATPAT
+
+patpat_uq5:
+  question: patpat_q5
+  <<: *PATPAT

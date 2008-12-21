@@ -1,0 +1,13 @@
+<h2>找回密码</h2>
+
+<% form_for :user, :url => password_reminders_path do |form| %>
+  <div class="field_row">
+    <label for="user_email">输入你的Email:</label>
+    <br />
+    <%= form.text_field :email %>
+  </div>
+  
+  <div class="field_row">
+    <%= submit_tag "发送", :class => "submit button" %>
+  </div>
+<% end %>

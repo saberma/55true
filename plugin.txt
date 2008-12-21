@@ -1,0 +1,48 @@
+1.restful_authentication
+script/plugin install http://svn.techno-weenie.net/projects/plugins/restful_authentication/
+script/generate authenticated user sessions
+
+2.rspec
+gem install rspec
+#script/plugin install git://github.com/dchelimsky/rspec.git
+script/plugin install git://github.com/dchelimsky/rspec-rails.git
+script/generate rspec
+rake spec
+  (server start command:script/spec_server -d)
+
+3.annotate_models
+script/plugin install http://repo.pragprog.com/svn/Public/plugins/annotate_models
+rake annotate_models
+
+4.will_paginate
+#export http_proxy=http://222.35.73.92:80
+sudo gem update --system
+gem sources -a http://gems.github.com
+sudo gem install mislav-will_paginate
+
+5.zentest
+sudo gem install ZenTest diff-lcs
+script/plugin install http://svn.caldersphere.net/svn/main/plugins/rspec_autotest
+--rake spec:autotest
+script/autospec
+add display(apt-get install xosd-bin, then create .autotest(need gem and require autotest))
+(blog:http://www.agatezone.cn/code/archives/257)
+
+6.haml
+sudo gem install --no-ri haml
+haml --rails path/to/app
+http://mediacast.sun.com/users/~tor/media/org-netbeans-modules-haml.nbm/details(netbean plugin)
+
+7.attachment_fu(removed,change to paperclip)
+script/plugin install http://svn.techno-weenie.net/projects/plugins/attachment_fu
+
+8.selenium
+script/plugin install http://svn.openqa.org/svn/selenium-on-rails/current/selenium-on-rails
+script/generate selenium login
+script/server -e test
+selenium ide rsel support (http://wiki.openqa.org/download/attachments/408/rselenese.js?version=1)
+#waring:change fixture load path: add initializers(selenium_path.rb)
+
+9.paperclip
+check imagemagick first:convert -version
+gem install paperclip

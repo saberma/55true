@@ -1,0 +1,21 @@
+#login
+  .span-13
+    %h4 登录
+    - form_tag session_path do
+      %p
+        %label 用户名
+        = text_field_tag 'login', params[:login]
+      %p
+        %label 密码
+        = password_field_tag 'password'
+      %p
+        %label{:for => "remember_me"} 记住我
+        = check_box_tag 'remember_me', '1', true, :class => "checkbox"
+      %p
+        = submit_tag '登录', :class => "button"
+      %p 或者
+      = link_to "注册", signup_path, :class => "large"
+      = link_to "忘记密码?", new_password_reminder_path, :class => "large"
+
+  .span-6.last
+    .box

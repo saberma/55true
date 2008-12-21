@@ -1,0 +1,6 @@
+open '/'
+
+click_and_wait "link=登录"
+type "//input[@id='login']", name
+type "password", '1'
+click_and_wait "commit"

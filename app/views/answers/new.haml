@@ -1,0 +1,31 @@
+#get_question
+  .span-13
+    %h4 接题
+    -form_for :answer, :url => answers_path do |f|
+      = hidden_field_tag 'previou_question', @unanswer_question.id
+      .clearfix
+        =image_tag(@unanswer_question.user.head, :class => "head") 
+        %a= @unanswer_question.user.login
+        %span= @unanswer_question.content
+        %span.quiet= time_ago_in_words(@unanswer_question.created_at)
+      .clearfix
+        =image_tag(current_user.head, :class => "head") 
+        = f.text_area :content, :rows => 3, :is_focus => true
+        = text_area_tag 'question[content]', @question?@question[:content]:nil, :class => "question"
+      .clearfix
+        #time_warning
+          请在
+          %span#time_remain{:max_answer_time=>MAX_ANSWER_TIME}= MAX_ANSWER_TIME
+          秒内提交，方便其他人接题
+      .clearfix
+        = submit_tag '提交', :class => "button"
+    
+  .span-6.last
+    .box
+      = error_messages_for 'answer', 'question'
+      .tip
+        提示：
+        %ol
+          %li 输入你回答的内容
+          %li 输入内容,向楼下的提问
+          %li 点击提交按钮
