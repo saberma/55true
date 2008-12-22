@@ -46,3 +46,6 @@ selenium ide rsel support (http://wiki.openqa.org/download/attachments/408/rsele
 9.paperclip
 check imagemagick first:convert -version
 gem install paperclip
+
+10.cheat
+sudo gem install cheat
