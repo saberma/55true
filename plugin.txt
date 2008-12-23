@@ -42,6 +42,7 @@ script/generate selenium login
 script/server -e test
 selenium ide rsel support (http://wiki.openqa.org/download/attachments/408/rselenese.js?version=1)
 #waring:change fixture load path: add initializers(selenium_path.rb)
+script/plugin install git://github.com/paytonrules/selenium-on-rails.git
 
 9.paperclip
 check imagemagick first:convert -version

@@ -1,9 +1,9 @@
 --- 
-result: 
-numTestPasses: 
-numTestFailures: 
-numCommandFailures: 
-numCommandPasses: 
-numCommandErrors: 
-resultDir: ./test/../test_result/default
-totalTime: 
+result: Failed
+numTestPasses: "1079"
+numTestFailures: "906"
+numCommandFailures: "1027"
+numCommandPasses: "3"
+numCommandErrors: "57"
+resultDir: 
+totalTime: A long time
