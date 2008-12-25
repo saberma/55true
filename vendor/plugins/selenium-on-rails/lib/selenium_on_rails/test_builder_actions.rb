@@ -503,9 +503,10 @@ private
   def self.generate_and_wait_actions
     public_instance_methods.each do |method|
       define_method method + '_and_wait' do |*args|
-        make_command_waiting do
-          send method, *args
-        end
+#        make_command_waiting do
+#          send method, *args
+#        end
+        send 'command_and_wait', method, *args
       end
     end
   end
