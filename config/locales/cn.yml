@@ -1,0 +1,37 @@
+#see http://rails-i18n.org/wiki/pages/i18n-rails-guide
+cn:
+  activerecord:
+    models:
+      user: "用户"
+
+    attributes:
+      user:
+        login: "用户名"
+        password: "密码"
+        content: "提问内容"
+      answer:
+        content: "回答内容"
+
+    errors:
+      template:
+        header: ""
+        body: ""
+      messages:
+        blank: "必须输入"
+        too_long: "长度太长 (最多%d个字符)"
+        too_short: "长度太短 (最少%d个字符)"
+        taken: "已经存在"
+        timeout: "超时了"
+        
+  datetime:
+    distance_in_words:
+      less_than_x_seconds: "不到{{count}}秒"
+      half_a_minute: "半分钟"
+      less_than_x_minutes: "不到{{count}}分钟"
+      x_minutes: "{{count}}分钟"
+      about_x_hours: "大约{{count}}小时"
+      x_days: "{{count}}天"
+      about_x_months: "大约{{count}}个月"
+      x_months: "{{count}}个月"
+      about_x_years: "大约{{count}}年"
+      over_x_years: "{{count}}年"
