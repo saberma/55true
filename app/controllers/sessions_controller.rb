@@ -6,8 +6,9 @@ class SessionsController < ApplicationController
   def create
     self.current_user = User.authenticate(params[:login], params[:password])
     if logged_in?
+      self.current_user.update_attribute(:last_login, DateTime.now)
       if params[:remember_me] == "1"
-        current_user.remember_me unless current_user.remember_token?
+        self.current_user.remember_me unless self.current_user.remember_token?
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
       redirect_back_or_default('/')

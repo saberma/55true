@@ -21,6 +21,7 @@
 
 DEFAULTS: &DEFAULTS
   crypted_password: <%=DES.encrypt('1')%>
+  last_login: <%=DateTime.now%>
 
 po:
   login: po

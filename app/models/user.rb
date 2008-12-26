@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   validates_attachment_size :photo, :less_than => 2.megabytes
   
   before_save :encrypt_password
+  before_create :init_property
 
   def head
     return "/photos/users/#{login}.jpg" if %w{po ben patpat}.include?(login)
@@ -100,5 +101,9 @@ class User < ActiveRecord::Base
   
   def unencrypted_password
     DES.decrypt(crypted_password)
+  end
+  
+  def init_property
+    self.last_login = DateTime.now
   end
 end

@@ -2,9 +2,9 @@ class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table "users", :force => true do |t|
       t.string   :email, :login, :remember_token, :crypted_password
-      t.datetime :remember_token_expires_at, :last_login
-      t.integer :questions_count, :default => 0, :null => false
-      t.integer :answers_count, :default => 0, :null => false
+      t.datetime :remember_token_expires_at
+      t.datetime :last_login, :null => false
+      t.integer :questions_count, :answers_count, :default => 0, :null => false
       #photo
       t.string :photo_file_name, :photo_content_type
       t.integer :photo_file_size

@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(:version => 20081103115406) do
     t.string   "remember_token"
     t.string   "crypted_password"
     t.datetime "remember_token_expires_at"
-    t.datetime "last_login"
+    t.datetime "last_login",                               :null => false
     t.integer  "questions_count",           :default => 0, :null => false
     t.integer  "answers_count",             :default => 0, :null => false
     t.string   "photo_file_name"
