@@ -5,5 +5,5 @@ ActionMailer::Base.smtp_settings = {
   :domain => "www.55true.com" ,
   :authentication => :login,
   :user_name => "55true" ,
-  :password=> "858035"
+  :password=> "55true"
 }

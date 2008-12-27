@@ -1,3 +1,5 @@
 config/database.yml
 nbproject/**
 *.log
+config/initializers/email.rb
+public/photos/**
