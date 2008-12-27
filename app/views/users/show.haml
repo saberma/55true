@@ -1,5 +1,5 @@
 #profile.span-13
-  = link_to "我也玩", new_answer_path, :class => "btnPlay strong large"
+  = link_to "我也玩", new_answer_path, :class => "btn_play strong large"
   %h4{:title => '只显示前10条记录'}="大家对#{@user.login}说......"
   %ul.talk= render :partial => 'home/answered_question', :collection => @his_answered_question_list
   %h4{:title => '只显示前10条记录'}="#{@user.login}刚说了......"

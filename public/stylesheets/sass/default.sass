@@ -1,37 +1,50 @@
+!front_color_light = #ffffff
+!front_color_strong = #0078A7
+
+!border_color = #cccccc
+
+=normal_ul
+  :margin 0px
+  :padding 0px
+  :list-style none
+
+=normal_font_size
+  :font-size 1.2em
+
 a
-  :color #0078A7
+  :color = !front_color_strong
   :cursor pointer
+
+li
+  +normal_font_size
 
 #header
   :background url(/images/header_background.png)
   a
+    +normal_font_size
+    :color = !front_color_light
+
+  #logo a
     :font-size 3.2em
-    :color #ffffff
     :text-decoration none
     :margin-left 5px
 
   #navigation
     :margin-top 22px
 
-    a
-      :font-size 1.2em
-      :color #ffffff
-
     ul
-      :margin 0px
-      :padding 0px
-      :list-style none
+      +normal_ul
       :float right
 
       li
         :float left
-        :color #ffffff
+        :color = !front_color_light
         :padding 5px
 
 
 #footer
   a
-    :font-size 1em
+    +normal_font_size
 
   ul
     :margin 50px 270px
@@ -42,21 +55,10 @@ a
       :padding 5px
 
 #content
-  ul.talk
-    :list-style none
-    :margin 0
-    :padding 0
-    :width 100%
-
-    li
-      :margin 0px
-      :border-bottom 1px solid #cccccc
-      :font-size 14px
-      :width 100%
-      :padding 5px 0
-
-    li.even
-      :background-color #F5F5F5
+  h4
+    :border-bottom 1px solid #cccccc
+    :margin 1.5em 0 0 0
+    :padding-bottom 0.5em
 
   img.head
     :margin 3px
@@ -66,20 +68,35 @@ a
     :width 48px
     :height 48px
 
-  #newest, #profile
-    h4
-      :border-bottom 1px solid #cccccc
-      :margin 1.5em 0 0 0
-      :padding-bottom 0.5em
+  ul.talk
+    +normal_ul
+    :width 100%
 
-    .btnPlay
-      :float right
+    li
+      :margin 0px
+      :padding 5px 0
+      :border-bottom 1px solid #cccccc
+      :width 100%
+
+    li.even
+      :background-color #F5F5F5
+
+  .box
+    li
+      :margin 3px 0 5px 0
+      div
+        :margin-top 2px
+    .tip
+      li
+        :padding 5px
+
+
+  .btn_play
+    :float right
 
   #register,#login,#get_question
     h4
-      :border-bottom 1px solid #cccccc
       :margin 1.5em 0 1.5em 0
-      :padding-bottom 0.5em
       :font-size 16px
       :font-weight bold
     p
@@ -94,8 +111,6 @@ a
     input
       :border 1px solid
       :border-color #7c7c7c #c3c3c3 #dddddd #c3c3c3
-      :font-size 12px
-      :line-height 120%
       :width 280px
       :height 18px
       :color #444444
@@ -112,8 +127,8 @@ a
       :padding 0 1.5em
       :border 1px solid
       :border-color #66acff #094fa1 #094fa1 #66acff
-      :background-color #0078A7
-      :color #ffffff
+      :background-color = !front_color_strong
+      :color = !front_color_light
       :letter-spacing 0.3em
       :margin-left 170px
       :cursor pointer
@@ -143,16 +158,6 @@ a
       :display none
     #time_remain
       :color red
-
-  .box
-    li
-      :margin 3px 0 5px 0
-      div
-        :margin-top 2px
-
-  .tip
-    li
-      :padding 5px
 
 
 .errorExplanation
