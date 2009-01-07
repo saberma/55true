@@ -2,7 +2,7 @@
 
 /var/www/55true/current/script/process/spawner \
   mongrel \
-  --environment=production \
-  --instances=1 \
-  --address=127.0.0.1 \
-  --port=8000
+  environment=production \
+  instances=2 \
+  address=127.0.0.1 \
+  port=3000

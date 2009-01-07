@@ -10,6 +10,7 @@ set :deploy_to, "/var/www/#{application}"
 # your SCM below:
 set :scm, :git
 set :deploy_via, :remote_cache
+set :git_shallow_clone, 1
 
 #role :app, "your app-server here"
 #role :web, "your web-server here"
@@ -18,3 +19,4 @@ server "vps", :app, :web, :db, :primary => true
 
 
 set :user, "saberma"
+set :runner, nil
