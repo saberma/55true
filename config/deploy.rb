@@ -17,6 +17,14 @@ set :git_shallow_clone, 1
 #role :db,  "your db-server here", :primary => true
 server "vps", :app, :web, :db, :primary => true
 
-
 set :user, "saberma"
 set :runner, nil
+set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
+set :mongrel_port, 3000
+
+desc "link in production database"
+task :after_update_code do
+  run <<-CMD
+  ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{release_path}/config/database.yml
+  CMD
+end
