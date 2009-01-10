@@ -5,3 +5,4 @@ config/initializers/email.rb
 public/photos/**
 vendor/plugins/selenium-on-rails/log/default.yml
 tmp/**
+**.swp
