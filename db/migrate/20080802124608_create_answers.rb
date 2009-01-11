@@ -7,8 +7,11 @@ class CreateAnswers < ActiveRecord::Migration
 
       t.timestamps
     end
+    #foreign index
     add_index :answers, :user_id
     add_index :answers, :question_id, :unique => true
+    #homepage list 
+    add_index :answers, :updated_at
   end
 
   def self.down

@@ -21,7 +21,9 @@ describe Answer do
 
   it "should answered" do
     lambda do
+      sleep(1)
       Answer.create!(@valid_attributes)
+      Question.answered.first.should == @previou_question
     end.should change(Answer, :count).by(1)
   end
 

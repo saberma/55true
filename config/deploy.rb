@@ -26,5 +26,6 @@ desc "link in production database"
 task :after_update_code do
   run <<-CMD
   ln -nfs #{deploy_to}/#{shared_dir}/config/database.yml #{release_path}/config/database.yml
+  ln -nfs #{deploy_to}/#{shared_dir}/photos #{release_path}/public/photos
   CMD
 end
