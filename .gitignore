@@ -1,8 +1,11 @@
 config/database.yml
 nbproject/**
+log/
 *.log
 config/initializers/email.rb
+#share by capistrano
 public/photos/**
 vendor/plugins/selenium-on-rails/log/default.yml
 tmp/**
+#vim swap file
 **.swp
