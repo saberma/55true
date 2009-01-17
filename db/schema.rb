@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20081103115406) do
   end
 
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id", :unique => true
+  add_index "answers", ["updated_at"], :name => "index_answers_on_updated_at"
   add_index "answers", ["user_id"], :name => "index_answers_on_user_id"
 
   create_table "page_views", :force => true do |t|
@@ -43,10 +44,9 @@ ActiveRecord::Schema.define(:version => 20081103115406) do
   add_index "questions", ["is_answered", "user_id"], :name => "index_questions_on_is_answered_and_user_id"
 
   create_table "unanswered_questions", :force => true do |t|
-    t.integer  "question_id", :null => false
-    t.integer  "user_id",     :null => false
-    t.integer  "player_id",   :null => false
-    t.datetime "play_time",   :null => false
+    t.integer  "question_id",                :null => false
+    t.datetime "play_time",                  :null => false
+    t.integer  "checksum",    :default => 0, :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -55,9 +55,10 @@ ActiveRecord::Schema.define(:version => 20081103115406) do
     t.string   "remember_token"
     t.string   "crypted_password"
     t.datetime "remember_token_expires_at"
-    t.datetime "last_login",                               :null => false
-    t.integer  "questions_count",           :default => 0, :null => false
-    t.integer  "answers_count",             :default => 0, :null => false
+    t.datetime "last_login",                                   :null => false
+    t.integer  "questions_count",           :default => 0,     :null => false
+    t.integer  "answers_count",             :default => 0,     :null => false
+    t.boolean  "is_anonymous",              :default => false, :null => false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"

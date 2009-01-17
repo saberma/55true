@@ -14,6 +14,7 @@ class AnswersController < ApplicationController
     @unanswer_question = Question.find_by_id(params[:previou_question])
     @answer = current_user.answers.new(params[:answer])
     @answer.question = @unanswer_question
+    @answer.checksum = params[:checksum]
     @question = current_user.questions.new(params[:question])
 
     unless [@answer, @question].map(&:valid?).include?(false)

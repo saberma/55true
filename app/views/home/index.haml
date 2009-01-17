@@ -25,14 +25,19 @@
               %span= question.content
               %span.quiet= time_ago_in_words(question.created_at)
     - else
-      %h4 关于真心话
+      %h4 怎么玩真心话游戏
       %ul
-        %span 游戏风靡于论坛,规则:
-        %li 首先由楼主发贴提问
-        %li 其他人跟贴的内容为
-        %ol
-          %li 回答楼上的问题
-          %li 给楼下的人提问
+        %span 规则：
+        %li 小李问了一个问题
+        %li 另一个人要如实回答
+        %li 然后他再问一个新问题
+        %li 下个人回答时提出新问题
+      %ul
+        %span 举个例子：
+        %li 小李问：你晚上一个人走在街上怕不怕的？
+        %li 另一个人回答:不怕的。
+        %li 然后他再问:你现在最想的是谁？
+        %li 下个人回答时提出新问题
       %h4 加入真心话
       %div= link_to image_tag("button_signup.png"), signup_path
       = link_to '忘记密码？', new_password_reminder_path

@@ -56,4 +56,9 @@ describe UnansweredQuestion do
     question_to_patpat = UnansweredQuestion.for(users(:patpat))
     question_to_ben.should_not == question_to_patpat
   end
+
+  it "should get a question by anonymous" do 
+    question = UnansweredQuestion.get
+    question.should_not be_nil
+  end
 end

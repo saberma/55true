@@ -15,6 +15,9 @@ class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user, :counter_cache => true
   
+  # this value must be same with unanswered_question record's checksum
+  attr_accessor :checksum
+
   validates_presence_of     :content
 
   named_scope :of, lambda {|user|
@@ -38,7 +41,6 @@ class Answer < ActiveRecord::Base
 
   def timeout?
     uq = UnansweredQuestion.find_by_question_id question.id
-    #avoid user A get a question, timeout, then user B get the question, user A submit success.
-    ((Time.now - uq.play_time).ceil > MAX_ANSWER_TIME) || (uq.player != user)
+    uq.checksum != checksum
   end
 end
