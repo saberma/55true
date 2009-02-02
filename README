@@ -6,7 +6,7 @@
 gem sources -a http://gems.github.com
 sudo apt-get install ruby libopenssl-ruby1.8 mysql-server mysql-client libmysqlclient15-dev git-core imagemagick nginx
 rubygems(wget http://rubyforge.org/frs/download.php/45905/rubygems-1.3.1.tgz)(tar xvf rubygems-1.3.1.tgz)
-sudo gem install rails rspec hoe haml paperclip mislav-will_paginate mysql mongrel mongrel_cluster
+sudo gem install rails rspec hoe haml paperclip mislav-will_paginate mysql mongrel mongrel_cluster cucumber webrat
 
 make sure you have copy database.yml and photos to capistrano's shared directory.
 
@@ -47,7 +47,6 @@ script/plugin install git://github.com/paytonrules/selenium-on-rails.git
 6.haml
 sudo gem install --no-ri haml
 haml --rails path/to/app
-http://mediacast.sun.com/users/~tor/media/org-netbeans-modules-haml.nbm/details(netbean plugin)
 
 7.paperclip
 check imagemagick first:convert -version
@@ -55,3 +54,7 @@ gem install paperclip
 
 8.capistrano
 gem install capistrano
+
+9.cucumber
+gem install cucumber webrat
+script/generate cucumber
