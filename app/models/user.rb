@@ -12,7 +12,6 @@
 #  last_login                :datetime        not null
 #  questions_count           :integer(4)      default(0), not null
 #  answers_count             :integer(4)      default(0), not null
-#  is_anonymous              :boolean(1)      not null
 #  photo_file_name           :string(255)     
 #  photo_content_type        :string(255)     
 #  photo_file_size           :integer(4)      

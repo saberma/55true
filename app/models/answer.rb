@@ -15,9 +15,6 @@ class Answer < ActiveRecord::Base
   belongs_to :question
   belongs_to :user, :counter_cache => true
   
-  # this value must be same with unanswered_question record's checksum
-  attr_accessor :checksum
-
   validates_presence_of     :content
 
   named_scope :of, lambda {|user|
@@ -28,7 +25,7 @@ class Answer < ActiveRecord::Base
   }
 
   def validate_on_create
-    errors.add_to_base(ActiveRecord::Errors.default_error_messages[:timeout]) if timeout?
+    errors.add_to_base(I18n.translate('activerecord.errors.messages.timeout')) if timeout?
   end
 
   before_create do |answer|
@@ -41,6 +38,6 @@ class Answer < ActiveRecord::Base
 
   def timeout?
     uq = UnansweredQuestion.find_by_question_id question.id
-    uq.checksum != checksum
+    uq.player != user
   end
 end

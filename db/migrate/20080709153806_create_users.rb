@@ -5,8 +5,6 @@ class CreateUsers < ActiveRecord::Migration
       t.datetime :remember_token_expires_at
       t.datetime :last_login, :null => false
       t.integer :questions_count, :answers_count, :default => 0, :null => false
-      #anonymous
-      t.boolean :is_anonymous, :default => false, :null => false
       #photo
       t.string :photo_file_name, :photo_content_type
       t.integer :photo_file_size

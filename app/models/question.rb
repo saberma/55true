@@ -15,9 +15,6 @@ class Question < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   has_one :answer
 
-  #this value init when unanswered_question get
-  attr_accessor :checksum
-
   validates_presence_of     :content
   
   named_scope :unanswer, :conditions => ['is_answered = ?', false], :order => "id asc"
@@ -34,7 +31,7 @@ class Question < ActiveRecord::Base
 
 
   after_create do |question|
-    UnansweredQuestion.create(:question => question, :play_time => MAX_ANSWER_TIME.ago)
+    UnansweredQuestion.create(:question => question, :user => question.user, :player => question.user,  :play_time => MAX_ANSWER_TIME.ago)
   end
 
 end

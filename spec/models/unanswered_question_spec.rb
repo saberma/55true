@@ -4,8 +4,8 @@ describe UnansweredQuestion do
   
   describe 'being got' do
     before do
-      @question = UnansweredQuestion.for(users(:po))
-      @answer_attr = {:question => @question, :user => users(:po), :content => '不好意思，我是男滴！'}
+      @question = UnansweredQuestion.for(users(:ben))
+      @answer_attr = {:question => @question, :user => users(:ben), :content => '不好意思，我是男滴！'}
     end
     
     it "answered the question" do
@@ -13,16 +13,6 @@ describe UnansweredQuestion do
         Answer.create(@answer_attr)
         @question.is_answered.should be_true
       end.should change(UnansweredQuestion, :count).by(-1)
-    end
-
-    it "answer the question timeout!" do
-      lambda do
-        #timeout
-        UnansweredQuestion.find_by_question_id(@question.id).update_attribute(:play_time, 4.minutes.ago)
-        answer = Answer.create(@answer_attr)
-        answer.errors.on_base.should_not be_nil
-        @question.is_answered.should be_false
-      end.should_not change(UnansweredQuestion, :count)
     end
 
     #bug
@@ -57,8 +47,4 @@ describe UnansweredQuestion do
     question_to_ben.should_not == question_to_patpat
   end
 
-  it "should get a question by anonymous" do 
-    question = UnansweredQuestion.get
-    question.should_not be_nil
-  end
 end
