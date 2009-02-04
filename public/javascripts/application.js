@@ -3,11 +3,6 @@
 var j = jQuery.noConflict();
 
 j(document).ready(function(){
-  //click a textarea box, highlight the tip
-  j("textarea").focus(function(){
-    var index = j("textarea").index(this);
-    j(".tip li").eq(index).effect("highlight", {color:"#0078A7"}, 2000);
-  });
 
   //focus
   j("textarea[is_focus]").focus();
@@ -25,4 +20,6 @@ j(document).ready(function(){
     });
   }
 
+  //facebox lightbox
+  j('a[rel*=facebox]').facebox();
 });

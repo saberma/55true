@@ -1,0 +1,15 @@
+!!! Strict
+
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title 真心话 | 你敢玩吗
+    =stylesheet_link_tag "blueprint/screen"
+    / [if IE]
+      =stylesheet_link_tag "blueprint/ie"
+    =stylesheet_link_tag "default"
+    =javascript_include_tag "prototype", "jquery", "jquery-ui", "jquery.timers", "application" 
+
+  %body.span-13
+    #content
+      =yield

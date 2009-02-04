@@ -5,6 +5,14 @@ a {
 li {
   font-size: 1.2em; }
 
+img.head {
+  margin: 3px;
+  padding: 1px;
+  border: 1px #cccccc solid;
+  float: left;
+  width: 48px;
+  height: 48px; }
+
 #header {
   background: url(/images/header_background.png); }
   #header a {
@@ -39,13 +47,6 @@ li {
   border-bottom: 1px solid #cccccc;
   margin: 1.5em 0 0 0;
   padding-bottom: 0.5em; }
-#content img.head {
-  margin: 3px;
-  padding: 1px;
-  border: 1px #cccccc solid;
-  float: left;
-  width: 48px;
-  height: 48px; }
 #content ul.talk {
   margin: 0px;
   padding: 0px;
@@ -66,20 +67,21 @@ li {
   padding: 5px; }
 #content .btn_play {
   float: right; }
-#content #register h4, #content #login h4, #content #get_question h4 {
+
+#register h4, #login h4, #get_question h4 {
   margin: 1.5em 0 1.5em 0;
   font-size: 16px;
   font-weight: bold; }
-#content #register p, #content #login p, #content #get_question p {
+#register p, #login p, #get_question p {
   margin: 10px 0px; }
-#content #register label, #content #login label, #content #get_question label {
+#register label, #login label, #get_question label {
   margin-right: 15px;
   width: 155px;
   float: left;
   text-align: right;
   font-size: 14px;
   font-weight: normal; }
-#content #register input, #content #login input, #content #get_question input {
+#register input, #login input, #get_question input {
   border: 1px solid;
   border-color: #7c7c7c #c3c3c3 #dddddd #c3c3c3;
   width: 280px;
@@ -89,11 +91,11 @@ li {
   font-weight: bold;
   line-height: 18px;
   padding: 3px 4px; }
-#content #register span, #content #login span, #content #get_question span {
+#register span, #login span, #get_question span {
   display: block;
   margin-left: 170px;
   color: #666666; }
-#content #register .button, #content #login .button, #content #get_question .button {
+#register .button, #login .button, #get_question .button {
   height: 23px;
   padding: 0 1.5em;
   border: 1px solid;
@@ -101,31 +103,32 @@ li {
   background-color: #0078a7;
   color: #ffffff;
   letter-spacing: 0.3em;
-  margin-left: 170px;
+  margin-left: 90px;
   cursor: pointer; }
-#content #register .checkbox, #content #login .checkbox, #content #get_question .checkbox {
+#register .checkbox, #login .checkbox, #get_question .checkbox {
   width: 15px; }
-#content #register .box, #content #login .box, #content #get_question .box {
+#register .box, #login .box, #get_question .box {
   height: 22em; }
-#content #get_question span {
+
+#get_question span {
   display: inline;
   margin: 0px;
   color: #666666; }
-#content #get_question textarea {
+#get_question textarea {
   height: 40px;
-  width: 437px;
+  width: 380px;
   overflow: hidden;
-  margin-top: 3px;
+  margin-top: 4px;
   margin-bottom: 0; }
-#content #get_question textarea.question {
+#get_question textarea.question {
   margin-left: 58px;
-  margin-top: 0;
+  margin-top: 2px;
   margin-bottom: 10px; }
-#content #get_question #time_warning {
+#get_question #time_warning {
   margin-left: 58px;
   padding-bottom: 3px;
   display: none; }
-#content #get_question #time_remain {
+#get_question #time_remain {
   color: red; }
 
 .errorExplanation {

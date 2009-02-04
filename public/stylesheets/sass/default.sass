@@ -18,6 +18,14 @@ a
 li
   +normal_font_size
 
+img.head
+  :margin 3px
+  :padding 1px
+  :border 1px #cccccc solid
+  :float left
+  :width 48px
+  :height 48px
+
 #header
   :background url(/images/header_background.png)
   a
@@ -60,14 +68,6 @@ li
     :margin 1.5em 0 0 0
     :padding-bottom 0.5em
 
-  img.head
-    :margin 3px
-    :padding 1px
-    :border 1px #cccccc solid
-    :float left
-    :width 48px
-    :height 48px
-
   ul.talk
     +normal_ul
     :width 100%
@@ -94,70 +94,70 @@ li
   .btn_play
     :float right
 
-  #register,#login,#get_question
-    h4
-      :margin 1.5em 0 1.5em 0
-      :font-size 16px
-      :font-weight bold
-    p
-      :margin 10px 0px
-    label
-      :margin-right 15px
-      :width 155px
-      :float left
-      :text-align right
-      :font-size 14px
-      :font-weight normal
-    input
-      :border 1px solid
-      :border-color #7c7c7c #c3c3c3 #dddddd #c3c3c3
-      :width 280px
-      :height 18px
-      :color #444444
-      :font-size 14px
-      :font-weight bold
-      :line-height 18px
-      :padding 3px 4px
-    span
-      :display block
-      :margin-left 170px
-      :color #666666
-    .button
-      :height 23px
-      :padding 0 1.5em
-      :border 1px solid
-      :border-color #66acff #094fa1 #094fa1 #66acff
-      :background-color = !front_color_strong
-      :color = !front_color_light
-      :letter-spacing 0.3em
-      :margin-left 170px
-      :cursor pointer
-    .checkbox
-      :width 15px
-    .box
-      :height 22em
+#register,#login,#get_question
+  h4
+    :margin 1.5em 0 1.5em 0
+    :font-size 16px
+    :font-weight bold
+  p
+    :margin 10px 0px
+  label
+    :margin-right 15px
+    :width 155px
+    :float left
+    :text-align right
+    :font-size 14px
+    :font-weight normal
+  input
+    :border 1px solid
+    :border-color #7c7c7c #c3c3c3 #dddddd #c3c3c3
+    :width 280px
+    :height 18px
+    :color #444444
+    :font-size 14px
+    :font-weight bold
+    :line-height 18px
+    :padding 3px 4px
+  span
+    :display block
+    :margin-left 170px
+    :color #666666
+  .button
+    :height 23px
+    :padding 0 1.5em
+    :border 1px solid
+    :border-color #66acff #094fa1 #094fa1 #66acff
+    :background-color = !front_color_strong
+    :color = !front_color_light
+    :letter-spacing 0.3em
+    :margin-left 90px
+    :cursor pointer
+  .checkbox
+    :width 15px
+  .box
+    :height 22em
 
-  #get_question
-    span
-      :display inline
-      :margin 0px
-      :color #666666
-    textarea
-      :height 40px
-      :width 437px
-      :overflow hidden
-      :margin-top 3px
-      :margin-bottom 0
-    textarea.question
-      :margin-left 58px
-      :margin-top 0
-      :margin-bottom 10px
-    #time_warning
-      :margin-left 58px
-      :padding-bottom 3px
-      :display none
-    #time_remain
-      :color red
+#get_question
+  span
+    :display inline
+    :margin 0px
+    :color #666666
+  textarea
+    :height 40px
+    :width 380px
+    :overflow hidden
+    :margin-top 4px
+    :margin-bottom 0
+  textarea.question
+    :margin-left 58px
+    :margin-top 2px
+    :margin-bottom 10px
+  #time_warning
+    :margin-left 58px
+    :padding-bottom 3px
+    :display none
+  #time_remain
+    :color red
 
 
 .errorExplanation

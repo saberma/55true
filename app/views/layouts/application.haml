@@ -1,0 +1,48 @@
+!!! Strict
+
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title 真心话 | 你敢玩吗
+    =stylesheet_link_tag "blueprint/screen"
+    / [if IE]
+      =stylesheet_link_tag "blueprint/ie"
+    =stylesheet_link_tag "facebox", "default" 
+    =javascript_include_tag "prototype", "jquery", "jquery-ui", "jquery.timers", "facebox", "application" 
+
+  %body
+    .container
+      #header.span-19
+        #logo.span-15
+          %a{:href=>'/',:title=>'返回真心话首页'} 真心话
+        #navigation.span-4.last
+          %ul
+            -if logged_in?
+              %li==欢迎,#{h current_user.login}!
+              %li=link_to "退出", logout_path
+            -else
+              %li=link_to "登录", login_path
+              %li=link_to "注册", signup_path
+      #content.span-19
+        -flash.each do |key, msg|
+          =content_tag :p, msg, :class => "flash #{key}"
+        =yield
+      #footer.span-19
+        %ul
+          %li
+            %a{:href=>'/'} 首页
+          %li |
+          %li
+            %a{:href=>'/aboutus'} 关于我们
+      
+      - if development?
+        .span-19=render :partial=>'shared/debug'
+    
+    :javascript 
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    :javascript
+      var pageTracker = _gat._getTracker("UA-3888191-1");
+      pageTracker._setDomainName("www.55true.com");
+      pageTracker._initData();
+      pageTracker._trackPageview();

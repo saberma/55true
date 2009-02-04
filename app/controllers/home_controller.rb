@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       @question_list = Question.answered.not_belong_to current_user
     else
       @question_list = Question.answered
-      flash[:notice] = "网站让你玩真心话游戏更方便，点击下一行“我敢玩”就可以开始了!"
+      flash.now[:notice] = "让你玩真心话游戏更方便，点击下一行“我敢玩”就可以开始了!"
     end
   end
 

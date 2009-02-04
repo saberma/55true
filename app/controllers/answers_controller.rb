@@ -1,4 +1,6 @@
 class AnswersController < ApplicationController
+  layout nil
+
   #接题
   def new
     if !logged_in?
