@@ -21,8 +21,8 @@
               %li==欢迎,#{h current_user.login}!
               %li=link_to "退出", logout_path
             -else
-              %li=link_to "登录", login_path
-              %li=link_to "注册", signup_path
+              %li=link_to "登录", login_path, :rel => "facebox"
+              %li=link_to "注册", signup_path, :rel => "facebox"
       #content.span-19
         -flash.each do |key, msg|
           =content_tag :p, msg, :class => "flash #{key}"

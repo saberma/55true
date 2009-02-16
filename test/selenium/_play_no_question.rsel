@@ -1,6 +1,7 @@
 #make all question unavailable
 UnansweredQuestion.update_all "play_time='#{Time.now.to_s(:db)}'"
 
-click_and_wait "link=我也玩"
+click "link=我敢玩"
+wait_for_element_present "question[content]"
 type "question[content]","你喜欢东方神起吗"
 click_and_wait "commit"

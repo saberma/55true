@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
+  layout 'facebox'
 
   def create
     cookies.delete :auth_token
@@ -12,10 +13,9 @@ class UsersController < ApplicationController
     @user.save
     if @user.errors.empty?
       self.current_user = @user
-      redirect_back_or_default('/')
       flash[:notice] = "注册成功!"
     else
-      render :action => 'new'
+      render :action => 'create_error'
     end
   end
 

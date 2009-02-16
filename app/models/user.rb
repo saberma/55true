@@ -38,15 +38,16 @@ class User < ActiveRecord::Base
     :path => ":rails_root/public/:attachment/:class/:id.:extension",
     :styles => {:original => "48x48#"}
   
-  validates_presence_of     :login, :email
-  validates_presence_of     :password 
-  validates_length_of       :password, :within => 4..40
-  validates_length_of       :login,    :within => 3..40
-  validates_length_of       :email,    :within => 3..100
+  validates_presence_of     :login
+  validates_length_of       :password, :maximum => 40
+  validates_length_of       :login,    :maximum => 40
+  validates_length_of       :email,    :maximum => 100
   validates_format_of       :email,
                             :with => EMAIL_REGEX,
-                            :message => "必须是正确的Email地址"
-  validates_uniqueness_of   :login, :email, :case_sensitive => false
+                            :message => "必须是正确的Email地址",
+                            :allow_blank => true
+  validates_uniqueness_of   :login, :email, :case_sensitive => false,
+                            :allow_blank => true
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   validates_attachment_size :photo, :less_than => 2.megabytes
@@ -80,7 +81,7 @@ class User < ActiveRecord::Base
 
   def remember_me_for(time)
     remember_me_until time.from_now.utc
-  end
+end
 
   def remember_me_until(time)
     self.remember_token_expires_at = time
@@ -100,6 +101,7 @@ class User < ActiveRecord::Base
   end
   
   def unencrypted_password
+    return "" if crypted_password.blank?
     DES.decrypt(crypted_password)
   end
   

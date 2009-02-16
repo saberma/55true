@@ -2,6 +2,7 @@
 class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
+  layout 'facebox'
 
   def create
     self.current_user = User.authenticate(params[:login], params[:password])
@@ -11,12 +12,11 @@ class SessionsController < ApplicationController
         self.current_user.remember_me unless self.current_user.remember_token?
         cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       end
-      redirect_back_or_default('/')
       flash[:notice] = "登录成功."
     else
       flash.now[:error] = "错误的用户或密码."
       params[:password] = nil
-      render :action => 'new'
+      render :action => 'create_error'
     end
   end
 

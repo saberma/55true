@@ -82,7 +82,7 @@
 
   $.extend($.facebox, {
     settings: {
-      opacity      : 0,
+      opacity      : 40/100,
       overlay      : true,
       loadingImage : '/images/facebox/loading.gif',
       closeImage   : '/images/facebox/closelabel.gif',
@@ -101,9 +101,9 @@
                 <div class="content"> \
                 aaaaa</div> \
                 <div class="footer"> \
-                  <a href="#" class="close"> \
+                  <!--a href="#" class="close"> \
                     <img src="/images/facebox/closelabel.gif" title="close" class="close_image" /> \
-                  </a> \
+                  </a--> \
                 </div> \
               </td> \
               <td class="b"/> \
@@ -131,10 +131,12 @@
         left:	$(window).width() / 2 - 205 
       }).show()
 
+      /*
       $(document).bind('keydown.facebox', function(e) {
         if (e.keyCode == 27) $.facebox.close()
         return true
       })
+      */
       $(document).trigger('loading.facebox')
     },
 
@@ -291,7 +293,7 @@
 
     $('#facebox_overlay').hide().addClass("facebox_overlayBG")
       .css('opacity', $.facebox.settings.opacity)
-      .click(function() { $(document).trigger('close.facebox') })
+      //.click(function() { $(document).trigger('close.facebox') })
       .fadeIn(200)
     return false
   }
@@ -313,7 +315,7 @@
    */
 
   $(document).bind('close.facebox', function() {
-    $(document).unbind('keydown.facebox')
+    //$(document).unbind('keydown.facebox')
     $('#facebox').fadeOut(function() {
       if ($('#facebox_moved').length == 0) $('#facebox .content').removeClass().addClass('content')
       else $('#facebox_moved').replaceWith($('#facebox .content').children().hide())

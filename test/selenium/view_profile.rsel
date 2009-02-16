@@ -10,7 +10,8 @@ verify_text_present "问题数：0"
 verify_text_present "回答数：0"
 
 include_partial 'login', :name => 'ben'
-click_and_wait "link=我也玩"
+click "link=我敢玩"
+wait_for_element_present "answer_content"
 type "answer_content","第三者 ~`第三者多好玩呀 老公有什么意思 一天看八遍 早腻了"
 type "question[content]","如果有机会要不要试试做第三者?"
 click_and_wait "commit"

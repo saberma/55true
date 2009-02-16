@@ -33,7 +33,6 @@ describe AnswersController do
       post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => @previou_question.id
 
       flash[:notice].should == '接题成功!'
-      response.should redirect_to(:controller => "home")
     end
 
     it "answer require content." do
@@ -41,7 +40,7 @@ describe AnswersController do
       @answer.should_receive(:valid?).and_return(false)
       @answer.should_receive(:errors).and_return(["error"])
       post :create, :answer => {:content => ""}, :question => {:content => "What?"}, :previou_question => @previou_question.id
-      response.should render_template("new")
+      response.should render_template("create_error")
     end
 
     describe 'get no question' do

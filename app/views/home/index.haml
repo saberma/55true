@@ -16,7 +16,7 @@
         =error_messages_for :user
         - form_for current_user, :html => { :multipart => true } do |f|
           =f.file_field :photo, :size => 1
-          =submit_tag '提交', :class => "button"
+          =submit_tag '提交', :class => "button", :id => "photo_commit", :name => "photo_commit"
       %p.clearfix
         %h4 你问了......
         %ol
@@ -38,6 +38,4 @@
         %li 另一个人回答:不怕的。
         %li 然后他再问:你现在最想的是谁？
         %li 下个人回答时提出新问题
-      %h4 加入真心话
-      %div= link_to image_tag("button_signup.png"), signup_path
       = link_to '忘记密码？', new_password_reminder_path

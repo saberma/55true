@@ -1,0 +1,2 @@
+page.replace 'errorExplanation', error_messages_for('user')
+page.show 'errorExplanation'

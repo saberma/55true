@@ -1,0 +1,2 @@
+page.replace_html 'errorExplanation', "<h2></h2><ul><li>#{flash[:error]}</li></ul>"
+page.show 'errorExplanation'

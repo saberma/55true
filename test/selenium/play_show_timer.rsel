@@ -3,7 +3,8 @@ setup :fixtures => :all
 timeout = MAX_ANSWER_TIME*1000
 
 include_partial 'login', :name => 'po'
-click_and_wait "link=我也玩"
+click "link=我敢玩"
+wait_for_element_present "answer_content"
 verify_not_visible 'time_warning'
 pause((timeout * 0.7).ceil)
 verify_visible 'time_warning'

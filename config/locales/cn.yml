@@ -6,18 +6,19 @@ cn:
 
     attributes:
       user:
-        login: "用户名"
-        password: "密码"
-        content: "提问内容"
+        login: "请输入用户名"
+        password: "请输入密码"
       answer:
-        content: "回答内容"
+        content: "请输入回答内容"
+      question:
+        content: "请输入提问内容"
 
     errors:
       template:
         header: ""
         body: ""
       messages:
-        blank: "必须输入"
+        blank: ""
         too_long: "长度太长 (最多%d个字符)"
         too_short: "长度太短 (最少%d个字符)"
         taken: "已经存在"

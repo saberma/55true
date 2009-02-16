@@ -1,3 +1,4 @@
 open "/"
-click_and_wait "link=我也玩"
-assert_text_present("请先注册或登录")
+click "link=我敢玩"
+wait_for_element_present "user_login"
+assert_text_present("用户名")

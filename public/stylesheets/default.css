@@ -68,15 +68,11 @@ img.head {
 #content .btn_play {
   float: right; }
 
-#register h4, #login h4, #get_question h4 {
-  margin: 1.5em 0 1.5em 0;
-  font-size: 16px;
-  font-weight: bold; }
 #register p, #login p, #get_question p {
   margin: 10px 0px; }
 #register label, #login label, #get_question label {
   margin-right: 15px;
-  width: 155px;
+  width: 55px;
   float: left;
   text-align: right;
   font-size: 14px;
@@ -84,7 +80,7 @@ img.head {
 #register input, #login input, #get_question input {
   border: 1px solid;
   border-color: #7c7c7c #c3c3c3 #dddddd #c3c3c3;
-  width: 280px;
+  width: 250px;
   height: 18px;
   color: #444444;
   font-size: 14px;
@@ -93,7 +89,7 @@ img.head {
   padding: 3px 4px; }
 #register span, #login span, #get_question span {
   display: block;
-  margin-left: 170px;
+  margin-left: 70px;
   color: #666666; }
 #register .button, #login .button, #get_question .button {
   height: 23px;
@@ -103,12 +99,10 @@ img.head {
   background-color: #0078a7;
   color: #ffffff;
   letter-spacing: 0.3em;
-  margin-left: 90px;
+  margin-left: 70px;
   cursor: pointer; }
 #register .checkbox, #login .checkbox, #get_question .checkbox {
   width: 15px; }
-#register .box, #login .box, #get_question .box {
-  height: 22em; }
 
 #get_question span {
   display: inline;
@@ -135,4 +129,8 @@ img.head {
   border: 1px solid #FFCC66;
   background-color: #FFFFCC;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  margin-bottom: 5px; }
+
+.warning {
+  color: red; }

@@ -1,5 +1,5 @@
 #get_question
-  -form_for :answer, :url => answers_path do |f|
+  -remote_form_for :answer, :url => answers_path do |f|
     = hidden_field_tag 'previou_question', @unanswer_question.id
     .clearfix
     =image_tag(@unanswer_question.user.head, :class => "head") 

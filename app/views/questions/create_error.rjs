@@ -1,0 +1,2 @@
+page.replace 'errorExplanation', error_messages_for('question')
+page.show 'errorExplanation'

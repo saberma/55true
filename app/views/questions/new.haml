@@ -1,19 +1,8 @@
 #get_question
-  .span-13
-    %h4 接题
-    -form_for :question, :url => questions_path do |f|
-      %p 接不到题，你先提问
-      %p
-        =image_tag(current_user.head, :class => "head") 
-        = f.text_area :content, :rows => 2, :is_focus => true
-      %p
-        = submit_tag '提交', :class => "button"
-    
-  .span-6.last
-    .box
-      =error_messages_for :question
-      .tip 
-        提示：
-        %ol
-          %li 输入内容,向楼下的提问
-          %li 点击提交按钮
+  -form_for :question, :url => questions_path do |f|
+    %p 接不到题，你先提问
+    %p
+      =image_tag(current_user.head, :class => "head") 
+      = f.text_area :content, :rows => 2, :is_focus => true
+    %p
+      = submit_tag '提交', :class => "button"
