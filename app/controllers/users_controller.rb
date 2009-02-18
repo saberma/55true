@@ -33,5 +33,6 @@ class UsersController < ApplicationController
     @his_answered_question_list = Question.limit(10).answered.of(@user)
     @his_answer_list = Answer.limit(10).of(@user)
     @his_answer_list = @his_answer_list.map(&:question)
+    render :layout => "application"
   end
 end

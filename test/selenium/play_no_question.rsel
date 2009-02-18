@@ -1,3 +1,6 @@
+#Don't reset the fixtures,because we had change the unanswerquestion's play_time
+#setup :fixtures => :all
+
 include_partial 'login', :name => 'ben'
 include_partial 'play_no_question'
 

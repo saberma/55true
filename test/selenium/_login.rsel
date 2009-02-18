@@ -1,6 +1,7 @@
 open '/'
 
-click_and_wait "link=登录"
+click "link=登录"
+wait_for_element_present "login"
 type "//input[@id='login']", name
 type "password", '1'
 click_and_wait "commit"

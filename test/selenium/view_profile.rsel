@@ -1,4 +1,4 @@
-setup :fixtures => :users
+setup :fixtures => :all
 
 open '/'
 

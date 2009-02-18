@@ -1,7 +1,7 @@
 class CreateUsers < ActiveRecord::Migration
   def self.up
     create_table "users", :force => true do |t|
-      t.string   :email, :login, :remember_token, :crypted_password
+      t.string   :login, :remember_token, :crypted_password
       t.datetime :remember_token_expires_at
       t.datetime :last_login, :null => false
       t.integer :questions_count, :answers_count, :default => 0, :null => false

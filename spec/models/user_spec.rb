@@ -35,13 +35,6 @@ describe User do
     end.should_not change(User, :count)
   end
 
-  it 'requires email' do
-    lambda do
-      u = create_user(:email => nil)
-      u.errors.on(:email).should_not be_nil
-    end.should_not change(User, :count)
-  end
-
   it 'resets password' do
     users(:quentin).update_attributes(:password => 'new password')
     User.authenticate('quentin', 'new password').should == users(:quentin)
@@ -92,7 +85,7 @@ describe User do
 
 protected
   def create_user(options = {})
-    record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire'}.merge(options))
+    record = User.new({ :login => 'quire', :password => 'quire'}.merge(options))
     record.save
     record
   end

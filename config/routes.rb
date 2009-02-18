@@ -2,7 +2,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :users
   map.resource :session
-  map.resources :password_reminders
 
   map.resources :questions
   map.resources :answers

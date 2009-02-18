@@ -1,5 +1,5 @@
 #make all question unavailable
-UnansweredQuestion.update_all "play_time='#{Time.now.to_s(:db)}'"
+UnansweredQuestion.update_all "play_time='#{5.minutes.from_now.to_s(:db)}'"
 
 click "link=我敢玩"
 wait_for_element_present "question[content]"

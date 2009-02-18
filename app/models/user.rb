@@ -4,7 +4,6 @@
 # Table name: users
 #
 #  id                        :integer(4)      not null, primary key
-#  email                     :string(255)     
 #  login                     :string(255)     
 #  remember_token            :string(255)     
 #  crypted_password          :string(255)     
@@ -28,7 +27,7 @@ class User < ActiveRecord::Base
   
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :password
+  attr_accessible :login, :password
   
   has_many :questions
   has_many :answers
@@ -41,12 +40,7 @@ class User < ActiveRecord::Base
   validates_presence_of     :login
   validates_length_of       :password, :maximum => 40
   validates_length_of       :login,    :maximum => 40
-  validates_length_of       :email,    :maximum => 100
-  validates_format_of       :email,
-                            :with => EMAIL_REGEX,
-                            :message => "必须是正确的Email地址",
-                            :allow_blank => true
-  validates_uniqueness_of   :login, :email, :case_sensitive => false,
+  validates_uniqueness_of   :login, :case_sensitive => false,
                             :allow_blank => true
 
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
@@ -85,7 +79,7 @@ end
 
   def remember_me_until(time)
     self.remember_token_expires_at = time
-    self.remember_token            = DES.encrypt("#{email}--#{remember_token_expires_at}")
+    self.remember_token            = DES.encrypt("#{remember_token_expires_at}")
     save(false)
   end
 

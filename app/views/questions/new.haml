@@ -1,5 +1,5 @@
 #get_question
-  -form_for :question, :url => questions_path do |f|
+  -remote_form_for :question, :url => questions_path do |f|
     %p 接不到题，你先提问
     %p
       =image_tag(current_user.head, :class => "head") 

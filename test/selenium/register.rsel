@@ -1,9 +1,9 @@
 setup
 open '/'
 
-click_and_wait "link=注册"
+click "link=注册"
+wait_for_element_present "user_login"
 type "user_login", "SelTest1"
-type "user_email", "SelTest1@sel.com"
 type "user_password", "SelTest"
 click_and_wait "commit"
 assert_text_present("注册成功!")
