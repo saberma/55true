@@ -12,6 +12,7 @@ j(document).ready(function(){
 
   //answer timer
   j(document).bind('reveal.facebox', function(){
+    j('a[rel*=facebox]').facebox();
     if(j("#time_remain").size() > 0){
       var showTime = Math.floor((j("#time_remain").attr("max_answer_time")/3));
       j("#time_remain").everyTime(1000, function(){
