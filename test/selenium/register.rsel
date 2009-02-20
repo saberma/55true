@@ -1,10 +1,11 @@
-setup
+setup :fixtures => :users
 open '/'
 
-click "link=注册"
+click "link=登录"
+wait_for_element_present "login"
+click "link=还没注册？ 点击这里"
 wait_for_element_present "user_login"
 type "user_login", "SelTest1"
 type "user_password", "SelTest"
-click_and_wait "commit"
-assert_text_present("注册成功!")
-click "link=退出"
+click "commit"
+wait_for_element_present "question_content"

@@ -6,8 +6,8 @@ cn:
 
     attributes:
       user:
-        login: "请输入用户名"
-        password: "请输入密码"
+        login: "请先输入你的昵称"
+        #password: "请输入密码"
       answer:
         content: "请输入回答内容"
       question:

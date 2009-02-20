@@ -22,18 +22,15 @@
               %li=link_to "退出", logout_path
             -else
               %li=link_to "登录", login_path, :rel => "facebox"
-              %li=link_to "注册", signup_path, :rel => "facebox"
       #content.span-19
         -flash.each do |key, msg|
           =content_tag :p, msg, :class => "flash #{key}"
         =yield
-      #footer.span-19
-        %ul
-          %li
-            %a{:href=>'/'} 首页
-          %li |
-          %li
-            %a{:href=>'/aboutus'} 关于我们
+      #footer.span-19.clearfix
+        %p
+          本站开源于
+          %a{:href=>'http://github.com/saberma/55true/tree/master', :target=>'_blank'} Github
+          Email:mahb45 at gmail.com
       
       - if development?
         .span-19=render :partial=>'shared/debug'

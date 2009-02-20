@@ -34,6 +34,8 @@ img.head {
         color: #ffffff;
         padding: 5px; }
 
+#footer p {
+  margin: 30px; }
 #footer a {
   font-size: 1.2em; }
 #footer ul {
@@ -72,7 +74,7 @@ img.head {
   margin: 10px 0px; }
 #register label, #login label, #get_question label {
   margin-right: 15px;
-  width: 55px;
+  width: 75px;
   float: left;
   text-align: right;
   font-size: 14px;

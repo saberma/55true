@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       flash[:notice] = "登录成功."
     else
-      flash.now[:error] = "错误的用户或密码."
+      flash.now[:error] = "错误的用户名或密码."
       params[:password] = nil
       render :action => 'create_error'
     end

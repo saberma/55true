@@ -8,13 +8,13 @@
     %span.quiet= time_ago_in_words(@unanswer_question.created_at)
     .clearfix
     =image_tag(current_user.head, :class => "head") 
-    = f.text_area :content, :rows => 3, :is_focus => true
-    = text_area_tag 'question[content]', @question?@question[:content]:nil, :class => "question"
+    = text_area_tag 'answer[content]', "在这里输入回答内容", :id => 'answer_content', :rows => 3, :is_focus => true
+    = text_area_tag 'question[content]', "在这里输入提问内容", :id => 'question_content', :class => "question"
     .clearfix
     #time_warning
       请在
       %span#time_remain{:max_answer_time=>MAX_ANSWER_TIME}= MAX_ANSWER_TIME
       秒内提交，方便其他人接题
     .clearfix
-    = submit_tag '提交', :class => "button"
+    = submit_tag '提交', :class => "button", :id => "commit"
   

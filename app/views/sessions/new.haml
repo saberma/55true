@@ -1,12 +1,12 @@
 #login
   - form_remote_tag :url => session_path do
     %p
-      %label 用户名
+      %label 你的名字
       = text_field_tag 'login', params[:login]
     %p
-      %label 密码
+      %label 你的密码
       = password_field_tag 'password'
     %p
       = submit_tag '登录', :class => "button"
-    %p 或者
-    = link_to "注册", signup_path, :class => "large", :rel => "facebox"
+    %p
+      = link_to "还没注册？ 点击这里", signup_path, :class => "large", :rel => "facebox"

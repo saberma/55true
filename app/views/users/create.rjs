@@ -1,1 +1,1 @@
-page.redirect_to :controller => :home
+page << "j.facebox({ ajax: '#{new_answer_path}' })"

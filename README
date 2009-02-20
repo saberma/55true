@@ -1,6 +1,7 @@
 == Welcome to 55true project
 
 55true is a web-application.
+task manager:http://www.pivotaltracker.com/projects/4893/stories
 
 == Install
 gem sources -a http://gems.github.com

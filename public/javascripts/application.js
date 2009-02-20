@@ -24,5 +24,20 @@ j(document).ready(function(){
           j(this).stopTime();
       });
     }
-  })
+
+    //tip
+    j('#answer_content, #question_content')
+      .attr('tip',function(){return j(this).val()})
+      .focus(function(){
+        if(j(this).val()==j(this).attr("tip"))
+          j(this).val("");
+      });
+
+    j('#commit').click(function(){
+      j('#answer_content, #question_content').each(function(){
+        if(j(this).val()==j(this).attr("tip"))
+          j(this).val("");
+      });
+    });
+  });
 });

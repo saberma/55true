@@ -1,10 +1,10 @@
 #register
   - remote_form_for :user, :url => users_path do |f|
     %p
-      %label 用户名
+      %label 先取个名字
       = f.text_field :login
     %p
-      %label 密码
+      %label 再设置密码
       = f.password_field 'password'
     %p
-      = submit_tag '注册', :class => "button"
+      = submit_tag '注册一下,开始玩', :class => "button"
