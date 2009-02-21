@@ -5,7 +5,7 @@ var j = jQuery.noConflict();
 j(document).ready(function(){
 
   //facebox lightbox(avoid enter key triggle another facebox):w
-  j('a[rel*=facebox]').facebox().focus(function(){j(this).blur();});
+  j('a[rel*=facebox]').focus(function(){j(this).blur();});
 
   j(document).bind('reveal.facebox', function(){
     //focus
