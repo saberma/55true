@@ -2,7 +2,7 @@
   - remote_form_for :user, :url => users_path do |f|
     %p
       %label 先取个名字
-      = f.text_field :login
+      = f.text_field :login, :is_focus => true
     %p
       %label 再设置密码
       = f.password_field 'password'

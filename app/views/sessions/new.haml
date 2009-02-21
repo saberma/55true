@@ -2,7 +2,7 @@
   - form_remote_tag :url => session_path do
     %p
       %label 你的名字
-      = text_field_tag 'login', params[:login]
+      = text_field_tag 'login', params[:login], :is_focus => true
     %p
       %label 你的密码
       = password_field_tag 'password'

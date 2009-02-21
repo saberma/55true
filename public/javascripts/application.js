@@ -4,14 +4,14 @@ var j = jQuery.noConflict();
 
 j(document).ready(function(){
 
-  //focus
-  j("textarea[is_focus]").focus();
+  //facebox lightbox(avoid enter key triggle another facebox):w
+  j('a[rel*=facebox]').facebox().focus(function(){j(this).blur();});
 
-  //facebox lightbox
-  j('a[rel*=facebox]').facebox();
-
-  //answer timer
   j(document).bind('reveal.facebox', function(){
+    //focus
+    j(":input[is_focus]").focus();
+
+    //answer timer
     j('a[rel*=facebox]').facebox();
     if(j("#time_remain").size() > 0){
       var showTime = Math.floor((j("#time_remain").attr("max_answer_time")/3));
@@ -33,11 +33,24 @@ j(document).ready(function(){
           j(this).val("");
       });
 
+    //clear default tip
     j('#commit').click(function(){
       j('#answer_content, #question_content').each(function(){
         if(j(this).val()==j(this).attr("tip"))
           j(this).val("");
       });
+    });
+
+    //enter as tab
+    var input = j(':input');
+    input.keypress(function(e){
+        if(e.keyCode==13){
+          var index = input.index(this);
+          if(index!=(input.size()-1)){
+            input.eq(index+1).focus();
+            return false;
+          }
+        }
     });
   });
 });
