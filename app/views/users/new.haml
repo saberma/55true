@@ -8,3 +8,5 @@
       = f.password_field 'password'
     %p
       = submit_tag '注册一下,开始玩', :class => "button"
+    %p
+      = link_to "已经注册？ 点击这里登录", new_session_path, :class => "large", :rel => "facebox"
