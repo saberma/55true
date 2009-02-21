@@ -41,7 +41,7 @@ j(document).ready(function(){
       });
     });
 
-    //enter as tab
+    //enter2tab
     var input = j(':input');
     input.keypress(function(e){
         if(e.keyCode==13){
