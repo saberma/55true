@@ -11,7 +11,7 @@ describe AnswersController do
 
   describe 'not logged' do
     it "cann't get a question." do
-      get :new
+      xhr :get, :new
       response.should redirect_to(:controller => "users", :action => "new")
       flash[:notice].should == "请先注册或登录，注册只需6秒."
     end
@@ -23,7 +23,7 @@ describe AnswersController do
     end
 
     it "should get a question." do
-      get :new
+      xhr :get, :new
       assigns[:unanswer_question].should == @previou_question
       response.should render_template(:new)
     end
@@ -46,7 +46,7 @@ describe AnswersController do
     describe 'get no question' do
       it "should ask a question directly." do
         UnansweredQuestion.stub!(:for).and_return(nil)
-        get :new
+        xhr :get, :new
         assigns[:unanswer_question].should be_nil
         response.should redirect_to(:controller => :questions, :action => :new)
       end
