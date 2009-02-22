@@ -8,7 +8,7 @@
     %span.quiet= time_ago_in_words(@unanswer_question.created_at)
     .clearfix
     =image_tag(current_user.head, :class => "head") 
-    = text_area_tag 'answer[content]', "在这里输入回答内容", :id => 'answer_content', :rows => 3, :is_focus => true
+    = text_area_tag 'answer[content]', "在这里输入回答内容", :id => 'answer_content', :rows => 3
     = text_area_tag 'question[content]', "在这里输入提问内容", :id => 'question_content', :class => "question"
     .clearfix
     #time_warning
