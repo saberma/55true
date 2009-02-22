@@ -16,6 +16,11 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
   
+  def check_xhr
+    unless request.xhr?
+      redirect_to home_path
+    end
+  end
   private
   
     # Create a Scribd-style PageView.

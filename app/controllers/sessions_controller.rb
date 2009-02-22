@@ -3,6 +3,7 @@ class SessionsController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   layout 'facebox'
+  before_filter :check_xhr, :only => :new
 
   def create
     self.current_user = User.authenticate(params[:login], params[:password])

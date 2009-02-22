@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   layout 'facebox'
+  before_filter :check_xhr, :only => :new
 
   #接题
   def new
