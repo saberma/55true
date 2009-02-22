@@ -1,1 +1,2 @@
-click_and_wait "link=退出"
+open "/"
+click "link=退出"

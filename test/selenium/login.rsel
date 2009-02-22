@@ -1,5 +1,6 @@
 setup :fixtures => :users
 
-include_partial 'login', :name => 'po'
-assert_text_present("登录成功.")
-click "link=退出"
+include_partial 'login', :name => 'patpat'
+wait_for_element_present "question_content"
+open "/"
+click 'link=退出'
