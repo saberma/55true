@@ -5,7 +5,7 @@ task manager:http://www.pivotaltracker.com/projects/4893/stories
 
 == Install
 gem sources -a http://gems.github.com
-sudo apt-get install ruby libopenssl-ruby1.8 mysql-server mysql-client libmysqlclient15-dev git-core imagemagick nginx
+sudo apt-get install ruby libopenssl-ruby1.8 mysql-server mysql-client libmysqlclient15-dev git-core imagemagick nginx ctags
 rubygems(wget http://rubyforge.org/frs/download.php/45905/rubygems-1.3.1.tgz)(tar xvf rubygems-1.3.1.tgz)
 sudo gem install rails rspec hoe haml paperclip mislav-will_paginate mysql mongrel mongrel_cluster cucumber webrat
 
