@@ -19,8 +19,8 @@ cn:
         body: ""
       messages:
         blank: ""
-        too_long: "长度太长 (最多%d个字符)"
-        too_short: "长度太短 (最少%d个字符)"
+        too_long: "长度太长 (最多{{count}}个字符)"
+        too_short: "长度太短 (最少{{count}}个字符)"
         taken: "已经存在"
         timeout: "超时了"
         
