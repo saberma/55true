@@ -38,6 +38,12 @@ img.head {
   margin: 30px; }
   #footer p span {
     margin: 20px; }
+#footer .send {
+  background-color: #F5F5F5;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  display: block; }
 #footer a {
   font-size: 1.2em; }
   #footer a img {
