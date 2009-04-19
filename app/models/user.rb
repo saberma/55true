@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
   has_many :answers
 
   has_attached_file :photo, :url => "/:attachment/:class/:id.:extension",
-    :default_url => "/:attachment/:class/default.jpg",
+    :default_url => "/images/:class/default.jpg",
     :path => ":rails_root/public/:attachment/:class/:id.:extension",
     :styles => {:original => "48x48#"}
   
@@ -50,7 +50,7 @@ class User < ActiveRecord::Base
   before_create :init_property
 
   def head
-    return "/photos/users/#{login}.jpg" if %w{po ben patpat}.include?(login)
+    return "/images/users/#{login}.jpg" if %w{po ben patpat}.include?(login)
     photo.url
   end
 

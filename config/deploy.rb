@@ -27,10 +27,10 @@ set :database_yml_in_scm, false
 
 set :user, "saberma"
 set :runner, nil
-set :mongrel_conf, "#{deploy_to}/current/config/mongrel_cluster.yml"
-set :mongrel_port, 5000
 
-set :gems_for_project, %w{rspec hoe haml paperclip mislav-will_paginate mysql mongrel mongrel_cluster cucumber webrat}
+set :packages_for_project, %w(libxslt1-dev libxml2-dev)
+set :gems_for_project, %w(rspec hoe haml paperclip mislav-will_paginate mysql cucumber webrat)
+set :shared_dirs, %w(public/photos)
 
 namespace :deploy do
   task :restart, :roles => :app, :except => {:no_release => true } do
