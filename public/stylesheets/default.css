@@ -36,8 +36,12 @@ img.head {
 
 #footer p {
   margin: 30px; }
+  #footer p span {
+    margin: 20px; }
 #footer a {
   font-size: 1.2em; }
+  #footer a img {
+    display: none; }
 #footer ul {
   margin: 50px 270px;
   list-style: none; }

@@ -10,3 +10,5 @@ tmp/**
 #vim swap file
 **.swp
 config/ssh/**
+config/mongrel/**
+config/nginx/**
