@@ -27,14 +27,9 @@
           =content_tag :p, msg, :class => "flash #{key}"
         =yield
       #footer.span-19.clearfix
-        %p 
-          %p 你的朋友们呢？复制以下内容发给他们吧:)
-          %span.send 愚人节都过了，你怎么还。。。只好送你一个网站了www.55true.com
-          %span.send 看看这个网站www.55true.com，不要再告诉我黎明正在NBA打决赛了
         %p
-          %span 有好建议或问题?，请联系：
-          %span QQ群:85215073
-          %span Email:mahb45 at gmail.com
+          %span 友情链接:
+          =link_to "找网站精选网址", "http://www.zhaoip.com", :target=>"_blank"
         =javascript_include_tag "http://js.users.51.la/2771507.js"
         %noscript
           %a{:href=>"http://www.51.la/?2771507", :target=>"_blank"}
