@@ -4,6 +4,10 @@ describe "/home/index.haml" do
     
   before(:each) do
     assigns[:question_list] = []
+    assigns[:question_list].should_receive(:total_pages).at_least(1).and_return(2)
+    assigns[:question_list].should_receive(:current_page).at_least(1).and_return(1)
+    assigns[:question_list].should_receive(:previous_page).at_least(1).and_return(0)
+    assigns[:question_list].should_receive(:next_page).at_least(1).and_return(2)
   end
 
   it "should have the button to get question" do

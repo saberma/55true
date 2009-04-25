@@ -18,7 +18,7 @@ class Question < ActiveRecord::Base
   validates_presence_of     :content
   
   named_scope :unanswer, :conditions => ['is_answered = ?', false], :order => "updated_at desc"
-  named_scope :answered, :conditions => ['is_answered = ?', true], :order => "updated_at desc", :limit => 20
+  named_scope :answered, :conditions => ['is_answered = ?', true], :order => "updated_at desc"
   named_scope :of, lambda {|user|
     {:conditions => ['user_id = ?', user.id]}
   }
@@ -28,6 +28,10 @@ class Question < ActiveRecord::Base
   named_scope :limit, lambda {|limit|
     {:limit => limit}
   }
+
+  def self.per_page
+    10
+  end
 
 
   after_create do |question|

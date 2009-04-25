@@ -72,6 +72,9 @@ img.head {
     width: 100%; }
   #content ul.talk li.even {
     background-color: #F5F5F5; }
+#content #paginate {
+  text-align: center;
+  margin: 10px; }
 #content .box li {
   margin: 3px 0 5px 0; }
   #content .box li div {

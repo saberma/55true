@@ -27,9 +27,10 @@
           =content_tag :p, msg, :class => "flash #{key}"
         =yield
       #footer.span-19.clearfix
-        %p 
-          %p 人多才好玩！复制以下内容发给你的朋友或论坛吧:)
-          %span.send 真心话网 你敢玩吗 http://www.55true.com
+        -if logged_in?
+          %p 
+            %p 人多才好玩！复制以下内容发给你的朋友或论坛吧:)
+            %span.send 真心话网 你敢玩吗 http://www.55true.com
         %p
           %span 有好建议或问题?，请联系：
           %span=link_to "豆瓣反馈贴", "http://www.douban.com/group/topic/6130670/", :target=>"_blank"
@@ -40,10 +41,11 @@
           =link_to "找网站精选网址", "http://www.zhaoip.com", :target=>"_blank"
           =link_to "第一摘网站目录", "http://www.dzhai.com/?id=", :target=>"_blank", :title=>"第一摘网站目录-免费收录各类优秀网站的中文网站目录"
           =link_to "念嘬娱乐", "http://www.nianzuo.com", :target=>"_blank"
-        =javascript_include_tag "http://js.users.51.la/2771507.js"
-        %noscript
-          %a{:href=>"http://www.51.la/?2771507", :target=>"_blank"}
-            %img{:alt=>"&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;", :src=>"http://img.users.51.la/2771507.asp", :style=>"border:none"}
+        - if production?
+          =javascript_include_tag "http://js.users.51.la/2771507.js"
+          %noscript
+            %a{:href=>"http://www.51.la/?2771507", :target=>"_blank"}
+              %img{:alt=>"&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;", :src=>"http://img.users.51.la/2771507.asp", :style=>"border:none"}
 
       
       - if development?

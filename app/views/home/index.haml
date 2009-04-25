@@ -5,6 +5,8 @@
     %ul.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
   %h4 大家刚说了......
   %ul.talk= render :partial => 'answered_question', :collection => @question_list
+  #paginate
+    =will_paginate @question_list
 
 .span-6.last
   .box
