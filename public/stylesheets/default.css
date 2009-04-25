@@ -45,6 +45,7 @@ img.head {
   border: 1px solid #ccc;
   display: block; }
 #footer a {
+  margin-right: 5px;
   font-size: 1.2em; }
   #footer a img {
     display: none; }
