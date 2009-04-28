@@ -11,6 +11,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   
   map.home '/', :controller => 'home'
+  map.connect '/page/:page', :controller => 'home', :action => 'index'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

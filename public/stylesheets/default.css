@@ -82,6 +82,10 @@ img.head {
 #content #paginate {
   text-align: center;
   margin: 10px; }
+  #content #paginate a {
+    font-size: 18px; }
+  #content #paginate span {
+    font-size: 18px; }
 #content .box li {
   margin: 3px 0 5px 0; }
   #content .box li div {
