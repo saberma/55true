@@ -3,7 +3,7 @@
 %html
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
-    %title 真心话网 | 你敢玩吗
+    %title=@title
     =stylesheet_link_tag "blueprint/screen"
     / [if IE]
       =stylesheet_link_tag "blueprint/ie"
@@ -13,8 +13,10 @@
   %body
     .container
       #header.span-19
-        #logo.span-15
+        #logo.span-4
           %a{:href=>'/',:title=>'返回真心话首页'} 真心话
+        #pop.span-11
+          %a 人多才好玩！现在召集朋友们来吧！http://www.55true.com
         #navigation.span-4.last
           %ul
             -if logged_in?
@@ -29,7 +31,7 @@
       #footer.span-19.clearfix
         -if logged_in?
           %p 
-            %p 人多才好玩！复制以下内容发给你的朋友或论坛吧:)
+            %p 真心话网还很小！需要你的支持！复制以下内容发给你的朋友或论坛吧:)
             %span.send 真心话网 你敢玩吗 http://www.55true.com
         %p
           %span 有好建议或问题?，请联系：
