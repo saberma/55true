@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20081103115406) do
+ActiveRecord::Schema.define(:version => 20090428043538) do
 
   create_table "answers", :force => true do |t|
     t.string   "content",     :default => "", :null => false
@@ -44,10 +44,11 @@ ActiveRecord::Schema.define(:version => 20081103115406) do
   add_index "questions", ["is_answered", "user_id"], :name => "index_questions_on_is_answered_and_user_id"
 
   create_table "unanswered_questions", :force => true do |t|
-    t.integer  "question_id", :null => false
-    t.integer  "user_id",     :null => false
-    t.integer  "player_id",   :null => false
-    t.datetime "play_time",   :null => false
+    t.integer  "question_id",                :null => false
+    t.integer  "user_id",                    :null => false
+    t.integer  "player_id",                  :null => false
+    t.datetime "play_time",                  :null => false
+    t.integer  "sequence",    :default => 0, :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -20,8 +20,8 @@ class UnansweredQuestion < ActiveRecord::Base
 
   named_scope :get, lambda { |user|
     {
-            :conditions => ['play_time < ? and user_id != ?', MAX_ANSWER_TIME.ago, user.id],
-      :limit => 1, :order => "id asc"
+      :conditions => ['play_time < ? and user_id != ?', MAX_ANSWER_TIME.ago, user.id],
+      :limit => 1, :order => "sequence"
     }
   }
 

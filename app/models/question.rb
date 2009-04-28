@@ -30,12 +30,18 @@ class Question < ActiveRecord::Base
   }
 
   def self.per_page
-    10
+    7
   end
 
 
   after_create do |question|
-    UnansweredQuestion.create(:question => question, :user => question.user, :player => question.user,  :play_time => MAX_ANSWER_TIME.ago)
+    UnansweredQuestion.create(
+      :question => question, 
+      :user => question.user, 
+      :player => question.user,  
+      :play_time => MAX_ANSWER_TIME.ago,
+      :sequence => rand(1000)
+    )
   end
 
 end

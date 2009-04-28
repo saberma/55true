@@ -47,4 +47,15 @@ describe UnansweredQuestion do
     question_to_ben.should_not == question_to_patpat
   end
 
+  it "should get a random question" do
+    #random sequence
+    UnansweredQuestion.all.each do |unanswered_question|
+      unanswered_question.update_attribute :sequence, rand(1000)
+    end
+    unanswered_question = UnansweredQuestion.first :order => "sequence"
+    first_question = unanswered_question.question
+    question = UnansweredQuestion.for(users(:patpat))
+    question.should == first_question
+  end
+
 end

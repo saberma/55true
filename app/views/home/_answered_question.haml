@@ -3,9 +3,9 @@
     =link_to image_tag(answered_question.user.head, :class => "head"), answered_question.user
     =link_to answered_question.user.login, answered_question.user
     %span= answered_question.content
-    %span.quiet= time_ago_in_words(answered_question.created_at)
+    %span.quiet{:title=>answered_question.created_at.to_s(:db)}= time_ago_in_words(answered_question.created_at)
   %div.clearfix
     =link_to image_tag(answered_question.answer.user.head, :class => "head"), answered_question.answer.user
     =link_to answered_question.answer.user.login, answered_question.answer.user
     %span= answered_question.answer.content
-    %span.quiet= time_ago_in_words(answered_question.answer.created_at)
+    %span.quiet{:title=>answered_question.created_at.to_s(:db)}= time_ago_in_words(answered_question.answer.created_at)

@@ -1,7 +1,7 @@
 #newest.span-13
   = link_to "我敢玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
   - if logged_in?
-    %h4{:title => '这里将显示其他人对你说的真心话'} 他们告诉你......
+    %h4{:title => '这里显示其他人对你说的真心话(最近2条，点击可查看更多)'}=link_to "他们告诉你......", current_user, :style=>'text-decoration:none'
     %ul.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
   %h4 大家刚说了......
   %ul.talk= render :partial => 'answered_question', :collection => @question_list
