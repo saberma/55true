@@ -9,4 +9,9 @@ class QuestionsController < ApplicationController
       render :action => :create_error
     end
   end
+
+  def show
+    question = Question.find(params[:id])
+    @answered_question = question if question.is_answered
+  end
 end

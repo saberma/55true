@@ -52,5 +52,24 @@ j(document).ready(function(){
           }
         }
     });
+
+      j("#time_remain").everyTime(1000, function(){
+        var time_eclipsed = j(this).text() - 1;
+        j(this).text(time_eclipsed);
+        if(time_eclipsed==showTime)
+          j("#time_warning").show();
+        if(time_eclipsed==0)
+          j(this).stopTime();
+      });
+  });
+
+  //get new question
+  j('#all').everyTime(10000, function(){
+    var current_li = j('li:first',j('#all'));
+    var id = parseInt(current_li.attr('id').substr(1)) + 1;
+    var last_id = parseInt(j('li:last',j('#all')).attr('id').substr(1));
+    var odd = current_li.attr('class') == 'even' ? 'odd':'even';
+    var url = '/questions/' + id + '?cycle=' + odd + '&last_id=' + last_id
+    j.getScript(url);
   });
 });

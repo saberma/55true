@@ -4,7 +4,7 @@
     %h4{:title => '这里显示其他人对你说的真心话(最近2条，点击可查看更多)'}=link_to "他们告诉你......", current_user
     %ul.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
   %h4 大家刚说了......
-  %ul.talk= render :partial => 'answered_question', :collection => @question_list
+  %ul#all.talk= render :partial => 'answered_question', :collection => @question_list
   #paginate
     =will_paginate @question_list
 
