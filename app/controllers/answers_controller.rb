@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
     end
 
     if @answer.errors.empty? && @question.errors.empty?
-      flash[:notice] = "接题成功!"
+      flash.now[:notice] = "接题成功!"
     else
       unless @answer.errors.on_base.nil?
         flash[:error] = "超时了!"

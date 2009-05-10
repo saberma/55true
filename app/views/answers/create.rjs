@@ -1,1 +1,5 @@
-page.redirect_to :controller => :home
+page.replace 'get_question', content_tag(:p, flash[:notice], :class => "notice")
+
+page.delay(1) do
+  page << 'j.facebox.close();'
+end

@@ -1,5 +1,5 @@
-if @answered_question
-  page.insert_html :top, 'all', :partial => 'home/answered_question.haml', :locals => {:answered_question => @answered_question}
-  page.remove "q#{params[:last_id]}"
-  page["q#{@answered_question.id}"].visual_effect :highlight, :startcolor => "#e5ecf9", :endcolor => "#f5f5f5"
+if @question_list.first
+  page << "j('#all li:last').remove();"
+  page.insert_html :top, 'all', :partial => 'home/answered_question.haml', :collection => @question_list
+  page << "j('#all li:first').hide().show(500);"
 end

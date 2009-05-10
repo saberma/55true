@@ -19,6 +19,14 @@ class Question < ActiveRecord::Base
   
   named_scope :unanswer, :conditions => ['is_answered = ?', false], :order => "updated_at desc"
   named_scope :answered, :conditions => ['is_answered = ?', true], :order => "updated_at desc"
+  #homepage dynamic refresh
+  named_scope :newer, lambda {|updated_at|
+    {
+      :conditions => ['is_answered = ? and updated_at > ?', true, updated_at], 
+      :order => "updated_at",
+      :limit => 1
+    }
+  }
   named_scope :of, lambda {|user|
     {:conditions => ['user_id = ?', user.id]}
   }
@@ -27,6 +35,9 @@ class Question < ActiveRecord::Base
   }
   named_scope :limit, lambda {|limit|
     {:limit => limit}
+  }
+  named_scope :gt, lambda {|updated_at|
+    {:conditions => ['updated_at > ?', updated_at]}
   }
 
   def self.per_page

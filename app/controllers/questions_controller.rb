@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController  
   layout 'facebox'
+  before_filter :check_xhr, :only => :show
 
   def create
     @question = current_user.questions.create(params[:question])
@@ -11,7 +12,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    question = Question.find(params[:id])
-    @answered_question = question if question.is_answered
+    @question_list = Question.newer(params[:id])
   end
 end

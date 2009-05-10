@@ -11,8 +11,9 @@ j(document).ready(function(){
     //focus
     j(":input[is_focus]").focus();
 
+    //can switch to register
+    j('#facebox a[rel*=facebox]').facebox();
     //answer timer
-    j('a[rel*=facebox]').facebox();
     if(j("#time_remain").size() > 0){
       var showTime = Math.floor((j("#time_remain").attr("max_answer_time")/3));
       j("#time_remain").everyTime(1000, function(){
@@ -66,10 +67,9 @@ j(document).ready(function(){
   //get new question
   j('#all').everyTime(10000, function(){
     var current_li = j('li:first',j('#all'));
-    var id = parseInt(current_li.attr('id').substr(1)) + 1;
-    var last_id = parseInt(j('li:last',j('#all')).attr('id').substr(1));
+    var updated_at = current_li.attr('updated_at')
     var odd = current_li.attr('class') == 'even' ? 'odd':'even';
-    var url = '/questions/' + id + '?cycle=' + odd + '&last_id=' + last_id
+    var url = '/questions/' + updated_at + '?cycle=' + odd
     j.getScript(url);
   });
 });

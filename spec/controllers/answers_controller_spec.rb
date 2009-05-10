@@ -31,8 +31,7 @@ describe AnswersController do
     it "should answer." do
       prepare_answer
       post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => @previou_question.id
-
-      flash[:notice].should == '接题成功!'
+      response.should render_template(:create)
     end
 
     it "answer require content." do
