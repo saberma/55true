@@ -26,7 +26,8 @@
               %li=link_to "登录", login_path, :rel => "facebox"
       #content.span-19
         -flash.each do |key, msg|
-          =content_tag :p, msg, :class => "flash #{key}"
+          - if [:notice, :error].include?(key)
+            =content_tag :p, msg, :class => "flash #{key}"
         =yield
       #footer.span-19.clearfix
         -if logged_in?
@@ -58,3 +59,6 @@
     
     :javascript
       j('a[rel*=facebox]').facebox();
+    - if flash[:play]
+      :javascript
+        j('#play').click();

@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       self.current_user.remember_me unless self.current_user.remember_token?
       cookies[:auth_token] = { :value => self.current_user.remember_token , :expires => self.current_user.remember_token_expires_at }
       flash[:notice] = "登录成功."
+      flash[:play] = true
     else
       flash.now[:error] = "错误的用户名或密码."
       params[:password] = nil

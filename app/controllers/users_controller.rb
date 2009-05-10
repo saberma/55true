@@ -14,6 +14,8 @@ class UsersController < ApplicationController
     if @user.errors.empty?
       self.current_user = @user
       flash[:notice] = "注册成功!"
+      #pop the answer facebox
+      flash[:play] = true
     else
       render :action => 'create_error'
     end
