@@ -54,7 +54,7 @@ j(document).ready(function(){
         }
     });
 
-      j("#time_remain").everyTime(1000, function(){
+      j("#time_remain").everyTime(10000, function(){
         var time_eclipsed = j(this).text() - 1;
         j(this).text(time_eclipsed);
         if(time_eclipsed==showTime)

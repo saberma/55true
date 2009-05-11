@@ -2,7 +2,7 @@
   = link_to "我敢玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
   - if logged_in?
     %h4{:title => '这里显示其他人对你说的真心话(最近2条，点击可查看更多)'}=link_to "他们告诉你......", current_user
-    %ul.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
+    %ul#my.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
   %h4 大家刚说了......
   %ul#all.talk= render :partial => 'answered_question', :collection => @question_list
   #paginate
@@ -48,7 +48,7 @@
 -unless params[:page] && params[:page] != '1'
   :javascript
     //get new question
-    j('#all').everyTime(10000, function(){
+    j('#all').everyTime(4000, function(){
       var current_li = j('li:first',j('#all'));
       var updated_at = current_li.attr('updated_at')
       var odd = current_li.attr('class') == 'even' ? 'odd':'even';
