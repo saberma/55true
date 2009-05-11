@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    User.find(params[:id]).update_attribute(:photo, params[:user][:photo])
+    User.find(params[:id]).update_attribute(:photo, params[:user][:photo]) if params[:user]
     redirect_to home_path
   end
 
