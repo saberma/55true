@@ -5,6 +5,6 @@ wait_for_element_present "answer_content"
 assert_text_present(UnansweredQuestion.get(User.find_by_login('po')).first.question.content)
 type "answer_content","第三者 ~`第三者多好玩呀 老公有什么意思 一天看八遍 早腻了"
 type "question[content]","如果有机会要不要试试做第三者?"
-click_and_wait "commit"
-assert_text_present("接题成功")
+click "commit"
+wait_for_text_present("接题成功")
 include_partial 'logout'

@@ -9,3 +9,4 @@ type "user_login", "SelTest1"
 type "user_password", "SelTest"
 click "commit"
 wait_for_element_present "question_content"
+open '/logout'
