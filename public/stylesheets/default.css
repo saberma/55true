@@ -151,6 +151,8 @@ img.head {
   display: none; }
 #get_question #time_remain {
   color: red; }
+#get_question .tip {
+  margin-left: 58px; }
 
 .errorExplanation {
   border: 1px solid #FFCC66;

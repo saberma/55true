@@ -10,6 +10,7 @@
     =image_tag(current_user.head, :class => "head") 
     = text_area_tag 'answer[content]', "在这里输入回答内容", :id => 'answer_content', :rows => 3
     = text_area_tag 'question[content]', "在这里输入提问内容", :id => 'question_content', :class => "question"
+    %span.tip.quiet 请遵守游戏规则，无效问题、回答将被屏蔽
     .clearfix
     #time_warning
       请在
@@ -17,4 +18,3 @@
       秒内提交，方便其他人接题
     .clearfix
     = submit_tag '提交', :class => "button", :id => "commit"
-  
