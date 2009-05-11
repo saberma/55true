@@ -1,0 +1,3 @@
+%li
+  %span= my_question.content
+  %span.quiet{:title=>my_question.created_at.to_s(:db)}= time_ago_in_words(my_question.created_at)

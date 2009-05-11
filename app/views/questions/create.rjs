@@ -1,1 +1,6 @@
-page.redirect_to :controller => :home
+page.replace 'get_question', content_tag(:p, flash[:notice], :class => "notice")
+page.insert_html :top, 'my_question', :partial => 'home/my_question.haml', :locals => {:my_question => @question}
+
+page.delay(1) do
+  page << 'j.facebox.close();'
+end

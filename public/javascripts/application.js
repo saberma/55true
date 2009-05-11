@@ -64,12 +64,4 @@ j(document).ready(function(){
       });
   });
 
-  //get new question
-  j('#all').everyTime(4000, function(){
-    var current_li = j('li:first',j('#all'));
-    var updated_at = current_li.attr('updated_at')
-    var odd = current_li.attr('class') == 'even' ? 'odd':'even';
-    var url = '/questions/' + updated_at + '?cycle=' + odd;
-    j.getScript(url);
-  });
 });
