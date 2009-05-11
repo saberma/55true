@@ -3,4 +3,4 @@ UnansweredQuestion.update_all "play_time='#{5.minutes.from_now.to_s(:db)}'"
 
 wait_for_element_present "question[content]"
 type "question[content]","你喜欢东方神起吗"
-click_and_wait "commit"
+click "commit"
