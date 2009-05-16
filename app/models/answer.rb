@@ -36,6 +36,12 @@ class Answer < ActiveRecord::Base
     UnansweredQuestion.delete_all(["question_id = ?", answer.question])
   end
 
+  after_destroy do |answer|
+    question = answer.question
+    question.update_attribute :is_answered, false
+    UnansweredQuestion.create_from question
+  end
+
   def timeout?
     uq = UnansweredQuestion.find_by_question_id question.id
     uq.player != user

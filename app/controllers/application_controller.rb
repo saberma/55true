@@ -17,10 +17,21 @@ class ApplicationController < ActionController::Base
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
   
+  protected
   def check_xhr
     unless request.xhr?
       redirect_to home_path
     end
+  end
+
+  def check_admin
+    unless is_admin?
+      redirect_to home_path
+    end
+  end
+
+  def is_admin?
+    logged_in? && %w(saberma).include?(current_user.login)
   end
   private
   

@@ -32,4 +32,14 @@ class UnansweredQuestion < ActiveRecord::Base
       unanswer_question.question
     end
   end
+
+  def self.create_from(question)
+    self.create(
+      :question => question, 
+      :user => question.user, 
+      :player => question.user,  
+      :play_time => MAX_ANSWER_TIME.ago,
+      :sequence => rand(1000)
+    )
+  end
 end

@@ -1,0 +1,1 @@
+page << "jQuery('#a#{@answer.id}').remove();"

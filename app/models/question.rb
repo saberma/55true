@@ -46,13 +46,7 @@ class Question < ActiveRecord::Base
 
 
   after_create do |question|
-    UnansweredQuestion.create(
-      :question => question, 
-      :user => question.user, 
-      :player => question.user,  
-      :play_time => MAX_ANSWER_TIME.ago,
-      :sequence => rand(1000)
-    )
+    UnansweredQuestion.create_from question
   end
 
 end

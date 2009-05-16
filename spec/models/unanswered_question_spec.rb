@@ -52,7 +52,7 @@ describe UnansweredQuestion do
     UnansweredQuestion.all.each do |unanswered_question|
       unanswered_question.update_attribute :sequence, rand(1000)
     end
-    unanswered_question = UnansweredQuestion.first :order => "sequence"
+    unanswered_question = UnansweredQuestion.first :conditions => ['user_id != ?', users(:patpat).id], :order => "sequence"
     first_question = unanswered_question.question
     question = UnansweredQuestion.for(users(:patpat))
     question.should == first_question

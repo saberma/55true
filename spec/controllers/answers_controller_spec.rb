@@ -42,6 +42,13 @@ describe AnswersController do
       response.should render_template("create_error")
     end
 
+    it "should delete a answer." do
+      lambda do
+        delete :destroy, :id => answers(:patpat_a5)
+        Question.find(answers(:patpat_a5).question.id).is_answered.should be_false
+      end.should change(Answer, :count).by(-1)
+    end
+
     describe 'get no question' do
       it "should ask a question directly." do
         UnansweredQuestion.stub!(:for).and_return(nil)

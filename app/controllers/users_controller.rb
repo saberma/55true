@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       self.current_user = @user
       flash[:notice] = "注册成功!"
       #pop the answer facebox
-      flash[:play] = true
+      flash[:play] = true unless is_admin?
     else
       render :action => 'create_error'
     end

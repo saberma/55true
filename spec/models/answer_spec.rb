@@ -40,4 +40,11 @@ describe Answer do
     end.should change(po.answers, :size).by(1)
   end
 
+  it "should destroy a answer" do
+    lambda do
+      answers(:patpat_a5).destroy
+      answers(:patpat_a5).question.is_answered.should be_false
+    end.should change(UnansweredQuestion, :count).by(1)
+  end
+
 end
