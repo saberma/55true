@@ -48,5 +48,10 @@ class Question < ActiveRecord::Base
   after_create do |question|
     UnansweredQuestion.create_from question
   end
+  
+  after_destroy do |question|
+    uq = UnansweredQuestion.find_by_question_id(question.id)
+    uq.destroy if uq
+  end
 
 end

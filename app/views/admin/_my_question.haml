@@ -1,4 +1,5 @@
-%li
+%li{:id => "q#{my_question.id}"}
   =link_to my_question.user.login, my_question.user
   %span= my_question.content
   %span.quiet{:title=>my_question.created_at.to_s(:db)}= time_ago_in_words(my_question.created_at)
+  =link_to_remote '删除', :url => question_path(my_question), :method => :delete

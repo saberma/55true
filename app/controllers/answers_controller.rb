@@ -35,7 +35,6 @@ class AnswersController < ApplicationController
         render :action => :create_error
       end
     end
-
   end
 
   def destroy

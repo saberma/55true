@@ -19,6 +19,8 @@
         #newest.span-13
           %h4 大家刚说了......
           %ul#all.talk= render :partial => 'answered_question', :collection => @question_list
+          #paginate
+            =will_paginate @question_list
         .span-6.last
           .box
             %h4 大家刚问了......

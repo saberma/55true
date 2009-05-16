@@ -14,4 +14,9 @@ class QuestionsController < ApplicationController
   def show
     @question_list = Question.newer(params[:id])
   end
+
+  def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+  end
 end

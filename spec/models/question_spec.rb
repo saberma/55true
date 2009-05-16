@@ -45,4 +45,11 @@ describe Question do
     Question.newer(2.second.ago).first.should == first_question
     Question.newer(first_question.updated_at).first.should == second_question
   end
+
+  it "should destroy a question" do
+    lambda do
+      questions(:patpat_q5).destroy
+    end.should change(UnansweredQuestion, :count).by(-1)
+  end
+
 end
