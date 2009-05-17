@@ -43,7 +43,9 @@ class Answer < ActiveRecord::Base
   end
 
   def timeout?
+    #问题删除后相当于超时
+    return true if question.nil?
     uq = UnansweredQuestion.find_by_question_id question.id
-    uq.player != user
+    uq.nil? || uq.player != user
   end
 end
