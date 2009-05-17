@@ -25,7 +25,6 @@ describe "/home/index.haml" do
     
     question = mock_model(Question)
     question.should_receive(:content).and_return("q2")
-    question.should_receive(:created_at).at_least(1).and_return(2.minutes.ago)
     
     assigns[:user_unanswer_question_list] = [question]
     assigns[:user_answered_question_list] = []
@@ -52,13 +51,11 @@ describe "/home/index.haml" do
     question = mock_model(Question)
     question.should_receive(:user).exactly(4).and_return(asker)
     question.should_receive(:content).and_return("q1")
-    question.should_receive(:created_at).at_least(1).and_return(2.minutes.ago)
     question.should_receive(:updated_at).at_least(1).and_return(2.minutes.ago)
     answer = mock_model(Answer)
     answer.should_receive(:user).exactly(4).and_return(responser)
     answer.should_receive(:content).and_return("a1")
-    answer.should_receive(:created_at).at_least(1).and_return(1.minutes.ago)
-    question.should_receive(:answer).at_least(6).times.and_return(answer)
+    question.should_receive(:answer).at_least(5).times.and_return(answer)
     question
   end
 end

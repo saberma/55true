@@ -43,13 +43,6 @@ describe AnswersController do
         response.should render_template("create_error")
       end
 
-      it "should delete a answer." do
-        lambda do
-          delete :destroy, :id => answers(:patpat_a5)
-          Question.find(answers(:patpat_a5).question.id).is_answered.should be_false
-        end.should change(Answer, :count).by(-1)
-      end
-
       describe 'get no question' do
         it "should ask a question directly." do
           UnansweredQuestion.stub!(:for).and_return(nil)
@@ -84,6 +77,14 @@ describe AnswersController do
       post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id
       response.should render_template(:create)
     end.should_not change(Answer, :count)
+  end
+
+  it "should delete a answer." do
+    login_as :saberma
+    lambda do
+      xhr :delete, :destroy, :id => answers(:patpat_a5)
+      Question.find(answers(:patpat_a5).question.id).is_answered.should be_false
+    end.should change(Answer, :count).by(-1)
   end
 
 end

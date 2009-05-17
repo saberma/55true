@@ -38,3 +38,7 @@ quentin:
   login: quentin
   <<: *DEFAULTS
 
+saberma:
+  login: saberma
+  <<: *DEFAULTS
+

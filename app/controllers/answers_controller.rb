@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   layout 'facebox'
   before_filter :check_xhr, :only => :new
+  before_filter :check_xhr, :check_admin, :only => :destroy
 
   #接题
   def new

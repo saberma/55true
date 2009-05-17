@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController  
   layout 'facebox'
   before_filter :check_xhr, :only => :show
+  before_filter :check_xhr, :check_admin, :only => :destroy
 
   def create
     @question = current_user.questions.create(params[:question])
