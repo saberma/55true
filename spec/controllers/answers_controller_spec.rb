@@ -87,4 +87,10 @@ describe AnswersController do
     end.should change(Answer, :count).by(-1)
   end
 
+  it "should not play if he has 5 unanswer question" do
+    login_as :patpat
+    xhr :get, :new
+    response.should render_template(:wait)
+  end
+
 end

@@ -9,6 +9,11 @@ class AnswersController < ApplicationController
       flash[:notice] = "请先注册或登录，注册只需6秒."
       redirect_to(:controller => "users", :action => "new") and return
     end
+    unanswered_questions_size = current_user.unanswered_questions.size
+    if unanswered_questions_size >= 5
+      flash.now[:notice] = "抱歉，您有#{unanswered_questions_size}个问题待答!<br/>暂时不能接题!"
+      render(:action => "wait") and return
+    end
     @unanswer_question = UnansweredQuestion.for(current_user)
     redirect_to :controller => :questions, :action => :new unless @unanswer_question
   end
