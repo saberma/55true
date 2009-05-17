@@ -54,10 +54,6 @@ po_q9:
   content: 今天心情怎么样？
   user: po
 
-po_q10:
-  content: 我明天在咸阳湖等你，你会来吗？不管我是男是女？
-  user: po
-
 ben_q1:
   content: 在劲舞要是让你选，你会选很爱自己的老公，还是选做你爱的他的第三者？
   user: ben
@@ -99,10 +95,6 @@ ben_q9:
   content: 加我没有，我是你楼上的楼上的楼上的～
   user: ben
 
-ben_q10:
-  content: 你觉得偶楼上的是地球人吗?
-  user: ben
-
 patpat_q1:
   content: 喜欢糖吗
   user: patpat
@@ -117,8 +109,4 @@ patpat_q3:
 
 patpat_q4:
   content: 你有脚气？
-  user: patpat
-
-patpat_q5:
-  content: 祢做过爱吗。？
   user: patpat

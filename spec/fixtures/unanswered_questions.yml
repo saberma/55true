@@ -43,10 +43,6 @@ po_uq9:
   question: po_q9
   <<: *PO
 
-po_uq10:
-  question: po_q10
-  <<: *PO
-
 ben_uq6:
   question: ben_q6
   <<: *BEN
@@ -63,10 +59,6 @@ ben_uq9:
   question: ben_q9
   <<: *BEN
 
-ben_uq10:
-  question: ben_q10
-  <<: *BEN
-
 patpat_uq1:
   question: patpat_q1
   <<: *PATPAT
@@ -81,8 +73,4 @@ patpat_uq3:
 
 patpat_uq4:
   question: patpat_q4
-  <<: *PATPAT
-
-patpat_uq5:
-  question: patpat_q5
   <<: *PATPAT

@@ -89,6 +89,9 @@ describe AnswersController do
 
   it "should not play if he has 5 unanswer question" do
     login_as :patpat
+    #保证已经提问5次
+    unanswer_question = UnansweredQuestion.for(users(:patpat))
+    post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id
     xhr :get, :new
     response.should render_template(:wait)
   end

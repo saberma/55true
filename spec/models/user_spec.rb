@@ -83,10 +83,6 @@ describe User do
     users(:quentin).remember_token_expires_at.between?(before, after).should be_true
   end
 
-  it 'should get the number of unanswered question' do
-    users(:patpat).unanswered_questions.count.should == 5
-  end
-
 protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :password => 'quire'}.merge(options))

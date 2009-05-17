@@ -19,9 +19,10 @@ describe UnansweredQuestion do
     it "answer the question fail when someone got it!" do
       lambda do
         #timeout
-        UnansweredQuestion.find_by_question_id(@question.id).update_attribute(:play_time, 4.minutes.ago)
+        uq = UnansweredQuestion.find_by_question_id(@question.id)
+        uq.update_attribute(:play_time, 4.minutes.ago)
         #some one get it
-        UnansweredQuestion.for(users(:patpat)).should_not be_nil
+        uq.update_attribute(:player, users(:patpat))
         answer = Answer.create(@answer_attr)
         answer.errors.on_base.should_not be_nil
         @question.is_answered.should be_false

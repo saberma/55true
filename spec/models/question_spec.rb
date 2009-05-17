@@ -48,7 +48,7 @@ describe Question do
 
   it "should destroy a question" do
     lambda do
-      questions(:patpat_q5).destroy
+      questions(:patpat_q4).destroy
     end.should change(UnansweredQuestion, :count).by(-1)
   end
 
