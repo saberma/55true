@@ -5,7 +5,6 @@
     =image_tag(@unanswer_question.user.head, :class => "head") 
     %a= @unanswer_question.user.login
     %span= @unanswer_question.content
-    %span.quiet= time_ago_in_words(@unanswer_question.created_at)
     .clearfix
     =image_tag(current_user.head, :class => "head") 
     = text_area_tag 'answer[content]', "在这里输入回答内容", :id => 'answer_content', :rows => 3
