@@ -8,7 +8,7 @@ class HomeController < ApplicationController
       @question_list = Question.answered.not_belong_to(current_user).paginate(:page => params[:page])
     else
       @question_list = Question.answered.paginate(:page => params[:page])
-      flash.now[:notice] = "让你玩真心话游戏更方便，点击下一行“我敢玩”就可以开始了!"
+      flash.now[:notice] = "这里有#{User.all.size}个朋友，想跟你一起玩真心话，点击下一行“我敢玩”就可以开始了!"
     end
   end
 
