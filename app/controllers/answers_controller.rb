@@ -10,7 +10,7 @@ class AnswersController < ApplicationController
       redirect_to(:controller => "users", :action => "new") and return
     end
     unanswered_questions_size = current_user.unanswered_questions.size
-    if unanswered_questions_size >= 5
+    if unanswered_questions_size >= MAX_QUESTIONS
       flash.now[:notice] = "抱歉，您有#{unanswered_questions_size}个问题待答!<br/>暂时不能接题!"
       render(:action => "wait") and return
     end

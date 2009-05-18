@@ -76,3 +76,6 @@ end
 
 #User should answer a question in a short time period
 MAX_ANSWER_TIME = 3.minutes unless defined? MAX_ANSWER_TIME
+
+#max unanswered questions
+MAX_QUESTIONS = 5

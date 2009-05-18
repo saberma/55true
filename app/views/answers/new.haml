@@ -9,6 +9,8 @@
     =image_tag(current_user.head, :class => "head") 
     = text_area_tag 'answer[content]', "在这里输入回答内容", :id => 'answer_content', :rows => 3
     = text_area_tag 'question[content]', "在这里输入提问内容", :id => 'question_content', :class => "question"
+    %span.tip.quiet="这里接题的顺序是随机的，您还可接题#{MAX_QUESTIONS - current_user.unanswered_questions.size}次"
+    .clearfix
     %span.tip.quiet 请遵守游戏规则，无效问题、回答将被屏蔽
     .clearfix
     #time_warning
