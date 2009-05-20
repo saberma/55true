@@ -40,7 +40,7 @@
     %h4{:title => "24小时内玩过真心话的会员"} 今天谁在玩
     %ul#today_users
       -Answer.today_users.each do |a|
-        %li=link_to image_tag(a.user.head, :class => "mini_head", :title => a.user.login)
+        %li=link_to image_tag(a.user.head, :class => "mini_head", :title => a.user.login), a.user
   .clearfix
   .box
     %h4 小提示
