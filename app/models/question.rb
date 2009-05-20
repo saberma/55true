@@ -41,7 +41,7 @@ class Question < ActiveRecord::Base
   }
 
   def self.per_page
-    10
+    20
   end
 
 
