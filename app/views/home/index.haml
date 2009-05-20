@@ -18,7 +18,7 @@
         =error_messages_for :user
         - form_for current_user, :html => { :multipart => true } do |f|
           =f.file_field :photo, :size => 1
-          =submit_tag '提交', :class => "button", :id => "photo_commit", :name => "photo_commit"
+          =submit_tag '提交', :class => "button", :id => "photo_commit", :name => "photo_commit", :disable_with => "提交中..."
       %p.clearfix
         %h4{:title => '你问的内容还没有被回答时就显示在这里'} 你问了......
         %ol#my_question= render :partial => 'my_question', :collection => @user_unanswer_question_list
