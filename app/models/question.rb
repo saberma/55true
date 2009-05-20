@@ -28,7 +28,7 @@ class Question < ActiveRecord::Base
     }
   }
   named_scope :of, lambda {|user|
-    {:conditions => ['user_id = ?', user.id], :order => "updated_at desc"}
+    {:conditions => ['user_id = ?', user.id]}
   }
   named_scope :not_belong_to, lambda {|user|
     {:conditions => ['user_id != ?', user.id]}

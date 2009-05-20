@@ -18,7 +18,7 @@ class Answer < ActiveRecord::Base
   validates_presence_of     :content
 
   named_scope :of, lambda {|user|
-    {:conditions => ["user_id = ?", user.id]}
+    {:conditions => ["user_id = ?", user.id], :order => "updated_at desc"}
   }
   named_scope :limit, lambda {|limit|
     {:limit => limit}
