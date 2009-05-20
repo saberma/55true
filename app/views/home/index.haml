@@ -37,15 +37,21 @@
         %li 然后他再问:你现在最想的是谁？
         %li 下个人回答时提出新问题
   .box
-    %p.clearfix
-      %h4 小提示
-      %ul
-        %li 点击用户头像或昵称，看TA的真心话
-        %li 
-          %span 有建议或问题点这
-          %span=link_to "豆瓣反馈贴", "http://www.douban.com/group/topic/6130670/", :target=>"_blank"
-          %span=link_to "贴吧反馈贴", "http://tieba.baidu.com/f?kz=569207755", :target=>"_blank"
-          %span q群:85215037
+    %h4{:title => "24小时内玩过真心话的会员"} 今天谁在玩
+    %ul#today_users
+      -Answer.today_users.each do |a|
+        %li=link_to image_tag(a.user.head, :class => "mini_head", :title => a.user.login)
+  .clearfix
+  .box
+    %h4 小提示
+    %ul
+      %li 接到的问题是随机的
+      %li 点击用户头像或昵称，看TA的真心话
+      %li 
+        %span 有建议或问题点这
+        %span=link_to "豆瓣反馈贴", "http://www.douban.com/group/topic/6130670/", :target=>"_blank"
+        %span=link_to "贴吧反馈贴", "http://tieba.baidu.com/f?kz=569207755", :target=>"_blank"
+        %span q群:85215037
 -unless params[:page] && params[:page] != '1'
   :javascript
     //get new question

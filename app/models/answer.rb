@@ -23,6 +23,13 @@ class Answer < ActiveRecord::Base
   named_scope :limit, lambda {|limit|
     {:limit => limit}
   }
+  named_scope :today_users, lambda {
+    {
+      :conditions => ["created_at >= ?", 24.hours.ago],
+      :select => 'user_id', 
+      :group => 'user_id'
+    }
+  }
 
   def validate_on_create
     errors.add_to_base(I18n.translate('activerecord.errors.messages.timeout')) if timeout?

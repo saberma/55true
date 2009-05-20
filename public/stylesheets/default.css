@@ -13,6 +13,13 @@ img.head {
   width: 48px;
   height: 48px; }
 
+img.mini_head {
+  margin: 3px;
+  padding: 1px;
+  border: 1px #cccccc solid;
+  width: 32px;
+  height: 32px; }
+
 #header {
   background: url(/images/header_background.png); }
   #header a {
@@ -86,12 +93,22 @@ img.head {
     font-size: 18px; }
   #content #paginate span {
     font-size: 18px; }
-#content .box li {
-  margin: 3px 0 5px 0; }
-  #content .box li div {
-    margin-top: 2px; }
-#content .box .tip li {
-  padding: 5px; }
+#content .box {
+  padding: 10px; }
+  #content .box h4 {
+    margin: 0; }
+  #content .box li {
+    margin: 3px 0 5px 0; }
+    #content .box li div {
+      margin-top: 2px; }
+  #content .box .tip li {
+    padding: 5px; }
+#content ul#today_users {
+  list-style: none;
+  margin: 0; }
+  #content ul#today_users li {
+    float: left;
+    margin: 0; }
 #content .btn_play {
   float: right; }
 

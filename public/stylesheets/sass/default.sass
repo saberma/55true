@@ -26,6 +26,13 @@ img.head
   :width 48px
   :height 48px
 
+img.mini_head
+  :margin 3px
+  :padding 1px
+  :border 1px #cccccc solid
+  :width 32px
+  :height 32px
+
 #header
   :background url(/images/header_background.png)
   a
@@ -110,6 +117,9 @@ img.head
       :font-size 18px
 
   .box
+    :padding 10px
+    h4
+      :margin 0
     li
       :margin 3px 0 5px 0
       div
@@ -117,7 +127,12 @@ img.head
     .tip
       li
         :padding 5px
-
+  ul#today_users
+    :list-style none
+    :margin 0
+    li
+      :float left
+      :margin 0
 
   .btn_play
     :float right
