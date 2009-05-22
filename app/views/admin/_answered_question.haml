@@ -9,5 +9,6 @@
     =link_to answered_question.answer.user.login, answered_question.answer.user
     %span= answered_question.answer.content
     %span.quiet{:title=>answered_question.answer.created_at.to_s(:db)}= time_ago_in_words(answered_question.answer.created_at)
-  %div.clearfix.prepend-11
+  %div.clearfix.prepend-9
     =link_to_remote '删除回答', :url => answer_path(answered_question.answer), :method => :delete
+    =link_to_remote '删除问题', :url => question_path(answered_question), :method => :delete

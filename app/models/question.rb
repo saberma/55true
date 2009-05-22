@@ -13,7 +13,7 @@
 
 class Question < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
-  has_one :answer
+  has_one :answer, :dependent => :destroy
 
   validates_presence_of     :content
   

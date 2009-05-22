@@ -1,1 +1,1 @@
-page << "jQuery('#q#{@question.id}').remove();"
+page << "jQuery('#q#{@question.id},#a#{@question.answer.id}').remove();"

@@ -52,4 +52,12 @@ describe Question do
     end.should change(UnansweredQuestion, :count).by(-1)
   end
 
+  it "should destroy a answered question" do
+    lambda do
+      question = questions(:po_q4)
+      question.destroy
+      question.answer.reload.should be_nil
+    end.should change(Answer, :count).by(-1)
+  end
+
 end
