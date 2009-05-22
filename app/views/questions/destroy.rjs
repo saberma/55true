@@ -1,1 +1,5 @@
-page << "jQuery('#q#{@question.id},#a#{@question.answer.id}').remove();"
+if @question.answer
+  page << "jQuery('#a#{@question.answer.id}').remove();"
+else
+  page << "jQuery('#q#{@question.id}').remove();"
+end
