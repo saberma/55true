@@ -55,7 +55,7 @@
 -unless params[:page] && params[:page] != '1'
   :javascript
     //get new question
-    j('#all').everyTime(4000, function(){
+    j('#all').everyTime(8000, function(){
       var current_li = j('li:first',j('#all'));
       var updated_at = current_li.attr('updated_at')
       var odd = current_li.attr('class') == 'even' ? 'odd':'even';
