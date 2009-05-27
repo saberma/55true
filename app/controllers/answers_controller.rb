@@ -14,7 +14,10 @@ class AnswersController < ApplicationController
       flash.now[:notice] = "抱歉，您有#{unanswered_questions_size}个问题待答!<br/>暂时不能接题!"
       render(:action => "wait") and return
     end
-    @unanswer_question = UnansweredQuestion.for(current_user)
+    #先从session取问题，避免刷新选择问题
+    @unanswer_question = UnansweredQuestion.same(current_user, session[:q]) if session[:q]
+    @unanswer_question = UnansweredQuestion.for(current_user) unless @unanswer_question
+    session[:q] = @unanswer_question.id if @unanswer_question
     redirect_to :controller => :questions, :action => :new unless @unanswer_question
   end
   
@@ -34,6 +37,8 @@ class AnswersController < ApplicationController
 
     if @answer.errors.empty? && @question.errors.empty?
       flash.now[:notice] = "接题成功!"
+      #清除接题标记
+      session[:q] = nil
     else
       unless @answer.errors.on_base.nil?
         flash[:error] = "超时了!"

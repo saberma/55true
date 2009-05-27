@@ -87,13 +87,24 @@ describe AnswersController do
     end.should change(Answer, :count).by(-1)
   end
 
-  it "should not play if he has 5 unanswer question" do
+  it "should not play if he has limited unanswer question" do
     login_as :patpat
-    #保证已经提问5次
-    unanswer_question = UnansweredQuestion.for(users(:patpat))
-    post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id
+    #保证已经提问6次
+    2.times do
+      unanswer_question = UnansweredQuestion.for(users(:patpat))
+      post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id
+    end
     xhr :get, :new
     response.should render_template(:wait)
+  end
+
+  it "should get the same question if he doesn't answer it" do
+    login_as :patpat
+    xhr :get, :new
+    first_time_question = assigns[:unanswer_question] 
+    xhr :get, :new
+    second_time_question = assigns[:unanswer_question] 
+    first_time_question.should == second_time_question
   end
 
 end

@@ -78,4 +78,4 @@ end
 MAX_ANSWER_TIME = 3.minutes unless defined? MAX_ANSWER_TIME
 
 #max unanswered questions
-MAX_QUESTIONS = 5
+MAX_QUESTIONS = 6

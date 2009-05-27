@@ -17,13 +17,27 @@ class UnansweredQuestion < ActiveRecord::Base
   #who get the question
   belongs_to :player, :class_name => 'User', :foreign_key => 'player_id'
   
-
   named_scope :get, lambda { |user|
     {
       :conditions => ['play_time < ? and user_id != ?', MAX_ANSWER_TIME.ago, user.id],
       :limit => 1, :order => "sequence"
     }
   }
+
+  #限制用户回答同一个问题
+  named_scope :get_same, lambda { |user, question_id|
+    {
+      :conditions => ['player_id = ? and question_id = ?', user.id, question_id]
+    }
+  }
+
+  def self.same(user, question_id)
+    unanswer_question = get_same(user, question_id).first
+    if unanswer_question 
+      unanswer_question.update_attributes(:play_time => Time.now) 
+      unanswer_question.question
+    end
+  end
 
   def self.for(user)
     unanswer_question = get(user).first
