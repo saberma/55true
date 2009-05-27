@@ -24,14 +24,14 @@
         %ol#my_question= render :partial => 'my_question', :collection => @user_unanswer_question_list
     - else
       %h4 怎么玩真心话游戏
+      %span 规则：
       %ul
-        %span 规则：
         %li 小李问了一个问题
         %li 另一个人要如实回答
         %li 然后他再问一个新问题
         %li 下个人回答时提出新问题
+      %span 举个例子：
       %ul
-        %span 举个例子：
         %li 小李问：你晚上一个人走在街上怕不怕的？
         %li 另一个人回答:不怕的。
         %li 然后他再问:你现在最想的是谁？
@@ -47,11 +47,20 @@
     %ul
       %li 接到的问题是随机的
       %li 点击用户头像或昵称，看TA的真心话
+      %li 本站交友功能正开发，现在要传话给某人，可在回答内容写"(to a nickname:message)"
       %li 
         %span 有建议或问题点这
         %span=link_to "豆瓣反馈贴", "http://www.douban.com/group/topic/6130670/", :target=>"_blank"
         %span=link_to "贴吧反馈贴", "http://tieba.baidu.com/f?kz=569207755", :target=>"_blank"
-        %span q群:85215037
+  .clearfix
+  .box
+    %h4 真心话网规则
+    %span 网站将屏蔽以下内容(多次违规将禁用帐号)
+    %ol
+      %li 提问内容不是问题的
+      %li 提问内容包含用户名的
+      %li 提问内容多次重复的
+      %li 提问内容为"你呢?"之类的
 -unless params[:page] && params[:page] != '1'
   :javascript
     //get new question
