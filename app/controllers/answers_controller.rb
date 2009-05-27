@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
 
   #接题
   def new
-    if !logged_in?
+    unless logged_in?
       flash[:notice] = "请先注册或登录，注册只需6秒."
       redirect_to(:controller => "users", :action => "new") and return
     end

@@ -14,6 +14,13 @@ describe UsersController do
     end.should change(User, :count).by(1)
   end
 
+  it 'disallow signup if he logout' do
+    login_as :patpat
+    session[:o] = 22.hours.since.to_s(:db)
+    get :new
+    response.should render_template(:forbid)
+  end
+
   it 'requires login on signup' do
     lambda do
       create_user(:login => nil)
@@ -36,8 +43,6 @@ describe UsersController do
     assigns[:his_answer_list].should_not be_nil
     response.should be_success
   end
-  
-  
   
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',

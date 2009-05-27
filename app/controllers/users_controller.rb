@@ -3,6 +3,13 @@ class UsersController < ApplicationController
   include AuthenticatedSystem
   layout 'facebox'
 
+  def new
+    if is_forbid_register?
+      flash.now[:notice] = "暂停注册，重新开放时间:#{session[:o]}"
+      render :action => "forbid"
+    end
+  end
+
   def create
     cookies.delete :auth_token
     # protects against session fixation attacks, wreaks havoc with 

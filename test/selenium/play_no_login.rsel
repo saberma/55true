@@ -1,3 +1,4 @@
+setup 
 open "/"
 click "link=我敢玩"
 wait_for_element_present "user_login"

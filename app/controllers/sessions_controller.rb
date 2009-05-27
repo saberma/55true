@@ -23,7 +23,10 @@ class SessionsController < ApplicationController
   def destroy
     self.current_user.forget_me if logged_in?
     cookies.delete :auth_token
+    o = session[:o]
     reset_session
+    session[:o] = o
+    session[:o] = 22.hours.since.to_s(:db) unless is_forbid_register?
     flash[:notice] = "退出成功."
     redirect_back_or_default('/')
   end

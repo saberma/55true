@@ -33,6 +33,11 @@ class ApplicationController < ActionController::Base
   def is_admin?
     logged_in? && %w(saberma).include?(current_user.login)
   end
+
+  #防止马甲，限制注册
+  def is_forbid_register?
+    (session[:o] and (session[:o].to_datetime > DateTime.now.to_s.to_datetime))
+  end
   private
   
     # Create a Scribd-style PageView.
