@@ -51,6 +51,7 @@ class Question < ActiveRecord::Base
   end
   
   after_destroy do |question|
+    question.user.decrement!(:score,PUNISH_SCORE)
     uq = UnansweredQuestion.find_by_question_id(question.id)
     uq.destroy if uq
   end

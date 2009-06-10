@@ -48,7 +48,9 @@ describe Question do
 
   it "should destroy a question" do
     lambda do
-      questions(:patpat_q4).destroy
+      question = questions(:patpat_q4)
+      question.destroy
+      question.user.score.should == -PUNISH_SCORE
     end.should change(UnansweredQuestion, :count).by(-1)
   end
 
@@ -56,6 +58,7 @@ describe Question do
     lambda do
       question = questions(:po_q4)
       question.destroy
+      question.user.score.should == -PUNISH_SCORE
       question.answer.reload.should be_nil
     end.should change(Answer, :count).by(-1)
   end
