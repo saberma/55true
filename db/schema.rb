@@ -9,12 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090428043538) do
+ActiveRecord::Schema.define(:version => 20090610124302) do
 
   create_table "answers", :force => true do |t|
-    t.string   "content",     :null => false
-    t.integer  "question_id", :null => false
-    t.integer  "user_id",     :null => false
+    t.string   "content",     :default => "", :null => false
+    t.integer  "question_id",                 :null => false
+    t.integer  "user_id",                     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20090428043538) do
   end
 
   create_table "questions", :force => true do |t|
-    t.string   "content",                        :null => false
+    t.string   "content",     :default => "",    :null => false
     t.boolean  "is_answered", :default => false, :null => false
     t.integer  "user_id",                        :null => false
     t.datetime "created_at"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20090428043538) do
     t.integer  "photo_file_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score",                     :default => 0, :null => false
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

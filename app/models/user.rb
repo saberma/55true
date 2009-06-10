@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     photo.url
   end
 
+  def forbid?
+    score < 0
+  end
+
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
     u = find_by_login(login) # need to get the salt
@@ -76,7 +80,7 @@ class User < ActiveRecord::Base
 
   def remember_me_for(time)
     remember_me_until time.from_now.utc
-end
+  end
 
   def remember_me_until(time)
     self.remember_token_expires_at = time

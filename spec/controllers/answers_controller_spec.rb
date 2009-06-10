@@ -107,4 +107,13 @@ describe AnswersController do
     first_time_question.should == second_time_question
   end
 
+  #积分低于零时帐号禁用
+  it "should not get a question while user's score less than zero" do
+    users(:patpat).update_attribute(:score, -1)
+    login_as :patpat
+    xhr :get, :new
+    response.should render_template(:wait)
+  end
+
+
 end

@@ -83,6 +83,12 @@ describe User do
     users(:quentin).remember_token_expires_at.between?(before, after).should be_true
   end
 
+  it 'should see user forbid?' do
+    users(:quentin).forbid?.should be_false
+    users(:quentin).update_attribute(:score, -1)
+    users(:quentin).forbid?.should be_true
+  end
+
 protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :password => 'quire'}.merge(options))
