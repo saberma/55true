@@ -1,9 +1,9 @@
 %li{:class => params[:cycle]?params[:cycle]:cycle('even','odd'), :updated_at => "#{answered_question.updated_at.to_s(:db)}"}
   %div.clearfix
-    =link_to image_tag(answered_question.user.head, :class => "head"), answered_question.user
-    =link_to answered_question.user.login, answered_question.user
+    =link_to image_tag(answered_question.user.head, :class => "head"), answered_question.user, :target => '_blank'
+    =link_to answered_question.user.login, answered_question.user, :target => '_blank'
     %span= answered_question.content
   %div.clearfix
-    =link_to image_tag(answered_question.answer.user.head, :class => "head"), answered_question.answer.user
-    =link_to answered_question.answer.user.login, answered_question.answer.user
+    =link_to image_tag(answered_question.answer.user.head, :class => "head"), answered_question.answer.user, :target => '_blank'
+    =link_to answered_question.answer.user.login, answered_question.answer.user, :target => '_blank'
     %span= answered_question.answer.content

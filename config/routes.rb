@@ -13,6 +13,8 @@ ActionController::Routing::Routes.draw do |map|
   map.home '/', :controller => 'home'
   map.connect '/page/:page', :controller => 'home', :action => 'index'
 
+  map.manage_user '/admin/user/:id', :controller => 'admin'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
