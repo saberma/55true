@@ -87,33 +87,42 @@ describe AnswersController do
     end.should change(Answer, :count).by(-1)
   end
 
-  it "should not play if he has limited unanswer question" do
-    login_as :patpat
-    #保证已经提问6次
-    2.times do
-      unanswer_question = UnansweredQuestion.for(users(:patpat))
-      post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id
+  describe 'logged in' do
+    before(:each) do
+      login_as :patpat
     end
-    xhr :get, :new
-    response.should render_template(:wait)
+
+    it "should not play if he has limited unanswer question" do
+      #保证已经提问6次
+      2.times { answer }
+      xhr :get, :new
+      response.should render_template(:wait)
+    end
+
+    it "should get the same question if he doesn't answer it" do
+      xhr :get, :new
+      first_time_question = assigns[:unanswer_question] 
+      xhr :get, :new
+      second_time_question = assigns[:unanswer_question] 
+      first_time_question.should == second_time_question
+    end
+
+    #积分低于零时帐号禁用
+    it "should not get a question while user's score less than zero" do
+      users(:patpat).update_attribute(:score, -1)
+      xhr :get, :new
+      response.should render_template(:wait)
+    end
+
+    #回答时增加积分
+    it "should add score" do
+      answer
+      users(:patpat).reload.score.should == PLAY_SCORE
+    end
   end
 
-  it "should get the same question if he doesn't answer it" do
-    login_as :patpat
-    xhr :get, :new
-    first_time_question = assigns[:unanswer_question] 
-    xhr :get, :new
-    second_time_question = assigns[:unanswer_question] 
-    first_time_question.should == second_time_question
+  def answer
+    unanswer_question = UnansweredQuestion.for(users(:patpat))
+    post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id
   end
-
-  #积分低于零时帐号禁用
-  it "should not get a question while user's score less than zero" do
-    users(:patpat).update_attribute(:score, -1)
-    login_as :patpat
-    xhr :get, :new
-    response.should render_template(:wait)
-  end
-
-
 end

@@ -11,8 +11,8 @@
     = text_area_tag 'question[content]', "在这里输入提问内容", :id => 'question_content', :class => "question"
     %span.tip.quiet="这里接题的顺序是随机的，您还可接题#{MAX_QUESTIONS - current_user.unanswered_questions.size}次"
     .clearfix
-    %span.tip.quiet 请遵守游戏规则，无效问题、回答将扣10分
-    -if current_user.score < 10
+    %span.tip.quiet==请遵守游戏规则，无效问题、回答将扣#{PUNISH_SCORE}分
+    -if current_user.score < PUNISH_SCORE
       .clearfix
       %span.tip.quiet==您当时积分#{current_user.score}，积分小于0的帐号将自动禁用
     .clearfix

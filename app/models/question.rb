@@ -46,6 +46,7 @@ class Question < ActiveRecord::Base
 
 
   after_create do |question|
+    question.user.increment!(:score,PLAY_SCORE)
     UnansweredQuestion.create_from question
   end
   

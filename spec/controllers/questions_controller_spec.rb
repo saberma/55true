@@ -10,4 +10,15 @@ describe QuestionsController do
     end.should change(Question, :count).by(-1)
   end
 
+  #提问时增加积分
+  it "should add score" do
+    login_as :patpat
+    submit_a_question
+    users(:patpat).reload.score.should == PLAY_SCORE
+  end
+
+  def submit_a_question
+    post :create, :question => {:content => "what!"}
+  end
+
 end
