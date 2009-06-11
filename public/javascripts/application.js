@@ -3,17 +3,6 @@
 var j = jQuery.noConflict();
 
 j(document).ready(function(){
-  //hide talk to me
-  j('#my_talk_btn').toggle(
-    function(){
-      j('#my').children('li:gt(0)').show(500);
-    },
-    function(){
-      j('#my').children('li:gt(0)').hide(500);
-    }
-  );
-  j('#my').children('li:gt(0)').hide(500);
-
   //facebox lightbox(avoid enter key triggle another facebox):w
   j('a[rel*=facebox]').focus(function(){j(this).blur();});
 
