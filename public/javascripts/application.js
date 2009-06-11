@@ -2,7 +2,23 @@
 // This file is automatically included by javascript_include_tag :defaults
 var j = jQuery.noConflict();
 
+//show or hide
+var my_talk1 = function(){
+
+}
+
+
 j(document).ready(function(){
+  //hide talk to me
+  j('#my_talk_btn').toggle(
+    function(){
+      j('#my').children('li:gt(0)').show(500);
+    },
+    function(){
+      j('#my').children('li:gt(0)').hide(500);
+    }
+  );
+  j('#my').children('li:gt(0)').hide(500);
 
   //facebox lightbox(avoid enter key triggle another facebox):w
   j('a[rel*=facebox]').focus(function(){j(this).blur();});
@@ -54,14 +70,14 @@ j(document).ready(function(){
         }
     });
 
-      j("#time_remain").everyTime(10000, function(){
-        var time_eclipsed = j(this).text() - 1;
-        j(this).text(time_eclipsed);
-        if(time_eclipsed==showTime)
-          j("#time_warning").show();
-        if(time_eclipsed==0)
-          j(this).stopTime();
-      });
+    j("#time_remain").everyTime(10000, function(){
+      var time_eclipsed = j(this).text() - 1;
+      j(this).text(time_eclipsed);
+      if(time_eclipsed==showTime)
+        j("#time_warning").show();
+      if(time_eclipsed==0)
+        j(this).stopTime();
+    });
   });
 
 });

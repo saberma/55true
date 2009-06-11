@@ -1,8 +1,9 @@
 #newest.span-13
   = link_to "我敢玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
   - if logged_in?
-    %h4{:title => '这里显示其他人对你说的真心话(最近2条，点击可查看更多)'}=link_to "他们告诉你......", current_user, :target => '_blank'
+    %h4{:title => '这里显示其他人对你说的真心话(最近3条，点击可查看更多)'}=link_to "他们告诉你......", current_user, :target => '_blank'
     %ul#my.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
+    = link_to_function "显示/隐藏", :id => 'my_talk_btn' 
   %h4 大家刚说了......
   %ul#all.talk= render :partial => 'answered_question', :collection => @question_list
   #paginate
