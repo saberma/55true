@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   layout 'facebox'
+  before_filter :check_xhr, :check_admin, :only => :destroy
 
   def new
     if is_forbid_register?
@@ -44,5 +45,9 @@ class UsersController < ApplicationController
     @his_answer_list = Answer.limit(10).of(@user)
     @his_answer_list = @his_answer_list.map(&:question)
     render :layout => "application"
+  end
+
+  def destroy
+    User.find(params[:id]).update_attribute(:score, -PUNISH_SCORE)
   end
 end

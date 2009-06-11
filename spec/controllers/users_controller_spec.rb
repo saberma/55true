@@ -43,6 +43,13 @@ describe UsersController do
     assigns[:his_answer_list].should_not be_nil
     response.should be_success
   end
+
+  it "should destroy" do
+    login_as :saberma
+    xhr :delete, :destroy, :id => users(:ben).id
+    users(:ben).reload.score.should == -PUNISH_SCORE
+  end
+  
   
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',

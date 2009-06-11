@@ -22,6 +22,9 @@
           #paginate
             =will_paginate @question_list
         .span-6.last
+          -if @user
+            .box
+              =link_to_remote "禁用#{@user.login}", :url => user_path(@user), :method => :delete
           .box
             %h4 大家刚问了......
             %ol#my_question= render :partial => 'my_question', :collection => @unanswer_question_list
