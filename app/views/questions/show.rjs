@@ -1,8 +1,11 @@
-if @question_list.first
-  if logged_in? && (@question_list.first.user == current_user)
+question = @question_list.first
+if question
+  #更新他们告诉你
+  if logged_in? && (question.user == current_user)
     page << "j('#my li:last').remove();"
     page.insert_html :top, 'my', :partial => 'home/answered_question.haml', :collection => @question_list
     page << "j('#my li:first').hide().show(500);"
+    page << "j('#my_question_#{question.id}').hide();"
   end
   page << "j('#all li:last').remove();"
   page.insert_html :top, 'all', :partial => 'home/answered_question.haml', :collection => @question_list

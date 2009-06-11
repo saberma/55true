@@ -2,12 +2,6 @@
 // This file is automatically included by javascript_include_tag :defaults
 var j = jQuery.noConflict();
 
-//show or hide
-var my_talk1 = function(){
-
-}
-
-
 j(document).ready(function(){
   //hide talk to me
   j('#my_talk_btn').toggle(
