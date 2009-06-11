@@ -1,0 +1,10 @@
+setup :fixtures => :all
+
+include_partial 'login', :name => 'po'
+wait_for_element_present 'user_score'
+store_text 'user_score', 'old_user_score'
+include_partial 'play', :answer => '是的', :question => '你多大了?'
+
+assert_text 'user_score', "javascript{parseInt(storedVars['old_user_score'])+parseInt(#{PLAY_SCORE})}"
+
+include_partial 'logout'

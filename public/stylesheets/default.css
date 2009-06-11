@@ -183,3 +183,6 @@ img.mini_head {
 
 .split {
   height: 20px; }
+
+#user_score {
+  font-weight: bold; }

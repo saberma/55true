@@ -32,6 +32,7 @@ class AnswersController < ApplicationController
     @answer = current_user.answers.new(params[:answer])
     @answer.question = @unanswer_question
     @question = current_user.questions.new(params[:question])
+    @question.user = current_user
 
     unless [@answer, @question].map(&:valid?).include?(false)
       Answer.transaction do

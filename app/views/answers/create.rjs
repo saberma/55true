@@ -1,6 +1,9 @@
 page.replace 'get_question', content_tag(:p, flash[:notice], :class => "notice")
 page.insert_html :top, 'my_question', :partial => 'home/my_question.haml', :locals => {:my_question => @question}
 
+#更新积分
+page.replace_html :user_score, current_user.score
+
 page.delay(1) do
   page << 'j.facebox.close();'
 end

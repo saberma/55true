@@ -12,7 +12,9 @@
   .box
     - if logged_in?
       .clearfix
-        %h4==当前积分:#{current_user.score}
+        %h4
+          当前积分:
+          %span#user_score=current_user.score
         .split
         %h4{:title => '你可以上传一张图片'}  给自己定制头像
         =image_tag(current_user.head, :class => "head")

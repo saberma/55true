@@ -1,0 +1,5 @@
+wait_for_element_present "answer_content"
+type "answer_content",answer
+type "question[content]",question
+click "commit"
+wait_for_text_present("接题成功")
