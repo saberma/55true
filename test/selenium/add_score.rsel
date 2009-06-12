@@ -1,6 +1,6 @@
 setup :fixtures => :all
 
-include_partial 'login', :name => 'po'
+include_partial 'login', :name => 'patpat'
 wait_for_element_present 'user_score'
 store_text 'user_score', 'old_user_score'
 include_partial 'play', :answer => '是的', :question => '你多大了?'

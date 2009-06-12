@@ -1,8 +1,7 @@
 setup :fixtures => :all
 
-open '/'
+open "/users/#{User.find_by_login('ben').id}"
 
-click_and_wait "link=ben"
 verify_text_present "ben的头像"
 verify_text_present "大家对ben说"
 verify_text_present "ben刚说了"
@@ -16,6 +15,7 @@ type "question[content]","如果有机会要不要试试做第三者?"
 click "commit"
 include_partial 'logout'
 
-click_and_wait "link=ben"
+open "/users/#{User.find_by_login('ben').id}"
+
 verify_text_present "问题数：1"
 verify_text_present "回答数：1"
