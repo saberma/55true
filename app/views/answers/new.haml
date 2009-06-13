@@ -12,7 +12,6 @@
     %span.tip.quiet="这里接题的顺序是随机的，您还可接题#{MAX_QUESTIONS - current_user.unanswered_questions.size}次"
     .clearfix
     %span.tip.quiet==请遵守规则(位于首页右下角)，无效问题、回答将扣#{PUNISH_SCORE}分
-    .clearfix
     #time_warning
       请在
       %span#time_remain{:max_answer_time=>MAX_ANSWER_TIME}= MAX_ANSWER_TIME

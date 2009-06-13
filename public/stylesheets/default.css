@@ -184,5 +184,8 @@ img.mini_head {
 .split {
   height: 20px; }
 
+.clearfix {
+  width: 100%; }
+
 #user_score {
   font-weight: bold; }
