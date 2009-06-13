@@ -20,9 +20,6 @@
 
 require 'digest/sha1'
 class User < ActiveRecord::Base
-  
-  EMAIL_REGEX = /\A[A-Z0-9\._%-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}\z/i
-  
   attr_accessor :password
   
   # prevents a user from submitting a crafted form that bypasses activation

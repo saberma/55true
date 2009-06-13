@@ -2,12 +2,12 @@
   %div.clearfix
     =link_to image_tag(answered_question.user.head, :class => "head"), manage_user_path(answered_question.user), :target => '_blank'
     =link_to answered_question.user.login, manage_user_path(answered_question.user), :target => '_blank'
-    %span= answered_question.content
+    %span= h(answered_question.content)
     %span.quiet{:title=>answered_question.created_at.to_s(:db)}= time_ago_in_words(answered_question.created_at)
   %div.clearfix
     =link_to image_tag(answered_question.answer.user.head, :class => "head"), manage_user_path(answered_question.answer.user), :target => '_blank'
     =link_to answered_question.answer.user.login, manage_user_path(answered_question.answer.user), :target => '_blank'
-    %span= answered_question.answer.content
+    %span= h(answered_question.answer.content)
     %span.quiet{:title=>answered_question.answer.created_at.to_s(:db)}= time_ago_in_words(answered_question.answer.created_at)
   %div.clearfix.prepend-9
     =link_to_remote '删除回答', :url => answer_path(answered_question.answer), :method => :delete
