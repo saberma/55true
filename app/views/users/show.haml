@@ -11,6 +11,8 @@
       =image_tag(@user.head, :class => "head")
     .clearfix
       %h1
+      #user_score.clearfix==当前积分：#{@user.score}
+      %h1
       .clearfix="注册时间：#{short_time(@user.created_at)}"
       .clearfix="最近登录：#{short_time(@user.updated_at)}"
       %h1
