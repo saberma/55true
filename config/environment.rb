@@ -75,7 +75,7 @@ Rails::Initializer.run do |config|
 end
 
 #User should answer a question in a short time period
-MAX_ANSWER_TIME = 3.minutes unless defined? MAX_ANSWER_TIME
+MAX_ANSWER_TIME = 10.minutes unless defined? MAX_ANSWER_TIME
 
 #max unanswered questions
 MAX_QUESTIONS = 6
