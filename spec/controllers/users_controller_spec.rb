@@ -49,7 +49,12 @@ describe UsersController do
     xhr :delete, :destroy, :id => users(:ben).id
     users(:ben).reload.score.should == -PUNISH_SCORE
   end
-  
+
+  it "should show panel" do
+    xhr :get, :panel, :id => users(:ben).id
+    assigns[:user].should_not be_nil
+    response.should be_success
+  end
   
   def create_user(options = {})
     post :create, :user => { :login => 'quire', :email => 'quire@example.com',

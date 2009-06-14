@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
-  layout 'facebox'
+  layout 'facebox', :except => :panel
   before_filter :check_xhr, :check_admin, :only => :destroy
 
   def new
@@ -45,6 +45,10 @@ class UsersController < ApplicationController
     @his_answer_list = Answer.limit(10).of(@user)
     @his_answer_list = @his_answer_list.map(&:question)
     render :layout => "application"
+  end
+
+  def panel
+    @user = User.find(params[:id])
   end
 
   def destroy

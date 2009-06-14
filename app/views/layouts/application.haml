@@ -8,9 +8,11 @@
     / [if IE]
       =stylesheet_link_tag "blueprint/ie"
     =stylesheet_link_tag "facebox", "default" 
-    =javascript_include_tag "prototype", "effects", "jquery", "jquery-ui", "jquery.timers", "facebox", "application" 
+    =javascript_include_tag "prototype", "effects", "jquery", "jquery-ui", "jquery.timers", "jquery.tools.min", "facebox", "application" 
 
   %body
+    #tooltip.tooltip
+      #content_id 
     .container
       #header.span-19
         #logo.span-4

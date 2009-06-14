@@ -187,5 +187,21 @@ img.mini_head {
 .clearfix {
   width: 100%; }
 
+div.tooltip {
+  background-color: #0078a7;
+  outline: 1px solid #669;
+  border: 2px solid #fff;
+  padding: 10px 15px;
+  width: 200px;
+  display: none;
+  color: #fff;
+  text-align: left;
+  font-size: 12px;
+  outline-radius: 4px;
+  -moz-outline-radius: 4px;
+  -webkit-outline-radius: 4px; }
+  div.tooltip a {
+    color: #ffffff; }
+
 #user_score {
   font-weight: bold; }

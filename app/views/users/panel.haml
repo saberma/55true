@@ -1,0 +1,5 @@
+.clearfix#user_score==#{@user.login}积分：#{@user.score}
+.clearfix==问题数：#{@user.questions.size}
+.clearfix="注册时间：#{short_time(@user.created_at)}"
+=link_to "发消息", signup_path, :class => "large", :rel => "facebox"
+=link_to "查看所有记录", @user, :target => '_blank'

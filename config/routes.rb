@@ -15,6 +15,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.manage_user '/admin/user/:id', :controller => 'admin'
 
+  #用户快捷面板
+  map.user_panel '/users/:id/panel', :controller => 'users', :action => 'panel'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
