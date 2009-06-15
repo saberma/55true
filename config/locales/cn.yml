@@ -12,6 +12,8 @@ cn:
         content: "请输入回答内容"
       question:
         content: "请输入提问内容"
+      message:
+        content: "消息内容"
 
     errors:
       template:

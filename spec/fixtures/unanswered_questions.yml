@@ -13,17 +13,17 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 DEFAULTS: &PO
-  play_time: <%= 4.minutes.ago.to_s :db %>
+  play_time: <%= MAX_ANSWER_TIME.minutes.ago.to_s :db %>
   user: po
   player: po
 
 DEFAULTS: &BEN
-  play_time: <%= 4.minutes.ago.to_s :db %>
+  play_time: <%= MAX_ANSWER_TIME.minutes.ago.to_s :db %>
   user: ben
   player: ben
 
 DEFAULTS: &PATPAT
-  play_time: <%= 4.minutes.ago.to_s :db %>
+  play_time: <%= MAX_ANSWER_TIME.minutes.ago.to_s :db %>
   user: patpat
   player: patpat
 

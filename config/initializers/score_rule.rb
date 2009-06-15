@@ -7,4 +7,4 @@ PLAY_SCORE = 5
 PUNISH_SCORE = 50
 
 #发送短信，所需积分
-SEND_MSG = 1
+SEND_MSG_SCORE = 2

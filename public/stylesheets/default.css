@@ -112,16 +112,16 @@ img.mini_head {
 #content .btn_play {
   float: right; }
 
-#register p, #login p, #get_question p {
+#register p, #login p, #get_question p, #facebox_window p {
   margin: 10px 0px; }
-#register label, #login label, #get_question label {
+#register label, #login label, #get_question label, #facebox_window label {
   margin-right: 15px;
   width: 75px;
   float: left;
   text-align: right;
   font-size: 14px;
   font-weight: normal; }
-#register input, #login input, #get_question input {
+#register input, #login input, #get_question input, #facebox_window input {
   border: 1px solid;
   border-color: #7c7c7c #c3c3c3 #dddddd #c3c3c3;
   width: 250px;
@@ -131,11 +131,11 @@ img.mini_head {
   font-weight: bold;
   line-height: 18px;
   padding: 3px 4px; }
-#register span, #login span, #get_question span {
+#register span, #login span, #get_question span, #facebox_window span {
   display: block;
   margin-left: 70px;
   color: #666666; }
-#register .button, #login .button, #get_question .button {
+#register .button, #login .button, #get_question .button, #facebox_window .button {
   height: 23px;
   padding: 0 1.5em;
   border: 1px solid;
@@ -145,31 +145,35 @@ img.mini_head {
   letter-spacing: 0.3em;
   margin-left: 70px;
   cursor: pointer; }
-#register .checkbox, #login .checkbox, #get_question .checkbox {
+#register .checkbox, #login .checkbox, #get_question .checkbox, #facebox_window .checkbox {
   width: 15px; }
 
-#get_question span {
+#get_question span, #facebox_window span {
   display: inline;
   margin: 0px;
   color: #666666; }
-#get_question textarea {
+#get_question textarea, #facebox_window textarea {
   height: 40px;
   width: 300px;
   overflow: hidden;
   margin-top: 4px;
   margin-bottom: 0; }
-#get_question textarea.question {
+#get_question textarea.question, #facebox_window textarea.question {
   margin-left: 58px;
   margin-top: 2px;
   margin-bottom: 10px; }
-#get_question #time_warning {
+#get_question #time_warning, #facebox_window #time_warning {
   margin-left: 58px;
   padding-bottom: 3px;
   display: none; }
-#get_question #time_remain {
+#get_question #time_remain, #facebox_window #time_remain {
   color: red; }
-#get_question .tip {
+#get_question .tip, #facebox_window .tip {
   margin-left: 58px; }
+
+#facebox_window .button {
+  width: 110px;
+  margin-left: 45px; }
 
 .errorExplanation {
   border: 1px solid #FFCC66;

@@ -17,6 +17,17 @@ describe QuestionsController do
     users(:patpat).reload.score.should == PLAY_SCORE
   end
 
+  #首页更新时显示用户收到的消息
+  it "should show user's message" do
+    xhr :get, :show, :id => DateTime.now.to_s(:db)
+    assigns[:message].should be_nil
+    login_as :po
+    #message参数表示首页还没显示未读的消息
+    xhr :get, :show, :id => DateTime.now.to_s(:db), :message => true
+    assigns[:message].should_not be_nil
+  end
+
+
   def submit_a_question
     post :create, :question => {:content => "what!"}
   end

@@ -1,0 +1,11 @@
+#facebox_window
+  -remote_form_for [@user, @message] do |f|
+    =hidden_field_tag :from_message_id, params[:from_message_id]
+    %p==发消息给#{@user.login}
+    %p
+      =image_tag(@user.head, :class => "head") 
+      = f.text_area :content, :rows => 2, :is_focus => true
+      %span.quiet==发送消息将花费积分:#{SEND_MSG_SCORE}分
+    %p
+      = submit_tag '提交', :class => "button"
+      = submit_tag '取消', :class => "button", :onclick => "j(document).trigger('close.facebox');return false;"

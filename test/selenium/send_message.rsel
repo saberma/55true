@@ -1,0 +1,46 @@
+setup :fixtures => :all
+
+include_partial 'login', :name => 'po'
+wait_for_page_to_load(2000)
+open '/'
+
+wait_for_text_present "exact:ben 发来消息： what are you doing? 回复 已读(不回复)"
+
+#置为已读
+click "link=已读(不回复)"
+wait_for_element_not_present('css=.message')
+
+#积分不足发消息
+mouse_over('css=.head')
+wait_for_element_present "link=发消息"
+click "link=发消息"
+wait_for_text_present "发送消息需要#{SEND_MSG_SCORE}个积分,你的积分不足,暂时不能使用此功能."
+
+#玩一次增加积分
+click 'play'
+include_partial 'play', :answer => '是的', :question => '你多大了?'
+
+store_text 'user_score', 'old_user_score'
+
+#发消息
+mouse_over('css=.head')
+wait_for_element_present "link=发消息"
+click "link=发消息"
+wait_for_element_present "message_content"
+type "message_content", "试一下发消息给你"
+click "commit"
+wait_for_text_present "发送成功"
+
+#扣除积分
+assert_text 'user_score', "javascript{parseInt(storedVars['old_user_score'])-parseInt(#{SEND_MSG_SCORE})}"
+
+#收消息
+wait_for_element_present('css=.message')
+assert_text_present '试一下发消息给你'
+
+#回复
+click "link=回复"
+wait_for_element_present "message_content"
+type "message_content", "试一下回复给你"
+click "commit"
+wait_for_element_not_present('css=.message')

@@ -1,6 +1,7 @@
 class QuestionsController < ApplicationController  
   layout 'facebox'
   before_filter :check_xhr, :only => :show
+  before_filter :check_login, :only => [:new,:create]
   before_filter :check_xhr, :check_admin, :only => :destroy
 
   def create
@@ -14,6 +15,10 @@ class QuestionsController < ApplicationController
 
   def show
     @question_list = Question.newer(params[:id])
+    if logged_in? && params[:message]
+      #用户收到的消息
+      @message = Message.to(current_user).first
+    end
   end
 
   def destroy

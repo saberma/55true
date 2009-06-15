@@ -1,0 +1,12 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+ben_to_po1:
+  user: po
+  creator: ben
+  content: what are you doing?
+  is_readed: true
+
+ben_to_po2:
+  user: po
+  creator: ben
+  content: what are you doing?

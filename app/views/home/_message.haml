@@ -1,0 +1,7 @@
+.message{:id => "message_#{message.id}"}
+  .clearfix
+  .flash.notice
+    =link_to message.creator.login, message.creator, :target => '_blank'
+    %span== 发来消息： #{h(message.content)}
+    =link_to "回复", new_user_message_path(message.creator, :from_message_id => message.id), :rel => "facebox"
+    =link_to_remote '已读(不回复)', :url => user_message_path(current_user,message), :method => :put

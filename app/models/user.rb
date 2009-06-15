@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
   has_many :unanswered_questions
+  has_many :messages
 
   has_attached_file :photo, :url => "/:attachment/:class/:id.:extension",
     :default_url => "/images/:class/default.jpg",

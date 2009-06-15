@@ -1,6 +1,7 @@
 class AnswersController < ApplicationController
   layout 'facebox'
   before_filter :check_xhr, :only => :new
+  before_filter :check_login, :only => :create
   before_filter :check_xhr, :check_admin, :only => :destroy
 
   #接题
@@ -12,12 +13,12 @@ class AnswersController < ApplicationController
     #检查积分
     if current_user.forbid?
       flash.now[:notice] = "抱歉，由于您未遵守本站规则，帐号已被禁用!<br/>无法接题!"
-      render(:action => "wait") and return
+      render(:partial => "/shared/notice") and return
     end
     unanswered_questions_size = current_user.unanswered_questions.size
     if unanswered_questions_size >= MAX_QUESTIONS
       flash.now[:notice] = "抱歉，您有#{unanswered_questions_size}个问题待答!<br/>暂时不能接题!"
-      render(:action => "wait") and return
+      render(:partial => "/shared/notice") and return
     end
     #先从session取问题，避免刷新选择问题
     @unanswer_question = UnansweredQuestion.same(current_user, session[:q]) if session[:q]

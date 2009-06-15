@@ -20,6 +20,14 @@ class ApplicationController < ActionController::Base
   protected
   def check_xhr
     unless request.xhr?
+      flash[:error] = "别关键着点按钮，等网站全部加载完了再点击!"
+      redirect_to home_path
+    end
+  end
+
+  def check_login
+    unless logged_in?
+      flash[:error] = "请先登录!"
       redirect_to home_path
     end
   end

@@ -20,6 +20,12 @@ describe HomeController do
     response.should be_success
     response.should render_template("index")
   end
+  
+  it "should list login user's message" do
+    login_as :po
+    get :index
+    assigns[:message].should == messages(:ben_to_po2)
+  end
 #  
 #  it "should deliver a reminder" do
 #    lambda do

@@ -46,7 +46,8 @@ j(document).ready(function(){
     input.keypress(function(e){
         if(e.keyCode==13){
           var index = input.index(this);
-          if(index!=(input.size()-1)){
+          //it's a button, stop focus to next
+          if(index!=(input.size()-1) && this.type!="submit"){
             input.eq(index+1).focus();
             return false;
           }

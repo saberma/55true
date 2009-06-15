@@ -16,6 +16,7 @@ class Answer < ActiveRecord::Base
   belongs_to :user, :counter_cache => true
   
   validates_presence_of     :content
+  validates_length_of       :content, :maximum => 120, :allow_nil => true
 
   named_scope :of, lambda {|user|
     {:conditions => ["user_id = ?", user.id], :order => "updated_at desc"}

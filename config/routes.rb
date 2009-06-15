@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  
-  map.resources :users
+  map.resources :users, :has_many => :messages
   map.resource :session
 
   map.resources :questions

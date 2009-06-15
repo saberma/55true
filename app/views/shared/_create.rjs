@@ -1,0 +1,5 @@
+page.replace 'facebox_window', content_tag(:p, flash[:notice], :class => "notice")
+
+page.delay(1) do
+  page << 'j.facebox.close();'
+end

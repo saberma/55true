@@ -96,7 +96,7 @@ describe AnswersController do
       #保证已经提问6次
       2.times { answer }
       xhr :get, :new
-      response.should render_template(:wait)
+      response.should render_template('/shared/notice')
     end
 
     it "should get the same question if he doesn't answer it" do
@@ -111,7 +111,7 @@ describe AnswersController do
     it "should not get a question while user's score less than zero" do
       users(:patpat).update_attribute(:score, -1)
       xhr :get, :new
-      response.should render_template(:wait)
+      response.should render_template('/shared/notice')
     end
 
     #回答时增加积分

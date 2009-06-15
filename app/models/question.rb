@@ -16,6 +16,7 @@ class Question < ActiveRecord::Base
   has_one :answer, :dependent => :destroy
 
   validates_presence_of     :content
+  validates_length_of       :content, :maximum => 120, :allow_nil => true
   
   named_scope :unanswer, :conditions => ['is_answered = ?', false], :order => "updated_at desc"
   named_scope :answered, :conditions => ['is_answered = ?', true], :order => "updated_at desc"
