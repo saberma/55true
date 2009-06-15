@@ -5,11 +5,13 @@ if question
     page << "j('#my li:last').remove();"
     page.insert_html :top, 'my', :partial => 'home/answered_question', :collection => @question_list
     page << "j('#my li:first').hide().show(500);"
+    page << "j('#my li:first .head').tooltip(tooltip_setting);"
     page << "j('#my_question_#{question.id}').hide();"
   end
   page << "j('#all li:last').remove();"
   page.insert_html :top, 'all', :partial => 'home/answered_question', :collection => @question_list
   page << "j('#all li:first').hide().show(500);"
+  page << "j('#all li:first .head').tooltip(tooltip_setting);"
 end
 
 #提示消息

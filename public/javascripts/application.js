@@ -2,6 +2,22 @@
 // This file is automatically included by javascript_include_tag :defaults
 var j = jQuery.noConflict();
 
+tooltip_setting = {
+  tip: '#tooltip',
+  position: ['center','right'],
+  offset: [0, 0],
+  effect: 'toggle',
+  delay: 0,
+  opacity: 0.9,
+  onBeforeShow: function(){
+    var url = this.getTrigger().parent().attr('href') + '/panel';
+    j.get(url, function(body){
+      j('#tooltip').html(body);
+      j('#tooltip a[rel*=facebox]').facebox();
+    });
+  }
+};
+
 j(document).ready(function(){
   //facebox lightbox(avoid enter key triggle another facebox)
   j('a[rel*=facebox]').focus(function(){j(this).blur();});
@@ -66,19 +82,5 @@ j(document).ready(function(){
   });
 
   //show user's panel
-  j('.head,.mini_head').tooltip({
-    tip: '#tooltip',
-    position: ['center','right'],
-    offset: [0, 0],
-    effect: 'toggle',
-    delay: 0,
-    opacity: 0.9,
-    onBeforeShow: function(){
-      var url = this.getTrigger().parent().attr('href') + '/panel';
-      j.get(url, function(body){
-        j('#tooltip').html(body);
-        j('#tooltip a[rel*=facebox]').facebox();
-      });
-    }
-  });
+  j('.head,.mini_head').tooltip(tooltip_setting);
 });
