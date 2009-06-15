@@ -1,8 +1,12 @@
 class MessagesController < ApplicationController
   layout 'facebox'
-  before_filter :check_login
+  before_filter :check_login, :except => :new
 
   def new
+    unless logged_in?
+      flash.now[:notice] = "请先注册或登录，注册只需6秒."
+      render :partial => '/shared/notice' and return 
+    end
     if(current_user.score < SEND_MSG_SCORE)
       flash.now[:notice] = "发送消息需要#{SEND_MSG_SCORE}个积分,你的积分不足,暂时不能使用此功能."
       render :partial => '/shared/notice' and return 
