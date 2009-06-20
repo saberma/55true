@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   include AuthenticatedSystem
   
-  before_filter :create_page_view if production?
+  #before_filter :create_page_view if production?
+  before_filter :create_page_view
   before_filter :init_title
 
   # See ActionController::RequestForgeryProtection for details
@@ -51,11 +52,14 @@ class ApplicationController < ActionController::Base
     # Create a Scribd-style PageView.
     # See http://www.scribd.com/doc/49575/Scaling-Rails-Presentation
     def create_page_view
-      PageView.create(:user_id => session[:user_id],
-                      :request_url => request.request_uri,
-                      :ip_address => request.remote_ip,
-                      :referer => request.env["HTTP_REFERER"],
-                      :user_agent => request.env["HTTP_USER_AGENT"])
+      #with pv params,we don't need to save page_view,example: home page dynamic refresh
+      if params[:pv].blank?
+        PageView.create(:user_id => session[:user_id],
+                        :request_url => request.request_uri,
+                        :ip_address => request.remote_ip,
+                        :referer => request.env["HTTP_REFERER"],
+                        :user_agent => request.env["HTTP_USER_AGENT"])
+      end
     end
 
     def init_title

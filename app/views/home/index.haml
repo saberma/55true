@@ -88,7 +88,7 @@
       var current_li = j('li:first',j('#all'));
       var updated_at = current_li.attr('updated_at')
       var odd = current_li.attr('class') == 'even' ? 'odd':'even';
-      var url = '/questions/' + updated_at + '?cycle=' + odd;
+      var url = '/questions/' + updated_at + '?cycle=' + odd + '&pv=f';
       if(j('.message').size()==0)
         url += '&message=true';
       j.getScript(url);
