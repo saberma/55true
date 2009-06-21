@@ -35,17 +35,6 @@ describe Question do
     end.should change(po.questions, :size).by(1)
   end
 
-  it "should get new answered question" do
-    sleep 1
-    first_question = UnansweredQuestion.for(users(:quentin))
-    first_question.update_attribute :is_answered, true
-    sleep 1
-    second_question = UnansweredQuestion.for(users(:quentin))
-    second_question.update_attribute :is_answered, true
-    Question.newer(2.second.ago).first.should == first_question
-    Question.newer(first_question.updated_at).first.should == second_question
-  end
-
   it "should destroy a question" do
     lambda do
       question = questions(:patpat_q4)

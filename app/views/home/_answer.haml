@@ -1,0 +1,9 @@
+%li{:class => cycle_from_params, :last_id => answer.id}
+  %div.clearfix
+    =link_to image_tag(answer.question.user.head, :class => "head"), answer.question.user, :target => '_blank'
+    =link_to answer.question.user.login, answer.question.user, :target => '_blank'
+    %span= h(answer.question.content)
+  %div.clearfix
+    =link_to image_tag(answer.user.head, :class => "head"), answer.user, :target => '_blank'
+    =link_to answer.user.login, answer.user, :target => '_blank'
+    %span= h(answer.content)

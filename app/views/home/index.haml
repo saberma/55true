@@ -6,9 +6,9 @@
     = render :partial => 'message', :locals => { :message => @message } if @message
 
   %h4 大家刚说了......
-  %ul#all.talk= render :partial => 'answered_question', :collection => @question_list
+  %ul#all.talk= render :partial => 'answer', :collection => @answer_list
   #paginate
-    =will_paginate @question_list
+    =will_paginate @answer_list
 
 .span-6.last
   .box
@@ -83,12 +83,21 @@
       %li 积分小于0自动禁用帐号
 -unless params[:page] && params[:page] != '1'
   :javascript
-    //get new question
+    var completed = true;
+    j('#play').ajaxComplete(function(evt,request,settings){
+      completed = true;
+    });
+    //get new answer
     j('#all').everyTime(8000, function(){
+      if(!completed){
+        return true;
+      }else{
+        completed = false;
+      }
       var current_li = j('li:first',j('#all'));
-      var updated_at = current_li.attr('updated_at')
+      var last_id = current_li.attr('last_id')
       var odd = current_li.attr('class') == 'even' ? 'odd':'even';
-      var url = '/questions/' + updated_at + '?cycle=' + odd + '&pv=f';
+      var url = '/answers/' + last_id + '?cycle=' + odd + '&pv=f';
       if(j('.message').size()==0)
         url += '&message=true';
       j.getScript(url);

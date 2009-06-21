@@ -121,6 +121,28 @@ describe AnswersController do
     end
   end
 
+  #首页更新回答记录
+  it "should show lastest answer" do
+    all = Answer.all
+    last_one = all.pop
+    last_two = all.pop
+    xhr :get, :show, :id => last_two.id
+    assigns[:answer_list].first.should_not be_nil
+    xhr :get, :show, :id => last_one.id
+    assigns[:answer_list].first.should be_nil
+  end
+
+  #首页更新时显示用户收到的消息
+  it "should show user's message" do
+    xhr :get, :show, :id => Answer.last.id
+    assigns[:message].should be_nil
+    login_as :po
+    #message参数表示首页还没显示未读的消息
+    xhr :get, :show, :id => Answer.last.id, :message => true
+    assigns[:message].should_not be_nil
+  end
+
+
   def answer
     unanswer_question = UnansweredQuestion.for(users(:patpat))
     post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id

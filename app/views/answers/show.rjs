@@ -1,15 +1,15 @@
-question = @question_list.first
-if question
+answer = @answer_list.first
+if answer
   #更新他们告诉你
-  if logged_in? && (question.user == current_user)
+  if logged_in? && (answer.question.user == current_user)
     page << "j('#my li:last').remove();"
-    page.insert_html :top, 'my', :partial => 'home/answered_question', :collection => @question_list
+    page.insert_html :top, 'my', :partial => 'home/answered_question', :collection => @answer_list.map(&:question)
     page << "j('#my li:first').hide().show(500);"
     page << "j('#my li:first .head').tooltip(tooltip_setting);"
-    page << "j('#my_question_#{question.id}').hide();"
+    page << "j('#my_question_#{answer.question.id}').hide();"
   end
   page << "j('#all li:last').remove();"
-  page.insert_html :top, 'all', :partial => 'home/answered_question', :collection => @question_list
+  page.insert_html :top, 'all', :partial => 'home/answer', :collection => @answer_list
   page << "j('#all li:first').hide().show(500);"
   page << "j('#all li:first .head').tooltip(tooltip_setting);"
 end

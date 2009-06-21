@@ -18,8 +18,26 @@ class Answer < ActiveRecord::Base
   validates_presence_of     :content
   validates_length_of       :content, :maximum => 120, :allow_nil => true
 
+  named_scope :with_question, lambda {
+    {
+      :joins => :question,
+      :order => "updated_at desc"
+    }
+  }
+  #homepage dynamic refresh
+  named_scope :newer, lambda {|id|
+    {
+      :conditions => ['id > ?', id], 
+      :order => "id asc",
+      :limit => 1
+    }
+  }
+  named_scope :gt, lambda {|updated_at|
+    {:conditions => ['updated_at > ?', updated_at]}
+  }
+
   named_scope :of, lambda {|user|
-    {:conditions => ["user_id = ?", user.id], :order => "updated_at desc"}
+    {:conditions => ["answers.user_id = ?", user.id], :order => "updated_at desc"}
   }
   named_scope :limit, lambda {|limit|
     {:limit => limit}

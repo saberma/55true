@@ -2,7 +2,7 @@
   %h4{:title => '只显示前10条记录'}="大家对#{@user.login}说......"
   %ul.talk= render :partial => 'home/answered_question', :collection => @his_answered_question_list
   %h4{:title => '只显示前10条记录'}="#{@user.login}刚说了......"
-  %ul.talk= render :partial => 'home/answered_question', :collection => @his_answer_list
+  %ul.talk= render :partial => 'home/answer', :collection => @his_answer_list
 
 .span-6.last
   .box

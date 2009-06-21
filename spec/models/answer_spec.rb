@@ -47,4 +47,11 @@ describe Answer do
     end.should change(UnansweredQuestion, :count).by(1)
   end
 
+  it "should get new answer" do
+    all = Answer.all
+    previous_answer = all[all.size-2]
+    post_answer = all[all.size-1]
+    Answer.newer(previous_answer).first.should == post_answer
+  end
+
 end

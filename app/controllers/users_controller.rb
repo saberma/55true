@@ -42,8 +42,7 @@ class UsersController < ApplicationController
     end
     @title = "#{@user.login} | 真心话网"
     @his_answered_question_list = Question.limit(10).answered.of(@user)
-    @his_answer_list = Answer.limit(10).of(@user)
-    @his_answer_list = @his_answer_list.map(&:question)
+    @his_answer_list = Answer.with_question.limit(10).of(@user)
     render :layout => "application"
   end
 

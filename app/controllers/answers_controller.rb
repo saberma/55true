@@ -59,4 +59,12 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     @answer.destroy
   end
+
+  def show
+    @answer_list = Answer.newer(params[:id])
+    if logged_in? && params[:message]
+      #用户收到的消息
+      @message = Message.to(current_user).first
+    end
+  end
 end
