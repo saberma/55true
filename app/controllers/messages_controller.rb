@@ -13,6 +13,7 @@ class MessagesController < ApplicationController
     end
     @user = User.find(params[:user_id])
     @message = Message.new
+    @last_message = Message.with(current_user, @user).first
   end
 
   def create

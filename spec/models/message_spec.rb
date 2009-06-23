@@ -19,4 +19,8 @@ describe Message do
       u.errors.on(:content).should_not be_nil
     end.should_not change(Message, :count)
   end
+
+  it 'should get last message I send to you' do
+    Message.with(users(:ben), users(:po)).first.should == messages(:ben_to_po2)
+  end
 end

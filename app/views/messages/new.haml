@@ -2,6 +2,8 @@
   -remote_form_for [@user, @message], :loading => loading_js, :loaded => loaded_js do |f|
     =hidden_field_tag :from_message_id, params[:from_message_id]
     %p==发消息给#{@user.login}
+    - if @last_message
+      %p==上一消息：#{@last_message.content}
     %p
       =image_tag(@user.head, :class => "head") 
       = f.text_area :content, :rows => 2, :is_focus => true

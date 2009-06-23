@@ -41,6 +41,7 @@ assert_text_present '试一下发消息给你'
 #回复
 click "link=回复"
 wait_for_element_present "message_content"
+assert_text_present '上一消息：试一下发消息给你'
 type "message_content", "试一下回复给你"
 click "commit"
 wait_for_element_not_present('css=.message')

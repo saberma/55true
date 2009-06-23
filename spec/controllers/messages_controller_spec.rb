@@ -32,9 +32,12 @@ describe MessagesController do
     end
 
     it "should get new" do
+      users(:ben).update_attribute :score, SEND_MSG_SCORE
+      login_as :ben
       xhr :get, :new, :user_id => users(:po).id
       assigns[:user].should_not be_nil
       assigns[:message].should_not be_nil
+      assigns[:last_message].should_not be_nil
       response.should be_success
     end
 
