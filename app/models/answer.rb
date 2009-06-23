@@ -36,15 +36,9 @@ class Answer < ActiveRecord::Base
   named_scope :of, lambda {|user|
     {:conditions => ["answers.user_id = ?", user.id], :order => "updated_at desc"}
   }
+
   named_scope :limit, lambda {|limit|
     {:limit => limit}
-  }
-  named_scope :today_users, lambda {
-    {
-      :conditions => ["created_at >= ?", 24.hours.ago],
-      :select => 'user_id', 
-      :group => 'user_id'
-    }
   }
 
   def self.per_page

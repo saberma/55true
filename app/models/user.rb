@@ -42,6 +42,15 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login, :case_sensitive => false,
                             :allow_blank => true
 
+  named_scope :today, lambda {
+    {
+      :joins => :answers,
+      :conditions => ["answers.created_at >= ?", 24.hours.ago],
+      :group => 'answers.user_id',
+      :order => 'users.score desc'
+    }
+  }
+
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   validates_attachment_size :photo, :less_than => 2.megabytes
   

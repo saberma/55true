@@ -89,6 +89,15 @@ describe User do
     users(:quentin).forbid?.should be_true
   end
 
+  it 'should see user list who today played' do
+    users(:ben).update_attribute :score, PLAY_SCORE
+    user_list = [users(:ben), users(:patpat)]
+    User.today.should == user_list
+    user_list.reverse!
+    users(:ben).update_attribute :score, -PUNISH_SCORE
+    User.today.should == user_list
+  end
+
 protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :password => 'quire'}.merge(options))
