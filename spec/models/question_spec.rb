@@ -21,12 +21,6 @@ describe Question do
     question = Question.create(@valid_attributes)
     question.should have(1).errors_on(:content)
   end
-  
-  it "should get a question" do
-    question = Question.unanswer.not_belong_to(users(:po)).first
-    question.should_not be_nil
-    question.user.login.should_not == users(:po).login
-  end
 
   it "should count user's question num" do
     po = users(:po)

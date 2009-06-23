@@ -23,9 +23,7 @@ class Question < ActiveRecord::Base
   named_scope :of, lambda {|user|
     {:conditions => ['user_id = ?', user.id]}
   }
-  named_scope :not_belong_to, lambda {|user|
-    {:conditions => ['user_id != ?', user.id]}
-  }
+
   named_scope :limit, lambda {|limit|
     {:limit => limit}
   }
@@ -33,7 +31,6 @@ class Question < ActiveRecord::Base
   def self.per_page
     20
   end
-
 
   after_create do |question|
     question.user.increment!(:score,PLAY_SCORE)

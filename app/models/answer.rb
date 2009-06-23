@@ -32,9 +32,6 @@ class Answer < ActiveRecord::Base
       :limit => 1
     }
   }
-  named_scope :gt, lambda {|updated_at|
-    {:conditions => ['updated_at > ?', updated_at]}
-  }
 
   named_scope :of, lambda {|user|
     {:conditions => ["answers.user_id = ?", user.id], :order => "updated_at desc"}
@@ -49,6 +46,10 @@ class Answer < ActiveRecord::Base
       :group => 'user_id'
     }
   }
+
+  def self.per_page
+    20
+  end
 
   def validate_on_create
     errors.add_to_base(I18n.translate('activerecord.errors.messages.timeout')) if timeout?
