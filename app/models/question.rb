@@ -38,6 +38,13 @@ class Question < ActiveRecord::Base
   end
   
   after_destroy do |question|
+    #send message
+    content = ActionController::Base.helpers.truncate(question.content,:length => 60)
+    Message.create({
+      :creator => User.find_by_login('saberma'), 
+      :user => question.user, 
+      :content => ERB.new(Message::PUNISH_CONTENT).result(binding)
+    })
     question.user.decrement!(:score,PUNISH_SCORE)
     uq = UnansweredQuestion.find_by_question_id(question.id)
     uq.destroy if uq

@@ -5,6 +5,10 @@ class Message < ActiveRecord::Base
   validates_presence_of     :content
   validates_length_of       :content, :maximum => 120
 
+  PUNISH_CONTENT = <<-EOF
+抱歉，您刚提的问题不符合网站规则,已屏蔽，扣除积分<%= PUNISH_SCORE %>，问题内容为:<%= content %>
+  EOF
+
   named_scope :to, lambda {|user|
     {:conditions => ["is_readed = ? and user_id = ?", false, user.id], :limit => 1, :order => "updated_at asc"}
   }
