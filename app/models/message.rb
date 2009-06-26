@@ -6,7 +6,7 @@ class Message < ActiveRecord::Base
   validates_length_of       :content, :maximum => 120
 
   PUNISH_CONTENT = <<-EOF
-抱歉，您刚提的问题不符合网站规则,已屏蔽，扣除积分<%= PUNISH_SCORE %>，问题内容为:<%= content %>
+抱歉，您于<%= time %>所提问题不符合网站规则,已屏蔽，扣除积分<%= PUNISH_SCORE %>，问题内容为:<%= content %>
   EOF
 
   named_scope :to, lambda {|user|

@@ -39,7 +39,8 @@ class Question < ActiveRecord::Base
   
   after_destroy do |question|
     #send message
-    content = ActionController::Base.helpers.truncate(question.content,:length => 60)
+    time = question.created_at.to_s(:db)
+    content = ActionController::Base.helpers.truncate(question.content,:length => 50)
     Message.create({
       :creator => User.admin,
       :user => question.user, 

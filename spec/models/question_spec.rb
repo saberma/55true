@@ -34,7 +34,8 @@ describe Question do
       question = questions(:patpat_q4)
       question.destroy
       question.user.score.should == -PUNISH_SCORE
-      content = ActionController::Base.helpers.truncate(question.content,:length => 60)
+      time = question.created_at.to_s(:db)
+      content = ActionController::Base.helpers.truncate(question.content,:length => 50)
       Message.with(User.admin, question.user).first.content.should == ERB.new(Message::PUNISH_CONTENT).result(binding)
     end.should change(UnansweredQuestion, :count).by(-1)
   end
