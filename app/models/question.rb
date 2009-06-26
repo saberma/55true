@@ -41,7 +41,7 @@ class Question < ActiveRecord::Base
     #send message
     content = ActionController::Base.helpers.truncate(question.content,:length => 60)
     Message.create({
-      :creator => User.find_by_login('saberma'), 
+      :creator => User.admin,
       :user => question.user, 
       :content => ERB.new(Message::PUNISH_CONTENT).result(binding)
     })

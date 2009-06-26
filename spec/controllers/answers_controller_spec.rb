@@ -80,7 +80,7 @@ describe AnswersController do
   end
 
   it "should delete a answer." do
-    login_as :saberma
+    login_as '55true管理员'
     lambda do
       xhr :delete, :destroy, :id => answers(:patpat_a5)
       Question.find(answers(:patpat_a5).question.id).is_answered.should be_false

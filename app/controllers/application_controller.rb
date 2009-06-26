@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_admin?
-    logged_in? && %w(saberma).include?(current_user.login)
+    logged_in? && (current_user == User.admin)
   end
 
   #防止马甲，限制注册

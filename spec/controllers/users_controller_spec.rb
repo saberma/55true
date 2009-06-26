@@ -45,7 +45,7 @@ describe UsersController do
   end
 
   it "should destroy" do
-    login_as :saberma
+    login_as '55true管理员'
     xhr :delete, :destroy, :id => users(:ben).id
     users(:ben).reload.score.should == -PUNISH_SCORE
   end

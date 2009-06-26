@@ -38,7 +38,7 @@ quentin:
   login: quentin
   <<: *DEFAULTS
 
-saberma:
-  login: saberma
+55true管理员:
+  login: 55true管理员
   <<: *DEFAULTS
 
