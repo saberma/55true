@@ -24,7 +24,7 @@
           %span#user_score=current_user.score
         .split
         %h4{:title => '你可以上传一张图片'}  给自己定制头像
-        =image_tag(current_user.head, :class => "head")
+        =image_tag(current_user.head, :class => "current_head")
         %span.quiet 最大上传2M图片
         =error_messages_for :user
         - form_for current_user, :html => { :multipart => true } do |f|

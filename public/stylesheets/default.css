@@ -5,7 +5,7 @@ a {
 li {
   font-size: 1.2em; }
 
-img.head {
+img.head, img.current_head {
   margin: 3px;
   padding: 1px;
   border: 1px #cccccc solid;
