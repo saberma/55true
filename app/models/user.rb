@@ -58,7 +58,9 @@ class User < ActiveRecord::Base
   before_create :init_property
 
   def head
+    #test user
     return "/images/users/#{login}.jpg" if %w{po ben patpat}.include?(login)
+    return "/images/users/forbid.gif" if forbid?
     photo.url
   end
 

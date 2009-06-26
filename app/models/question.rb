@@ -39,14 +39,17 @@ class Question < ActiveRecord::Base
   
   after_destroy do |question|
     #send message
-    time = question.created_at.to_s(:db)
-    content = ActionController::Base.helpers.truncate(question.content,:length => 50)
-    Message.create({
-      :creator => User.admin,
-      :user => question.user, 
-      :content => ERB.new(Message::PUNISH_CONTENT).result(binding)
-    })
-    question.user.decrement!(:score,PUNISH_SCORE)
+    user = question.user
+    unless user.forbid?
+      time = question.created_at.to_s(:db)
+      content = ActionController::Base.helpers.truncate(question.content,:length => 50)
+      Message.create({
+        :creator => User.admin,
+        :user => question.user, 
+        :content => ERB.new(Message::PUNISH_CONTENT).result(binding)
+      })
+    end
+    user.decrement!(:score,PUNISH_SCORE)
     uq = UnansweredQuestion.find_by_question_id(question.id)
     uq.destroy if uq
   end
