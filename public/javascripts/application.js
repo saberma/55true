@@ -10,6 +10,7 @@ tooltip_setting = {
   delay: 0,
   opacity: 0.9,
   onBeforeShow: function(){
+    j('#tooltip').html('正在处理...');
     var url = this.getTrigger().parent().attr('href') + '/panel';
     j.get(url, function(body){
       j('#tooltip').html(body);
