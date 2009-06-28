@@ -4,11 +4,12 @@
   %head
     %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
     %title=@title
-    =stylesheet_link_tag "blueprint/screen"
-    / [if IE]
-      =stylesheet_link_tag "blueprint/ie"
-    =stylesheet_link_tag "facebox", "default" 
-    =javascript_include_tag "prototype", "effects", "jquery", "jquery-ui", "jquery.timers", "jquery.tools.min", "facebox", "application" 
+    -bundle do
+      =stylesheet_link_tag "blueprint/screen"
+      / [if IE]
+        =stylesheet_link_tag "blueprint/ie"
+      =stylesheet_link_tag "facebox", "default" 
+      =javascript_include_tag "prototype", "effects", "jquery", "jquery-ui", "jquery.timers", "jquery.tools.min", "facebox", "application" 
 
   %body
     #tooltip.tooltip
