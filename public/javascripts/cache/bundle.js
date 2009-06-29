@@ -418,12 +418,15 @@ jQuery.timer.remove(els[i],label);}});/* --------- /javascripts/jquery.tools.min
 function bind(name,fn){$(self).bind(name,function(e,args){if(fn&&fn.call(this)===false&&args){args.proceed=false;}});return self;}
 $.each(conf,function(name,fn){if($.isFunction(fn)){bind(name,fn);}});var isInput=trigger.is("input, textarea");trigger.bind(isInput?"focus":"mouseover",function(e){e.target=this;self.show(e);tip.hover(function(){self.show();},function(){self.hide();});});trigger.bind(isInput?"blur":"mouseout",function(){self.hide();});tip.css("opacity",conf.opacity);var timer=0;$.extend(self,{show:function(e){if(e){trigger=$(e.target);}
 if(tip.is(":animated")||tip.is(":visible")){return self;}
-var p={proceed:true};$(self).trigger("onBeforeShow",p);if(!p.proceed){return self;}
+if(e){var p={proceed:true};$(self).trigger("onBeforeShow",p);if(!p.proceed){return self;}
 var top=trigger.position().top-tip.outerHeight();var height=tip.outerHeight()+trigger.outerHeight();var pos=conf.position[0];if(pos=='center'){top+=height/2;}
 if(pos=='bottom'){top+=height;}
 var width=trigger.outerWidth()+tip.outerWidth();var left=trigger.position().left+trigger.outerWidth();pos=conf.position[1];if(pos=='center'){left-=width/2;}
 if(pos=='left'){left-=width;}
-top+=conf.offset[0];left+=conf.offset[1];tip.css({position:'absolute',top:top,left:left});effects[conf.effect][0].call(self);$(self).trigger("onShow");return self;},hide:function(){effects[conf.effect][1].call(self);return self;},isShown:function(){return tip.is(":visible, :animated");},getConf:function(){return conf;},getTip:function(){return tip;},getTrigger:function(){return trigger;},onBeforeShow:function(fn){return bind("onBeforeShow",fn);},onShow:function(fn){return bind("onShow",fn);},onBeforeHide:function(fn){return bind("onBeforeHide",fn);},onHide:function(fn){return bind("onHide",fn);}});}
+top+=conf.offset[0];left+=conf.offset[1];tip.css({position:'absolute',top:top,left:left});}
+effects[conf.effect][0].call(self);$(self).trigger("onShow");return self;},hide:function(){if(!tip.is(":visible")){return self;}
+var p={proceed:true};$(self).trigger("onBeforeHide",p);if(!p.proceed){return self;}
+effects[conf.effect][1].call(self);$(self).trigger("onHide");return self;},isShown:function(){return tip.is(":visible, :animated");},getConf:function(){return conf;},getTip:function(){return tip;},getTrigger:function(){return trigger;},onBeforeShow:function(fn){return bind("onBeforeShow",fn);},onShow:function(fn){return bind("onShow",fn);},onBeforeHide:function(fn){return bind("onBeforeHide",fn);},onHide:function(fn){return bind("onHide",fn);}});}
 $.prototype.tooltip=function(conf){var el=this.eq(typeof conf=='number'?conf:0).data("tooltip");if(el){return el;}
 var opts={tip:null,effect:'slideup',delay:30,opacity:1,position:['top','center'],offset:[0,0],api:false};if($.isFunction(conf)){conf={onBeforeShow:conf};}
 $.extend(opts,conf);this.each(function(){el=new Tooltip($(this),opts);$(this).data("tooltip",el);});return opts.api?el:this;};})(jQuery);/* --------- /javascripts/facebox.js --------- */ 
