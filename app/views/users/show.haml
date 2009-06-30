@@ -1,8 +1,15 @@
 #profile.span-13
-  %h4{:title => '只显示前10条记录'}="大家对#{@user.login}说......"
-  %ul.talk= render :partial => 'home/answered_question', :collection => @his_answered_question_list
-  %h4{:title => '只显示前10条记录'}="#{@user.login}刚说了......"
-  %ul.talk= render :partial => 'home/answer', :collection => @his_answer_list
+  .span-3
+    %h4= answers_link
+  .span-7
+    %h4
+  .span-3.last
+    %h4= questions_link
+
+  .span-13
+    %ul.talk= render :partial => 'home/answer', :collection => @list
+    #paginate
+      =will_paginate @list
 
 .span-6.last
   .box

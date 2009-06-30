@@ -37,6 +37,10 @@ class Answer < ActiveRecord::Base
     {:conditions => ["answers.user_id = ?", user.id], :order => "updated_at desc"}
   }
 
+  named_scope :question_of, lambda {|user|
+    {:conditions => ["questions.user_id = ?", user.id], :order => "updated_at desc"}
+  }
+
   named_scope :limit, lambda {|limit|
     {:limit => limit}
   }

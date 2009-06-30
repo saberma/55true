@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   include AuthenticatedSystem
   layout 'facebox', :except => :panel
   before_filter :check_xhr, :check_admin, :only => :destroy
+  before_filter :get_user, :only => [:show, :questions]
 
   def new
     if is_forbid_register?
@@ -35,15 +36,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-    unless @user
-      flash[:error] = "用户不存在!"
-      redirect_to home_url and return
-    end
-    @title = "#{@user.login} | 真心话网"
-    @his_answered_question_list = Question.limit(10).answered.of(@user)
-    @his_answer_list = Answer.with_question.limit(10).of(@user)
-    render :layout => "application"
+    @list = Answer.with_question.of(@user).paginate(:page => params[:page],:per_page => 3)
+    render :action => "show", :layout => "application"
+  end
+
+  def questions
+    @list = Answer.with_question.question_of(@user).paginate(:page => params[:page],:per_page => 3)
+    render :action => "show", :layout => "application"
   end
 
   def panel
@@ -52,5 +51,14 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).update_attribute(:score, -PUNISH_SCORE)
+  end
+
+  def get_user
+    @user = User.find(params[:id])
+    unless @user
+      flash[:error] = "用户不存在!"
+      redirect_to home_url and return
+    end
+    @title = "#{@user.login} | 真心话网"
   end
 end
