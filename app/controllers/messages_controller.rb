@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   layout 'facebox'
   before_filter :check_login, :except => :new
+  include MessagesHelper
 
   def new
     unless logged_in?
@@ -30,6 +31,7 @@ class MessagesController < ApplicationController
         message = current_user.messages.find(params[:from_message_id])
         message.update_attribute(:is_readed, true)
       end
+      add_relate(@model.user_id)
       flash.now[:notice] = "发送成功!"
     else
       render :partial => '/shared/create_error'

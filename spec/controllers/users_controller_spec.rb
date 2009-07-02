@@ -39,8 +39,6 @@ describe UsersController do
 
   it "should show someone's play record" do
     get :show, :id => users(:ben)
-    assigns[:his_answered_question_list].should_not be_nil
-    assigns[:his_answer_list].should_not be_nil
     response.should be_success
   end
 
@@ -53,6 +51,11 @@ describe UsersController do
   it "should show panel" do
     xhr :get, :panel, :id => users(:ben).id
     assigns[:user].should_not be_nil
+    response.should be_success
+  end
+
+  it "should question list" do
+    get :questions, :id => users(:ben).id
     response.should be_success
   end
   

@@ -103,10 +103,10 @@ img.mini_head {
       margin-top: 2px; }
   #content .box .tip li {
     padding: 5px; }
-#content ul#today_users {
+#content ul#today_users, #content ul#msg_relate {
   list-style: none;
   margin: 0; }
-  #content ul#today_users li {
+  #content ul#today_users li,   #content ul#msg_relate li {
     float: left;
     margin: 0; }
 #content .btn_play {

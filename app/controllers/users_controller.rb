@@ -36,12 +36,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @list = Answer.with_question.of(@user).paginate(:page => params[:page],:per_page => 3)
+    @list = Answer.with_question.of(@user).paginate(:page => params[:page])
     render :action => "show", :layout => "application"
   end
 
   def questions
-    @list = Answer.with_question.question_of(@user).paginate(:page => params[:page],:per_page => 3)
+    @list = Answer.with_question.question_of(@user).paginate(:page => params[:page])
     render :action => "show", :layout => "application"
   end
 

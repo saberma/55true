@@ -5,6 +5,9 @@ page << "j('#message_#{params[:from_message_id]}').remove();" unless params[:fro
 #更新积分
 page.replace_html :user_score, current_user.score
 
+#更新消息来往用户列表
+page.insert_html :top, 'msg_relate', :partial => 'home/user', :locals => { :user => @model.user }
+
 page.delay(1) do
   page << 'j.facebox.close();'
 end

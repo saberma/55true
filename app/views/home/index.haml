@@ -5,6 +5,10 @@
     %ul#my.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
     = render :partial => 'message', :locals => { :message => @message } if @message
 
+  %ul#msg_relate{:title => "最近发送过消息的..."}
+    = render :partial => 'user', :collection => User.find(session[:msg_relate]) if session[:msg_relate]
+  .clearfix
+
   %h4 大家刚说了......
   %ul#all.talk= render :partial => 'answer', :collection => @answer_list
   #paginate
@@ -50,8 +54,7 @@
   .box
     %h4{:title => "24小时内玩过真心话的会员"} 今天谁在玩
     %ul#today_users
-      -User.today.each do |user|
-        %li=link_to image_tag(user.head, :class => "mini_head", :title => user.login), user, :target => '_blank'
+      = render :partial => 'user', :collection => User.today
   .clearfix
   .box
     %h4 小提示

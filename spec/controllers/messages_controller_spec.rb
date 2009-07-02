@@ -46,6 +46,8 @@ describe MessagesController do
         post :create, :message => {:content => "I missing you"}, :user_id => users(:po).id
         response.should render_template('messages/create.rjs')
         users(:po).reload.score.should == 0
+        #save message relate user id to session, in order to show in home page
+        session[:msg_relate].include?(users(:po).id).should be_true
       end.should change(Message, :count).by(1)
     end
 
