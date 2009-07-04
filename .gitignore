@@ -12,3 +12,6 @@ tmp/**
 config/ssh/**
 config/mongrel/**
 config/nginx/**
+
+public/javascripts/cache
+public/stylesheets/cache
