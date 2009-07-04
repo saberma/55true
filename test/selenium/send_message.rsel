@@ -30,6 +30,7 @@ wait_for_element_present "message_content"
 type "message_content", "试一下发消息给你"
 click "commit"
 wait_for_text_present "发送成功"
+verify_element_present "css=#msg_relate li:nth-child(1)"
 
 #扣除积分
 assert_text 'user_score', "javascript{parseInt(storedVars['old_user_score'])-parseInt(#{SEND_MSG_SCORE})}"
@@ -37,6 +38,7 @@ assert_text 'user_score', "javascript{parseInt(storedVars['old_user_score'])-par
 #收消息
 wait_for_element_present('css=.message')
 assert_text_present '试一下发消息给你'
+verify_element_not_present "css=#msg_relate li:nth-child(2)"
 
 #回复
 click "link=回复"
@@ -44,4 +46,6 @@ wait_for_element_present "message_content"
 assert_text_present '上一消息：试一下发消息给你'
 type "message_content", "试一下回复给你"
 click "commit"
-wait_for_element_not_present('css=.message')
+wait_for_element_not_present('css=.message') #收件框消失
+wait_for_element_present('css=.message') #收件框显示
+verify_element_not_present "css=#msg_relate li:nth-child(2)" #同一个消息对象不显示重复用户头像

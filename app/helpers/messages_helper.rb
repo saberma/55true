@@ -5,5 +5,6 @@ module MessagesHelper
     session[:msg_relate].delete(user_id)
     session[:msg_relate].push(user_id)
     session[:msg_relate].shift if session[:msg_relate].size>12
+    session[:msg_relate]
   end
 end
