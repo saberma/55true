@@ -86,22 +86,8 @@
       %li 积分小于0自动禁用帐号
 -unless params[:page] && params[:page] != '1'
   :javascript
-    var completed = true;
     j('#play').ajaxComplete(function(evt,request,settings){
       completed = true;
     });
     //get new answer
-    j('#all').everyTime(8000, function(){
-      if(!completed){
-        return true;
-      }else{
-        completed = false;
-      }
-      var current_li = j('li:first',j('#all'));
-      var last_id = current_li.attr('last_id')
-      var odd = current_li.attr('class') == 'even' ? 'odd':'even';
-      var url = '/answers/' + last_id + '?cycle=' + odd + '&pv=f';
-      if(j('.message').size()==0)
-        url += '&message=true';
-      j.getScript(url);
-    });
+    j('#all').everyTime(interval, getLatest);

@@ -19,6 +19,25 @@ tooltip_setting = {
   }
 };
 
+//获取最新记录
+var interval = '8s';
+var hits = 0;
+var completed = true;
+var getLatest = function(){
+  if(!completed){
+    return true;
+  }else{
+    completed = false;
+  }
+  var current_li = j('li:first',j('#all'));
+  var last_id = current_li.attr('last_id')
+  var odd = current_li.attr('class') == 'even' ? 'odd':'even';
+  var url = '/answers/' + last_id + '?cycle=' + odd + '&pv=f';
+  if(j('.message').size()==0)
+    url += '&message=true';
+  j.get(url, function(js){eval(js)});
+}
+
 j(document).ready(function(){
   //facebox lightbox(avoid enter key triggle another facebox)
   j('a[rel*=facebox]').focus(function(){j(this).blur();});

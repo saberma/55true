@@ -12,6 +12,10 @@ if answer
   page.insert_html :top, 'all', :partial => 'home/answer', :collection => @answer_list
   page << "j('#all li:first').hide().show(500);"
   page << "j('#all li:first .head').tooltip(tooltip_setting);"
+  page << "hits += 1;"
+  page << "if(hits==#{HITS} && interval=='#{SLOW_INTERVAL}'){ interval='#{FASTER_INTERVAL}'; j('#all').stopTime(); j('#all').everyTime(interval, getLatest);}"
+else
+  page << "hits = 0;"
 end
 
 #提示消息
