@@ -1,0 +1,19 @@
+!!! Strict
+
+%html
+  %head
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %title=@title
+    =stylesheet_link_tag "blueprint/screen"
+    / [if IE]
+      =stylesheet_link_tag "blueprint/ie"
+    =stylesheet_link_tag "default" 
+    =javascript_include_tag "jquery", "jrails", "jquery.timers"
+
+  %body
+    .container
+      #header.span-19
+        #logo.span-19
+          %a{:href=>'/',:title=>'返回真心话首页'} 真心话
+      #content.span-19
+        =yield

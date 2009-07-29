@@ -1,30 +1,12 @@
-!!! Strict
-
-%html
-  %head
-    %meta{'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
-    %title=@title
-    =stylesheet_link_tag "blueprint/screen"
-    / [if IE]
-      =stylesheet_link_tag "blueprint/ie"
-    =stylesheet_link_tag "default" 
-    =javascript_include_tag "prototype", "jquery", "jquery.timers"
-
-  %body
-    .container
-      #header.span-19
-        #logo.span-19
-          %a{:href=>'/',:title=>'返回真心话首页'} 真心话
-      #content.span-19
-        #newest.span-13
-          %h4 大家刚说了......
-          %ul#all.talk= render :partial => 'answered_question', :collection => @question_list
-          #paginate
-            =will_paginate @question_list
-        .span-6.last
-          -if @user
-            .box
-              =link_to_remote "禁用#{@user.login}", :url => user_path(@user), :method => :delete
-          .box
-            %h4 大家刚问了......
-            %ol#my_question= render :partial => 'my_question', :collection => @unanswer_question_list
+#newest.span-13
+  %h4 大家刚说了......
+  %ul#all.talk= render :partial => 'answered_question', :collection => @question_list
+  #paginate
+    =will_paginate @question_list
+.span-6.last
+  -if @user
+    .box
+      =link_to_remote "禁用#{@user.login}", :url => user_path(@user), :method => :delete
+  .box
+    %h4 大家刚问了......
+    %ol#my_question= render :partial => 'my_question', :collection => @unanswer_question_list
