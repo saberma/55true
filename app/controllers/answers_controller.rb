@@ -61,7 +61,7 @@ class AnswersController < ApplicationController
   end
 
   def show
-    @answer_list = Answer.newer(params[:id])
+    @answer_list = memcache("answers_#{params[:id]}") {Answer.newer(params[:id])}
     if logged_in? && params[:message]
       #用户收到的消息
       @message = Message.to(current_user).first

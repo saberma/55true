@@ -28,7 +28,7 @@ set :database_yml_in_scm, false
 set :user, "saberma"
 set :runner, nil
 
-set :packages_for_project, %w(libxslt1-dev libxml2-dev imagemagick)
+set :packages_for_project, %w(libxslt1-dev libxml2-dev imagemagick memcached)
 set :gems_for_project, %w(rspec hoe haml paperclip mislav-will_paginate mysql cucumber webrat request-log-analyzer)
 set :shared_dirs, %w(public/photos)
 

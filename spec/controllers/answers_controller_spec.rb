@@ -130,6 +130,13 @@ describe AnswersController do
     assigns[:answer_list].first.should_not be_nil
     xhr :get, :show, :id => last_one.id
     assigns[:answer_list].first.should be_nil
+    #缓存应该被更新
+    login_as :patpat
+    answer
+    last_id = assigns[:answer].id
+    answer
+    xhr :get, :show, :id => last_id
+    assigns[:answer_list].first.id.should == assigns[:answer].id
   end
 
   #首页更新时显示用户收到的消息
@@ -141,7 +148,6 @@ describe AnswersController do
     xhr :get, :show, :id => Answer.last.id, :message => true
     assigns[:message].should_not be_nil
   end
-
 
   def answer
     unanswer_question = UnansweredQuestion.for(users(:patpat))
