@@ -64,7 +64,7 @@ class AnswersController < ApplicationController
     @answer_list = memcache("answers_#{params[:id]}") {Answer.newer(params[:id])}
     if logged_in? && params[:message]
       #用户收到的消息
-      @message = Message.to(current_user).first
+      @message_list = memcache("messages_#{current_user.id}") {Message.to(current_user)}
     end
   end
 end

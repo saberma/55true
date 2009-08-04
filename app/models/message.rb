@@ -19,6 +19,8 @@ class Message < ActiveRecord::Base
 
   after_create do |message|
     message.creator.decrement!(:score, SEND_MSG_SCORE)
+    #清除首页动态更新的消息缓存
+    expire_memcache "messages_#{message.user.id}"
   end
   
 end

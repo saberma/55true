@@ -2,6 +2,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe AnswersController do
   
+=begin
   describe 'stub' do
     before(:each) do
       @previou_question = mock_model(Question)
@@ -138,19 +139,31 @@ describe AnswersController do
     xhr :get, :show, :id => last_id
     assigns[:answer_list].first.id.should == assigns[:answer].id
   end
+=end
 
   #首页更新时显示用户收到的消息
   it "should show user's message" do
     xhr :get, :show, :id => Answer.last.id
-    assigns[:message].should be_nil
+    assigns[:message_list].should be_nil
     login_as :po
     #message参数表示首页还没显示未读的消息
     xhr :get, :show, :id => Answer.last.id, :message => true
-    assigns[:message].should_not be_nil
+    assigns[:message_list].first.should_not be_nil
+    #发消息后缓存应该更新
+    login_as :patpat
+    xhr :get, :show, :id => Answer.last.id, :message => true
+    assigns[:message_list].first.should be_nil
+    send_message_to(users(:patpat))
+    xhr :get, :show, :id => Answer.last.id, :message => true
+    assigns[:message_list].first.should_not be_nil
   end
 
   def answer
     unanswer_question = UnansweredQuestion.for(users(:patpat))
     post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id
+  end
+
+  def send_message_to(user)
+    Message.create!(:user => users(:patpat), :creator => users(:po), :content => 'test')
   end
 end

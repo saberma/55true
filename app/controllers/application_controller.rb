@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   protected
   def check_xhr
     unless request.xhr?
-      flash[:error] = "别关键着点按钮，等网站全部加载完了再点击!"
+      flash[:error] = "网站还没有完全加载，请等一会儿再点按钮."
       redirect_to home_path
     end
   end
