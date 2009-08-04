@@ -8,7 +8,7 @@ EMPTY_ARRAY = "e_a"
 
 def memcache(key)
   #fixed:ArgumentError (undefined class/module Answer)
-  Answer
+  [Answer, Message]
   output = mem_cache_get(key)
   unless output
     output = yield

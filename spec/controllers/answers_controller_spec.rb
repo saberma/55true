@@ -2,7 +2,6 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe AnswersController do
   
-=begin
   describe 'stub' do
     before(:each) do
       @previou_question = mock_model(Question)
@@ -139,7 +138,6 @@ describe AnswersController do
     xhr :get, :show, :id => last_id
     assigns[:answer_list].first.id.should == assigns[:answer].id
   end
-=end
 
   #首页更新时显示用户收到的消息
   it "should show user's message" do
@@ -152,7 +150,6 @@ describe AnswersController do
     #发消息后缓存应该更新
     login_as :patpat
     xhr :get, :show, :id => Answer.last.id, :message => true
-    assigns[:message_list].first.should be_nil
     send_message_to(users(:patpat))
     xhr :get, :show, :id => Answer.last.id, :message => true
     assigns[:message_list].first.should_not be_nil

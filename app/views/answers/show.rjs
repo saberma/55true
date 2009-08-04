@@ -19,8 +19,7 @@ else
 end
 
 #提示消息
-message = @message_list.first
-if message
-  page.insert_html :after, 'my', :partial => 'home/message', :locals => { :message => message }
+if @message_list && @message_list.first
+  page.insert_html :after, 'my', :partial => 'home/message', :locals => { :message => @message_list.first }
   page << "j('.message a[rel*=facebox]').facebox();"
 end
