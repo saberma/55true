@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
   def index
+    #今天谁在玩
+    @today_users_size = User.today.size
+    @today_users = User.today.limit(TODAY_USER_TOP_MAX)
     #用户问的
     if logged_in?
       @user_unanswer_question_list = Question.unanswer.of current_user

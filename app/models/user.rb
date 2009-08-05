@@ -51,6 +51,10 @@ class User < ActiveRecord::Base
     }
   }
 
+  named_scope :limit, lambda {|limit|
+    {:limit => limit}
+  }
+
   validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
   validates_attachment_size :photo, :less_than => 2.megabytes
   
