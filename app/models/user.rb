@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
 
   named_scope :today, lambda {
     {
+      :select => 'distinct users.id',
       :joins => :answers,
       :conditions => ["answers.created_at >= ?", 24.hours.ago],
       :group => 'answers.user_id',
@@ -74,6 +75,11 @@ class User < ActiveRecord::Base
 
   def self.admin
     User.find_by_login('55true管理员')
+  end
+
+  #首页今天谁在玩top50
+  def self.today_top
+    self.find(self.today.limit(TODAY_USER_TOP_MAX), :order => 'score desc')
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.

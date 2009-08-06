@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
     #今天谁在玩
-    @today_users_size = User.today.size
-    @today_users = User.today.limit(TODAY_USER_TOP_MAX)
+    @today_users_size = memcache('today_users_size') { User.today.size }
+    @today_users = memcache('today_users') { User.today_top }
     #用户问的
     if logged_in?
       @user_unanswer_question_list = Question.unanswer.of current_user
