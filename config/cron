@@ -1,0 +1,1 @@
+*/5 * * * * mysql -uroot -ppwd -e 'update unanswered_questions set sequence = round(rand()*1000)' 55true_production
