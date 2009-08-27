@@ -46,7 +46,7 @@ class Answer < ActiveRecord::Base
   }
 
   def self.per_page
-    20
+    10
   end
 
   def validate_on_create
