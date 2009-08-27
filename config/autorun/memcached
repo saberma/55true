@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+## Copyright (c) 2007 Bradley Taylor, bradley@railsmachine.com
+#              
+case "$1" in
+  start)
+    memcached -d -m 20 -l 127.0.0.1
+  ;;
+esac  
