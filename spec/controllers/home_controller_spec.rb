@@ -12,7 +12,7 @@ describe HomeController do
   
   it "should list login user's question" do
     login_as :po
-    get :index
+    get :member
     assigns[:user_unanswer_question_list].should_not be_nil
     assigns[:user_answered_question_list].should_not be_nil
     response.should be_success
@@ -21,8 +21,20 @@ describe HomeController do
   
   it "should list login user's message" do
     login_as :po
-    get :index
+    get :member
     assigns[:message].should == messages(:ben_to_po2)
+  end
+
+  #性能考虑，首页分离登录用户和未登录用户(缓存)
+  it "should show member home" do
+    login_as :po
+    get :index
+    response.should redirect_to(:action => :member)
+  end
+
+  it "should show common home" do
+    get :index
+    response.should render_template("index")
   end
 #  
 #  it "should deliver a reminder" do
