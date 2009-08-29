@@ -1,0 +1,4 @@
+#!/bin/bash
+d=`date +%Y%m%d %H%M%S`
+mysql -uroot -p$1 -e 'update unanswered_questions set sequence = round(rand()*1000)' 55true_production
+echo $d':run update unanswered_question sequenced' >> /tmp/cron.log

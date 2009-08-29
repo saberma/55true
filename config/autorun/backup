@@ -1,0 +1,7 @@
+#!/bin/bash
+cd /tmp
+d=`date +%Y%m%d`
+mysqldump 55true_production answers questions unanswered_questions users -u root -p$1 > mysql$d.sql
+tar zcf mysql$d.tar.gz mysql$d.sql
+rm mysql$d.sql
+echo $d':backup mysql' >> /tmp/cron.log
