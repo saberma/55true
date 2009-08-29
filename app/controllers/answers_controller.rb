@@ -3,6 +3,8 @@ class AnswersController < ApplicationController
   before_filter :check_xhr, :only => :new
   before_filter :check_login, :only => :create
   before_filter :check_xhr, :check_admin, :only => :destroy
+  #缓存首页后台更新
+  caches_page :show
 
   #接题
   def new
@@ -40,6 +42,8 @@ class AnswersController < ApplicationController
         @answer.save!
         @question.save!
       end
+      #清除缓存
+      expire_page :action => :show, :id => (@answer.id-1), :format => :js
     end
 
     if @answer.errors.empty? && @question.errors.empty?
@@ -61,10 +65,12 @@ class AnswersController < ApplicationController
   end
 
   def show
-    @answer_list = memcache("answers_#{params[:id]}") {Answer.newer(params[:id])}
+    @answer_list = Answer.newer(params[:id])
+=begin
     if logged_in? && params[:message]
       #用户收到的消息
       @message_list = memcache("messages_#{current_user.id}") {Message.to(current_user)}
     end
+=end
   end
 end

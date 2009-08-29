@@ -59,8 +59,6 @@ class Answer < ActiveRecord::Base
 
   after_create do |answer|
     UnansweredQuestion.delete_all(["question_id = ?", answer.question])
-    #清除首页动态更新的缓存
-    expire_memcache "answers_#{answer.id-1}"
   end
 
   after_destroy do |answer|

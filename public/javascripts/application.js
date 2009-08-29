@@ -34,7 +34,7 @@ var getLatest = function(){
   var current_li = j('li:first',j('#all'));
   var last_id = current_li.attr('last_id')
   var odd = current_li.attr('class') == 'even' ? 'odd':'even';
-  var url = '/answers/' + last_id + '?cycle=' + odd + '&pv=f';
+  var url = '/answers/' + last_id + '.js?cycle=' + odd + '&pv=f';
   if(j('.message').size()==0)
     url += '&message=true';
   j.get(url, function(js){eval(js)});

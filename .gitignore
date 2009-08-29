@@ -15,3 +15,6 @@ config/nginx/**
 
 public/javascripts/cache
 public/stylesheets/cache
+
+#cache
+public/answers
