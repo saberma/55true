@@ -6,7 +6,7 @@ require 'memcache'
 #空数组
 EMPTY_ARRAY = "e_a"
 
-def memcache(key)
+def memcache(key, timeout = 30.minutes)
   #fixed:ArgumentError (undefined class/module Answer)
   [Answer, Message, User, Question, UnansweredQuestion]
   output = mem_cache_get(key)
@@ -14,7 +14,7 @@ def memcache(key)
     output = yield
     #fixed:empty array will not be store
     output = EMPTY_ARRAY if output == []
-    mem_cache_set(key, output, 30.minutes)
+    mem_cache_set(key, output, timeout)
   end
   output = [] if (output == EMPTY_ARRAY)
   return output

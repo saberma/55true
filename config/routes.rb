@@ -15,8 +15,9 @@ ActionController::Routing::Routes.draw do |map|
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   
   map.home '/', :controller => 'home'
-  map.home_member '/member', :controller => 'home', :action => 'member'
   map.connect '/page/:page', :controller => 'home', :action => 'index'
+  map.home_member '/member', :controller => 'home', :action => 'member'
+  map.connect '/member/page/:page', :controller => 'home', :action => 'member'
 
   map.manage_user '/admin/user/:id', :controller => 'admin'
 

@@ -4,6 +4,7 @@ class HomeController < ApplicationController
 
   def index
     init
+    flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，想跟你一起玩真心话，点击下一行“我敢玩”就可以开始了!"
   end
 
   def member
@@ -33,7 +34,7 @@ class HomeController < ApplicationController
     #缓存总数，避免count查询
     total_entries = memcache('total_entries') { Answer.with_question.size }
 
-    @answer_list = Answer.with_question.paginate(:page => params[:page], :total_entries => total_entries)
-    flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，想跟你一起玩真心话，点击下一行“我敢玩”就可以开始了!"
+    #已登录会员页面的缓存不能太久，1分钟以内为佳
+    @answer_list = memcache("member_page_#{params[:page]}", 1.minute) { Answer.with_question.paginate(:page => params[:page], :total_entries => total_entries) }
   end
 end
