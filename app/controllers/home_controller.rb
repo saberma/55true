@@ -4,14 +4,14 @@ class HomeController < ApplicationController
 
   def index
     init
-    flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，想跟你一起玩真心话，点击下一行“我敢玩”就可以开始了!"
+    flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，想跟你一起玩真心话，点击下一行“开始玩”就可以了!"
   end
 
   def member
     init
     #用户问的
     @user_unanswer_question_list = Question.unanswer.of current_user
-    flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，点击下一行“我敢玩”继续吧!" unless flash[:notice]
+    flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，点击下一行“开始玩”继续吧!" unless flash[:notice]
 
     #用户收到的消息
     @message = Message.to(current_user).first

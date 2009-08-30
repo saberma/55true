@@ -1,5 +1,5 @@
 #newest.span-13
-  = link_to "我敢玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
+  = link_to "开始玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
   - if logged_in?
     = render :partial => 'message', :locals => { :message => @message } if @message
 

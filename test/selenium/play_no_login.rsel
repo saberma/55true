@@ -1,5 +1,5 @@
 setup 
 open "/"
-click "link=我敢玩"
+click "link=开始玩"
 wait_for_element_present "user_login"
 assert_text_present("名字")
