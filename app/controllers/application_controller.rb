@@ -16,6 +16,9 @@ class ApplicationController < ActionController::Base
   # Uncomment this to filter the contents of submitted sensitive data parameters
   # from your application log (in this case, all fields with names like "password"). 
   # filter_parameter_logging :password
+
+  #操作所需积分，会被子类重载
+  @@score = 0
   
   protected
   def check_xhr
@@ -29,6 +32,20 @@ class ApplicationController < ActionController::Base
     unless logged_in?
       flash[:error] = "请先登录!"
       redirect_to home_path
+    end
+  end
+
+  def xhr_check_login
+    unless logged_in?
+      flash.now[:notice] = "请先注册或登录，注册只需6秒."
+      render :partial => '/shared/notice' and return
+    end
+  end
+
+  def xhr_check_score
+    if(current_user.score < @@score)
+      flash.now[:notice] = "需要#{@@score}个积分,你的积分不足,暂时不能使用此功能."
+      render :partial => '/shared/notice' and return 
     end
   end
 

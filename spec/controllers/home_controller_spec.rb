@@ -35,6 +35,12 @@ describe HomeController do
     get :index
     response.should render_template("index")
   end
+
+  it "should show your friends" do
+    login_as :po
+    get :member
+    assigns[:friends_list].should == [friendships(:po_patpat), friendships(:po_ben)]
+  end
 #  
 #  it "should deliver a reminder" do
 #    lambda do

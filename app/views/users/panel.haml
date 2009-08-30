@@ -2,4 +2,5 @@
 .clearfix==问题数：#{@user.questions.size}
 .clearfix="注册时间：#{short_time(@user.created_at)}"
 =link_to "发消息", new_user_message_path(@user), :class => "large", :rel => "facebox"
+=link_to "加为好友", add_friend_path(:friend_id => @user.id), :class => "large", :rel => "facebox"
 =link_to "查看所有记录", @user, :target => '_blank'

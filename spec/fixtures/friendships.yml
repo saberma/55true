@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+po_ben:
+  user: po
+  friend: ben
+  created_at: 2009-08-30 15:54:56
+
+po_patpat:
+  user: po
+  friend: patpat
+  created_at: 2009-08-30 15:54:56
+
+ben_po:
+  user: ben
+  friend: po
+  created_at: 2009-08-30 15:54:56
+
+patpat_po:
+  user: patpat
+  friend: po
+  created_at: 2009-08-30 15:54:56

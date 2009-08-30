@@ -13,6 +13,9 @@ class HomeController < ApplicationController
     @user_unanswer_question_list = Question.unanswer.of current_user
     flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，点击下一行“开始玩”继续吧!" unless flash[:notice]
 
+    #好友
+    @friends_list = current_user.friendships
+
     #用户收到的消息
     @message = Message.to(current_user).first
     render :action => "index"

@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
         message.update_attribute(:is_readed, true)
       end
       add_relate(@model.user_id)
-      flash.now[:notice] = "发送成功!"
+      flash.now[:notice] = "发送成功!花费积分#{SEND_MSG_SCORE}"
       #清除首页动态更新的消息缓存
       expire_memcache "messages_#{@model.user_id}"
     else

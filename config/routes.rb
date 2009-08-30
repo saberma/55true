@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :users, :has_many => :messages
+  map.resources :users, :has_many => [:messages, :friendships]
+  map.add_friend '/addfriend/:friend_id', :controller => 'friendships', :action => 'create'
+
   #用户首页
   map.connect '/users/:id/page/:page', :controller => 'users', :action => 'show'
   map.user_question '/users/:id/questions', :controller => 'users', :action => 'questions'
