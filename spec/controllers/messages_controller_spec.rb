@@ -61,6 +61,7 @@ describe MessagesController do
   end
 
   it "should dynamic get message" do
+    clear_memcache
     login_as :po
     xhr :get, :index
     assigns[:message_list].first.should == messages(:ben_to_po2)

@@ -14,7 +14,6 @@ describe HomeController do
     login_as :po
     get :member
     assigns[:user_unanswer_question_list].should_not be_nil
-    assigns[:user_answered_question_list].should_not be_nil
     response.should be_success
     response.should render_template("index")
   end

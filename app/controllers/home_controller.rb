@@ -11,7 +11,6 @@ class HomeController < ApplicationController
     init
     #用户问的
     @user_unanswer_question_list = Question.unanswer.of current_user
-    @user_answered_question_list = Question.limit(2).answered.of(current_user)
     flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，点击下一行“我敢玩”继续吧!" unless flash[:notice]
 
     #用户收到的消息

@@ -1,13 +1,11 @@
 #newest.span-13
   = link_to "我敢玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
   - if logged_in?
-    %h4{:title => '这里显示其他人对你说的真心话(最近2条，点击可查看更多)'}=link_to "他们告诉你......", current_user, :target => '_blank'
-    %ul#my.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
     = render :partial => 'message', :locals => { :message => @message } if @message
 
-  %ul#msg_relate{:title => "最近发送过消息的..."}
-    = render :partial => 'user', :collection => User.find(session[:msg_relate]) if session[:msg_relate]
-  .clearfix
+    %ul#msg_relate{:title => "最近发送过消息的..."}
+      = render :partial => 'user', :collection => User.find(session[:msg_relate]) if session[:msg_relate]
+    .clearfix
 
   %h4 大家刚说了......
   %ul#all.talk= render :partial => 'answer', :collection => @answer_list
@@ -34,6 +32,8 @@
         - form_for current_user, :html => { :multipart => true } do |f|
           =f.file_field :photo, :size => 1
           =submit_tag '提交', :class => "button", :id => "photo_commit", :name => "photo_commit", :disable_with => "提交中..."
+      %p.clearfix
+        %h4=link_to "查看历史记录", user_question_path(current_user), :target => '_blank'
       %p.clearfix
         %h4{:title => '你问的内容还没有被回答时就显示在这里'} 你问了......
         %ol#my_question= render :partial => 'my_question', :collection => @user_unanswer_question_list
