@@ -79,6 +79,7 @@ class User < ActiveRecord::Base
 
   #首页今天谁在玩top50
   def self.today_top
+    #特殊处理：双排序，保证页面显示的是按积分排序的
     self.find(self.today.limit(TODAY_USER_TOP_MAX), :order => 'score desc')
   end
 
