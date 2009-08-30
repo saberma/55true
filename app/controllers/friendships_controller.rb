@@ -12,6 +12,11 @@ class FriendshipsController < ApplicationController
     Friendship.transaction do
       friendship.save!
       friendship_reverse.save!
+      Message.create({
+        :creator => current_user,
+        :user_id => params[:friend_id], 
+        :content => ERB.new(Message::ADD_FRIEND_CONTENT).result(binding)
+      })
     end
     flash.now[:notice] = "添加好友成功!花费积分#{@@score}"
     render :partial => '/shared/notice'

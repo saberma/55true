@@ -52,6 +52,11 @@
         %li 然后他再问:你现在最想的是谁？
         %li 下个人回答时提出新问题
   .box
+    %h4 好友列表
+    %ul.sidebar_users
+      = render :partial => 'user', :collection => @friends_list
+  .clear
+  .box
     %h4{:title => "24小时内玩过真心话的会员"}==今天#{@today_users_size}人在玩 TOP#{TODAY_USER_TOP_MAX}:
     %ul#today_users
       = render :partial => 'user', :collection => @today_users
@@ -81,6 +86,7 @@
     %ol
       %li==玩一次加#{PLAY_SCORE}分
       %li==发送消息减#{SEND_MSG_SCORE}分
+      %li==加好友减#{ADD_FRIEND_SCORE}分
       %li==违规提问或回答扣#{PUNISH_SCORE}分
       %li 多次违规积分清零
       %li 积分小于0自动禁用帐号

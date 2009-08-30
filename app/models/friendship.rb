@@ -3,6 +3,6 @@ class Friendship < ActiveRecord::Base
   belongs_to :friend, :class_name => "User", :foreign_key => "friend_id"
 
   def self.added?(user_id, friend_id)
-    (user_id == friend_id) || !self.find_by_user_id_and_friend_id(user_id, friend_id).nil?
+    (user_id == friend_id.to_i) || !self.find_by_user_id_and_friend_id(user_id, friend_id).nil?
   end
 end

@@ -9,6 +9,8 @@ class Message < ActiveRecord::Base
 抱歉，您于<%= time %>所提问题不符合网站规则,已屏蔽，扣除积分<%= PUNISH_SCORE %>，问题内容为:<%= content %>
   EOF
 
+  ADD_FRIEND_CONTENT = "<%=current_user.login%>刚加你为好友了!"
+
   named_scope :to, lambda {|user|
     {:conditions => ["is_readed = ? and user_id = ?", false, user.id], :limit => 1, :order => "updated_at asc"}
   }
@@ -18,7 +20,8 @@ class Message < ActiveRecord::Base
   }
 
   after_create do |message|
-    message.creator.decrement!(:score, SEND_MSG_SCORE)
+    creator = message.creator
+    creator.decrement!(:score, SEND_MSG_SCORE) unless creator == User.admin
   end
   
 end
