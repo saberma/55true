@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   layout 'facebox'
   before_filter :check_login, :except => :new
+  before_filter :check_xhr, :only => :index
   include MessagesHelper
 
   def new
@@ -33,6 +34,8 @@ class MessagesController < ApplicationController
       end
       add_relate(@model.user_id)
       flash.now[:notice] = "发送成功!"
+      #清除首页动态更新的消息缓存
+      expire_memcache "messages_#{@model.user_id}"
     else
       render :partial => '/shared/create_error'
     end
@@ -41,5 +44,10 @@ class MessagesController < ApplicationController
   def update
     @message = current_user.messages.find(params[:id])
     @message.update_attribute(:is_readed, true)
+  end
+
+  #用户收到的消息(缓存，有新消息则清空缓存)
+  def index
+    @message_list = memcache("messages_#{current_user.id}") {Message.to(current_user)}
   end
 end

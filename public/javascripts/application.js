@@ -25,6 +25,7 @@ tooltip_setting = {
 var interval = '8s';
 var hits = 0;
 var completed = true;
+//get new answer
 var getLatest = function(){
   if(!completed){
     return true;
@@ -38,6 +39,12 @@ var getLatest = function(){
   if(j('.message').size()==0)
     url += '&message=true';
   j.get(url, function(js){eval(js)});
+}
+
+//get new msg
+var getMsg = function(){
+  if(j('.message').size()==0)
+    j.get('/messages', function(js){eval(js)});
 }
 
 j(document).ready(function(){

@@ -57,4 +57,28 @@ describe MessagesController do
     end
 
   end
+
+  it "should dynamic get message" do
+    login_as :po
+    xhr :get, :index
+    assigns[:message_list].first.should == messages(:ben_to_po2)
+  end
+
+  #首页更新用户收到的消息
+  it "should show user's message" do
+    login_as :patpat
+    #message参数表示首页还没显示未读的消息
+    xhr :get, :index
+    assigns[:message_list].first.should be_nil
+
+    #发消息后缓存应该更新
+    users(:po).update_attribute :score, SEND_MSG_SCORE
+    login_as :po
+    post :create, :message => {:content => "I missing you"}, :user_id => users(:patpat).id
+
+    login_as :patpat
+    xhr :get, :index
+    assigns[:message_list].first.should_not be_nil
+  end
+
 end

@@ -139,28 +139,9 @@ describe AnswersController do
     assigns[:answer_list].first.id.should == assigns[:answer].id
   end
 
-  #首页更新时显示用户收到的消息
-  it "should show user's message" do
-    xhr :get, :show, :id => Answer.last.id
-    assigns[:message_list].should be_nil
-    login_as :po
-    #message参数表示首页还没显示未读的消息
-    xhr :get, :show, :id => Answer.last.id, :message => true
-    assigns[:message_list].first.should_not be_nil
-    #发消息后缓存应该更新
-    login_as :patpat
-    xhr :get, :show, :id => Answer.last.id, :message => true
-    send_message_to(users(:patpat))
-    xhr :get, :show, :id => Answer.last.id, :message => true
-    assigns[:message_list].first.should_not be_nil
-  end
-
   def answer
     unanswer_question = UnansweredQuestion.for(users(:patpat))
     post :create, :answer => {:content => "Yes!"}, :question => {:content => "What?"}, :previou_question => unanswer_question.id
   end
 
-  def send_message_to(user)
-    Message.create!(:user => users(:patpat), :creator => users(:po), :content => 'test')
-  end
 end

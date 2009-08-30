@@ -1,0 +1,4 @@
+if @message_list.first
+  page.insert_html :after, 'my', :partial => 'home/message', :locals => { :message => @message_list.first }
+  page << "j('.message a[rel*=facebox]').facebox();"
+end
