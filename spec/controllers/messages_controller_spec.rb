@@ -1,6 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe MessagesController do
+  fixtures :messages
+
   describe 'without score' do
     before(:each) do
       login_as :po
@@ -66,6 +68,8 @@ describe MessagesController do
 
   #首页更新用户收到的消息
   it "should show user's message" do
+    #避免其他测试用例缓存数据的影响
+    clear_memcache
     login_as :patpat
     #message参数表示首页还没显示未读的消息
     xhr :get, :index

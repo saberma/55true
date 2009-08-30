@@ -77,5 +77,8 @@ end
 #User should answer a question in a short time period
 MAX_ANSWER_TIME = 10.minutes unless defined? MAX_ANSWER_TIME
 
+#首页动态获取消息的间隔时间
+MSG_INTERVAL = '60s' unless defined? MSG_INTERVAL
+
 #max unanswered questions
 MAX_QUESTIONS = 6

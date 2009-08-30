@@ -92,4 +92,4 @@
     j('#all').everyTime(interval, getLatest);
 -if logged_in?
   :javascript
-    j('#msg_relate').everyTime('60s', getMsg);
+    j('#msg_relate').everyTime('#{MSG_INTERVAL}', getMsg);

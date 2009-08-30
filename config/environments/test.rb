@@ -24,3 +24,6 @@ config.action_mailer.delivery_method = :test
 
 #User should answer a question in a short time period
 MAX_ANSWER_TIME = 10.seconds
+
+#首页动态获取消息的间隔时间
+MSG_INTERVAL = '10s'
