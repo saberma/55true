@@ -1,4 +1,4 @@
-open '/'
+open '/logout'
 
 click "link=登录"
 wait_for_element_present "login"

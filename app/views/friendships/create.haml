@@ -1,0 +1,8 @@
+#facebox_window
+  =content_tag :p, flash[:notice], :class => "flash notice"
+:javascript
+  //更新积分
+  $('#user_score').html('#{current_user.score}');
+  setTimeout(function(){
+    $.facebox.close();
+  },3000);

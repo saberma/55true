@@ -1,11 +1,10 @@
 #newest.span-13
   = link_to "开始玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
   - if logged_in?
-    = render :partial => 'message', :locals => { :message => @message } if @message
-
     %ul#msg_relate{:title => "最近发送过消息的..."}
       = render :partial => 'user', :collection => User.find(session[:msg_relate]) if session[:msg_relate]
     .clearfix
+    = render :partial => 'message', :locals => { :message => @message } if @message
 
   %h4 大家刚说了......
   %ul#all.talk= render :partial => 'answer', :collection => @answer_list

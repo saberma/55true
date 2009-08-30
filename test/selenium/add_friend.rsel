@@ -1,0 +1,40 @@
+setup :fixtures => :friendships
+open "/logout"
+
+#未登录用户
+mouse_over('css=.head')
+wait_for_element_present "link=加为好友"
+click "link=加为好友"
+wait_for_text_present "请先注册或登录，注册只需6秒."
+
+User.find_by_login('quentin').update_attribute :score, ADD_FRIEND_SCORE - 1
+include_partial 'login', :name => 'quentin'
+wait_for_page_to_load 2000
+open "/"
+
+#积分不足加好友
+mouse_over('css=.head')
+wait_for_element_present "link=加为好友"
+click "link=加为好友"
+wait_for_text_present "需要#{ADD_FRIEND_SCORE}个积分,你的积分不足,暂时不能使用此功能." 
+
+click 'play'
+include_partial 'play', :answer => '是的', :question => '你多大了?'
+
+#积分够
+store_text 'user_score', 'old_user_score'
+
+#加为好友
+mouse_over('css=.head')
+wait_for_element_present "link=加为好友"
+click "link=加为好友"
+wait_for_text_present "添加好友成功!" 
+
+#扣除积分
+assert_text 'user_score', "javascript{parseInt(storedVars['old_user_score'])-parseInt(#{ADD_FRIEND_SCORE})}"
+
+#已经添加为好友
+mouse_over('css=.head')
+wait_for_element_present "link=加为好友"
+click "link=加为好友"
+wait_for_text_present "已经加为好友了!" 
