@@ -4,6 +4,8 @@ class UsersController < ApplicationController
   layout 'facebox', :except => :panel
   before_filter :check_xhr, :check_admin, :only => :destroy
   before_filter :get_user, :only => [:show, :questions]
+  #缓存用户面板
+  caches_action :panel, :expires_in => 5.minutes
 
   def new
     if is_forbid_register?
