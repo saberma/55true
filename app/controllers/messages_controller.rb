@@ -36,12 +36,15 @@ class MessagesController < ApplicationController
       flash.now[:notice] = "发送成功!花费积分#{SEND_MSG_SCORE}"
       #清除首页动态更新的消息缓存
       expire_memcache "messages_#{@model.user_id}"
+      expire_memcache "messages_#{current_user.id}"
     else
       render :partial => '/shared/create_error'
     end
   end
 
   def update
+    #清除首页动态更新的消息缓存,否则已读的消息会不断收到
+    expire_memcache "messages_#{current_user.id}"
     @message = current_user.messages.find(params[:id])
     @message.update_attribute(:is_readed, true)
   end
