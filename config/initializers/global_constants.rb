@@ -1,3 +1,6 @@
+#max unanswered questions
+MAX_QUESTIONS = 10
+
 #首页连续接到题，则加快更新速度
 HITS = 5
 FASTER_INTERVAL = '4s'
