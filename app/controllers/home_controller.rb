@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   before_filter :to_member, :only => :index
+  before_filter :check_login, :only => :member
   #只缓存首页第一页
   caches_action :index, :expires_in => 5.minutes, :if => Proc.new{|c| c.params[:page].blank? || c.params[:page]=='1' }
 
