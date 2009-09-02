@@ -93,8 +93,8 @@ describe AnswersController do
     end
 
     it "should not play if he has limited unanswer question" do
-      #保证已经提问6次
-      2.times { answer }
+      #保证已经提问10次
+      6.times { answer }
       xhr :get, :new
       response.should render_template('/shared/notice')
     end
