@@ -11,7 +11,8 @@ class HomeController < ApplicationController
   def member
     init
     #用户问的
-    @user_unanswer_question_list = Question.unanswer.of current_user
+    @user_unanswer_question_list = Question.unanswer.of(current_user)
+    @user_answered_question_list = Question.limit(1).answered.of(current_user)
     flash.now[:notice] = "这里的#{@users_size}个朋友(共玩了#{@answer_list.total_entries}次)，点击下一行“开始玩”继续吧!" unless flash[:notice]
 
     #好友

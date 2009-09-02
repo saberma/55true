@@ -8,6 +8,7 @@ describe Answer do
       :content => "value for content",
       :question => @previou_question
     }
+    u = User.find_by_login('po');Answer.create :user => u, :content => 'aa', :question => UnansweredQuestion.for(u)
   end
 
   it "require content" do

@@ -1,5 +1,15 @@
 answer = @answer_list.first
 if answer
+  html = render :partial => 'home/answered_question', :collection => @answer_list.map(&:question)
+  page << %Q(
+  if(j('#user_id').text() == #{answer.question.user.id}){
+    j('#my li:last').remove();
+    j('#my').append("#{escape_javascript(html)}");
+    j('#my li:first .head').tooltip(tooltip_setting);
+    j('#my_question_#{answer.question.id}').hide();
+  }
+  )
+
   page << "j('#all li:last').remove();"
   page.insert_html :top, 'all', :partial => 'home/answer', :collection => @answer_list
   page << "j('#all li:first').hide().show(500);"

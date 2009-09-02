@@ -1,6 +1,8 @@
 #newest.span-13
   = link_to "开始玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
   - if logged_in?
+    %h4{:title => '这里显示其他人对你说的真心话(最近1条，点击可查看更多)'}=link_to "谁刚接到你的问题......", user_question_path(current_user), :target => '_blank'
+    %ul#my.talk= render :partial => 'answered_question', :collection => @user_answered_question_list
     %ul#msg_relate{:title => "最近发送过消息的..."}
       = render :partial => 'user', :collection => User.find(session[:msg_relate]) if session[:msg_relate]
     .clearfix
@@ -23,6 +25,7 @@
         %h4
           当前积分:
           %span#user_score=current_user.score
+          %span#user_id.hide=current_user.id
         .split
         %h4{:title => '你可以上传一张图片'}  给自己定制头像
         =image_tag(current_user.head, :class => "current_head")
