@@ -67,7 +67,8 @@
     %h4 小提示
     %ul
       %li 接到的问题是随机的，提问后不一定立即有人回答，请耐心等侍
-      %li 鼠标移至用户头像，可以给他发消息
+      %li 鼠标移至用户头像，可以给TA发消息，或者加TA为好友
+      %li 看到喜欢(囧)的提问或回答，可以点击"=>顶<="支持
       %li 
         %span 有建议或问题点这
         %span=link_to "豆瓣反馈贴", "http://www.douban.com/group/topic/6130670/?start=400", :target=>"_blank"
@@ -84,11 +85,12 @@
   .clearfix
   .box
     %h4 真心话网积分规则
-    %span 积分将用于日后的好友、指定好友回答等功能
+    %span 积分可用于以下功能
     %ol
       %li==玩一次加#{PLAY_SCORE}分
       %li==发送消息减#{SEND_MSG_SCORE}分
       %li==加好友减#{ADD_FRIEND_SCORE}分
+      %li==顶一下减#{POPULATE_SCORE}分
       %li==违规提问或回答扣#{PUNISH_SCORE}分
       %li 多次违规积分清零
       %li 积分小于0自动禁用帐号

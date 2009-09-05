@@ -17,6 +17,32 @@ describe QuestionsController do
     users(:patpat).reload.score.should == PLAY_SCORE
   end
 
+  #顶
+  describe 'without score' do
+    before(:each) do
+      login_as :patpat
+    end
+
+    it "should not populate it" do
+      xhr :put, :update, :id => questions(:patpat_q4)
+      questions(:patpat_q4).reload.populate.should == 0
+      users(:patpat).reload.score.should == 0
+    end
+  end
+
+  describe 'with score' do
+    before(:each) do
+      users(:po).update_attribute :score, POPULATE_SCORE
+      login_as :po
+    end
+
+    it "should populate it" do
+      xhr :put, :update, :id => questions(:patpat_q4)
+      questions(:patpat_q4).reload.populate.should == 1
+      users(:po).reload.score.should == 0
+    end
+  end
+
   def submit_a_question
     post :create, :question => {:content => "what!"}
   end

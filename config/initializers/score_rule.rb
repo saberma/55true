@@ -11,3 +11,6 @@ SEND_MSG_SCORE = 2
 
 #加为好友，所需积分
 ADD_FRIEND_SCORE = 100
+
+#顶
+POPULATE_SCORE = 3

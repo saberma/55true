@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090830075456) do
+ActiveRecord::Schema.define(:version => 20090904161035) do
 
   create_table "answers", :force => true do |t|
     t.string   "content",     :default => "", :null => false
@@ -58,9 +58,11 @@ ActiveRecord::Schema.define(:version => 20090830075456) do
     t.integer  "user_id",                        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "populate",    :default => 0,     :null => false
   end
 
   add_index "questions", ["is_answered", "user_id"], :name => "index_questions_on_is_answered_and_user_id"
+  add_index "questions", ["populate"], :name => "index_questions_on_populate"
 
   create_table "unanswered_questions", :force => true do |t|
     t.integer  "question_id",                :null => false

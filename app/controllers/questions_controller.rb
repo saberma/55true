@@ -17,4 +17,15 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @question.destroy
   end
+
+  #顶
+  def update
+    if logged_in? && (current_user.score >= POPULATE_SCORE)
+      question = Question.find(params[:id])
+      question.increment! :populate
+      #减积分
+      current_user.decrement! :score, POPULATE_SCORE
+    end
+    render :nothing => true
+  end
 end
