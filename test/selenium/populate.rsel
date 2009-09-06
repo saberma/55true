@@ -1,0 +1,11 @@
+open '/'
+wait_for_element_present 'css=.digg'
+click 'css=.digg a'
+wait_for_text_present '=已顶='
+
+include_partial 'login', :name => 'po'
+wait_for_page_to_load(2000)
+open '/'
+wait_for_element_present 'css=.digg'
+click 'css=.digg a'
+wait_for_text_present '=已顶='
