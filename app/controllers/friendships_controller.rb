@@ -4,15 +4,17 @@ class FriendshipsController < ApplicationController
   @@score = ADD_FRIEND_SCORE
 
   def create
-    friendship = Friendship.new(:user => current_user, :friend_id => params[:friend_id])
-    friendship_reverse = Friendship.new(:user_id => params[:friend_id], :friend => current_user)
+    @friend = User.find(params[:friend_id])
+    friendship = Friendship.new(:user => current_user, :friend => @friend)
+    friendship_reverse = Friendship.new(:user => @friend, :friend => current_user)
+
     Friendship.transaction do
       friendship.save!
       friendship_reverse.save!
       #发消息
       Message.create({
         :creator => User.admin,
-        :user_id => params[:friend_id], 
+        :user => @friend, 
         :content => ERB.new(Message::ADD_FRIEND_CONTENT).result(binding)
       })
       #减积分

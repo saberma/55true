@@ -21,14 +21,19 @@ wait_for_text_present "需要#{ADD_FRIEND_SCORE}个积分,你的积分不足,暂
 click 'play'
 include_partial 'play', :answer => '是的', :question => '你多大了?'
 
+verify_element_not_present "css=#friends li:nth-child(1)"
 #积分够
 store_text 'user_score', 'old_user_score'
+store_text 'friends_size', 'old_friends_size'
 
 #加为好友
 mouse_over('css=.head')
 wait_for_element_present "link=加为好友"
 click "link=加为好友"
 wait_for_text_present "添加好友成功!" 
+#更新好友列表，好友数
+verify_element_present "css=#friends li:nth-child(1)"
+assert_text 'friends_size', "javascript{parseInt(storedVars['old_friends_size'])+1}"
 
 #扣除积分
 assert_text 'user_score', "javascript{parseInt(storedVars['old_user_score'])-parseInt(#{ADD_FRIEND_SCORE})}"

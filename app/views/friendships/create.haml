@@ -3,6 +3,10 @@
 :javascript
   //更新积分
   $('#user_score').html('#{current_user.score}');
+  //更新好友列表及好友数
+  $('#friends_size').text(parseInt($('#friends_size').text()) + 1);
+  $('#friends').append("#{escape_javascript(render :partial => 'home/user', :object => @friend)}");
+  $('#friends li:last .mini_head').tooltip(tooltip_setting);
   setTimeout(function(){
     $.facebox.close();
   },3000);
