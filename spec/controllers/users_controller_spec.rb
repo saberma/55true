@@ -39,6 +39,7 @@ describe UsersController do
 
   it "should show someone's play record" do
     get :show, :id => users(:ben)
+    assigns[:friends_list].should_not be_nil
     response.should be_success
   end
 

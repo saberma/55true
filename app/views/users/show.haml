@@ -25,3 +25,5 @@
       %h1
       .clearfix="问题数：#{@user.questions.size}"
       .clearfix="回答数：#{@user.answers.size}"
+  .box
+    = render :partial => 'home/friends', :object => @friends_list

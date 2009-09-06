@@ -7,6 +7,7 @@ verify_text_present "ben的头像"
 verify_text_present "ben刚说了"
 verify_text_present "问题数：0"
 verify_text_present "回答数：0"
+verify_text_present "好友列表(1)"
 
 include_partial 'login', :name => 'ben'
 wait_for_element_present "answer_content"

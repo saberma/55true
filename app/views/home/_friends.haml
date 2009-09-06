@@ -1,0 +1,3 @@
+%h4{:title=>"共#{friends.size}个好友"}==好友列表(#{friends.size})
+%ul.sidebar_users
+  = render :partial => 'home/user', :collection => friends

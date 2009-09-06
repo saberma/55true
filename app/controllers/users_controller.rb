@@ -61,6 +61,8 @@ class UsersController < ApplicationController
       flash[:error] = "用户不存在!"
       redirect_to home_url and return
     end
+    #好友
+    @friends_list = @user.friends
     @title = "#{@user.login} | 真心话网"
   end
 end

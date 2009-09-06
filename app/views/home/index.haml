@@ -39,10 +39,9 @@
         %ol#my_question= render :partial => 'my_question', :collection => @user_unanswer_question_list
     - else
       = render :partial => 'home/how_to_play'
-  .box
-    %h4 好友列表
-    %ul.sidebar_users
-      = render :partial => 'user', :collection => @friends_list
+  -if logged_in?
+    .box
+      = render :partial => 'home/friends', :object => @friends_list
   .clear
   .box
     %h4{:title => "24小时内玩过真心话的会员"}==今天#{@today_users_size}人在玩 TOP#{TODAY_USER_TOP_MAX}:
