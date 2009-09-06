@@ -3,6 +3,13 @@ class QuestionsController < ApplicationController
   before_filter :check_xhr, :only => :show
   before_filter :check_login, :only => [:new,:create]
   before_filter :check_xhr, :check_admin, :only => :destroy
+  caches_action :index, :expires_in => 5.minutes, :if => Proc.new{|c| c.params[:page].blank? || c.params[:page]=='1' }
+
+  #顶得最多
+  def index
+    @page = Answer.populate.with_question.paginate(:page => params[:page])
+    render :layout => "application"
+  end
 
   def create
     @question = current_user.questions.create(params[:question])

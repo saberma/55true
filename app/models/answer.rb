@@ -24,6 +24,15 @@ class Answer < ActiveRecord::Base
       :order => "updated_at desc"
     }
   }
+
+  #顶得最多
+  named_scope :populate, lambda {
+    {
+      :conditions => ["questions.populate >= 1"],
+      :order => "populate desc"
+    }
+  }
+
   #homepage dynamic refresh
   named_scope :newer, lambda {|id|
     {

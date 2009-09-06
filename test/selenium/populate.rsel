@@ -1,3 +1,4 @@
+Answer.last.question.update_attribute :populate, 1
 open '/'
 wait_for_element_present 'css=.digg'
 click 'css=.digg a'
@@ -9,3 +10,6 @@ open '/'
 wait_for_element_present 'css=.digg'
 click 'css=.digg a'
 wait_for_text_present '=已顶='
+
+open '/questions'
+assert_text_present '=>顶(1)<='

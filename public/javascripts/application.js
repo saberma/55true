@@ -45,6 +45,11 @@ var getMsg = function(){
     j.get('/messages', function(js){eval(js)});
 }
 
+//顶
+var populate = function(obj){
+  $(obj).text('=已顶=').removeAttr('onclick');
+}
+
 j(document).ready(function(){
   //facebox lightbox(avoid enter key triggle another facebox)
   j('a[rel*=facebox]').focus(function(){j(this).blur();});

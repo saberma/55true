@@ -1,0 +1,20 @@
+#newest.span-13
+  %h4 顶得最多的......
+  %ul#all.talk= render :partial => 'home/answer', :collection => @page
+  #paginate
+    =will_paginate @page
+
+.span-6.last
+  .box
+    = render :partial => 'home/can'
+  .box
+    = render :partial => 'home/how_to_play'
+  .clearfix
+  .box
+    = render :partial => 'home/tip'
+  .clearfix
+  .box
+    = render :partial => 'home/rule'
+  .clearfix
+  .box
+    = render :partial => 'home/score'

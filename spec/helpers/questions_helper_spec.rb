@@ -1,11 +1,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe QuestionsHelper do
+  include QuestionsHelper
   
-  #Delete this example and add some real ones or delete this file
-  it "should be included in the object returned by #helper" do
-    included_modules = (class << helper; self; end).send :included_modules
-    included_modules.should include(QuestionsHelper)
+  it "should show populate" do
+    populate_num(answers(:patpat_a4)).should == '=>顶<='
+    answers(:patpat_a4).question.increment! :populate, 5
+    populate_num(answers(:patpat_a4)).should == '=>顶(5)<='
   end
 
 end

@@ -3,7 +3,7 @@
     =link_to image_tag(answer.question.user.head, :class => "head"), answer.question.user, :target => '_blank'
     =link_to answer.question.user.login, answer.question.user, :target => '_blank'
     %span= h(answer.question.content)
-    .digg=link_to_remote '=>顶<=', {:url => question_path(answer.question), :method => :put, :after => "$(this).text('=已顶=').removeAttr('onclick');"}, :title => "喜欢、囧，顶一下表示支持..."
+    .digg=link_to_remote populate_num(answer), {:url => question_path(answer.question), :method => :put, :after => "populate(this)"}, :title => "喜欢、囧，顶一下表示支持..."
   %div.clearfix
     =link_to image_tag(answer.user.head, :class => "head"), answer.user, :target => '_blank'
     =link_to answer.user.login, answer.user, :target => '_blank'

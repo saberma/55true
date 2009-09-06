@@ -17,6 +17,16 @@ describe QuestionsController do
     users(:patpat).reload.score.should == PLAY_SCORE
   end
 
+  #按顶的数量显示记录
+  it "should index" do
+    answers(:patpat_a4).question.increment! :populate, 5
+    sleep 2
+    answers(:patpat_a5).question.increment! :populate, 3
+    get :index
+    assigns[:page].first.should == answers(:patpat_a4)
+    assigns[:page].second.should == answers(:patpat_a5)
+  end
+
   #顶
   describe 'without score' do
     before(:each) do

@@ -15,10 +15,8 @@
 
 .span-6.last
   .box
-    %h4 在这里你可以......
-    %ul
-      %li 更深入地了解朋友
-      %li 寻找自己与他人的差别
+    = render :partial => 'home/can'
+    %h4=link_to "查看顶得最多", questions_path, :target => '_blank'
   .box
     - if logged_in?
       .clearfix
@@ -40,19 +38,7 @@
         %h4{:title => '你问的内容还没有被回答时就显示在这里'} 你问了......
         %ol#my_question= render :partial => 'my_question', :collection => @user_unanswer_question_list
     - else
-      %h4 怎么玩真心话游戏
-      %span 规则：
-      %ul
-        %li 小李问了一个问题
-        %li 另一个人要如实回答
-        %li 然后他再问一个新问题
-        %li 下个人回答时提出新问题
-      %span 举个例子：
-      %ul
-        %li 小李问：你晚上一个人走在街上怕不怕的？
-        %li 另一个人回答:不怕的。
-        %li 然后他再问:你现在最想的是谁？
-        %li 下个人回答时提出新问题
+      = render :partial => 'home/how_to_play'
   .box
     %h4 好友列表
     %ul.sidebar_users
@@ -64,36 +50,13 @@
       = render :partial => 'user', :collection => @today_users
   .clearfix
   .box
-    %h4 小提示
-    %ul
-      %li 接到的问题是随机的，提问后不一定立即有人回答，请耐心等侍
-      %li 鼠标移至用户头像，可以给TA发消息，或者加TA为好友
-      %li 看到喜欢(囧)的提问或回答，可以点击"=>顶<="支持
-      %li 
-        %span 有建议或问题点这
-        %span=link_to "豆瓣反馈贴", "http://www.douban.com/group/topic/6130670/?start=400", :target=>"_blank"
-        %span=link_to "贴吧反馈贴", "http://tieba.baidu.com/f?kz=569207755", :target=>"_blank"
+    = render :partial => 'home/tip'
   .clearfix
   .box
-    %h4 真心话网规则
-    %span 网站将屏蔽以下内容(多次违规将禁用帐号)
-    %ol
-      %li 提问内容不是问题的
-      %li 提问内容包含用户名的
-      %li 提问内容多次重复的
-      %li 提问内容为"你呢?"，"我下了"，"你吃了吗"之类的
+    = render :partial => 'home/rule'
   .clearfix
   .box
-    %h4 真心话网积分规则
-    %span 积分可用于以下功能
-    %ol
-      %li==玩一次加#{PLAY_SCORE}分
-      %li==发送消息减#{SEND_MSG_SCORE}分
-      %li==加好友减#{ADD_FRIEND_SCORE}分
-      %li==顶一下减#{POPULATE_SCORE}分
-      %li==违规提问或回答扣#{PUNISH_SCORE}分
-      %li 多次违规积分清零
-      %li 积分小于0自动禁用帐号
+    = render :partial => 'home/score'
 -unless params[:page] && params[:page] != '1'
   :javascript
     j('#play').ajaxComplete(function(evt,request,settings){
