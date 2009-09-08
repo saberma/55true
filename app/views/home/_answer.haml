@@ -8,3 +8,17 @@
     =link_to image_tag(answer.user.head, :class => "head"), answer.user, :target => '_blank'
     =link_to answer.user.login, answer.user, :target => '_blank'
     %span= h(answer.content)
+  .shareit.clearfix
+    %span 收藏分享
+    -path = question_url(answer.question)
+    -title = "经典真心话##{answer.question.id}"
+    %a{:title=>"推荐给豆瓣友邻",:href=>"javascript:Share.douban('#{path}', '#{title}')"}
+      %img{:src=>"/images/favorite/douban.png"}
+    %a{:title=>"添加到Yahoo收藏", :href=>"javascript:Share.yahoo('#{path}','#{title}')"}
+      %img{:src=>"/images/favorite/yahoo.jpg"}
+    %a{:title=>"添加到百度收藏", :href=>"javascript:Share.baidu('#{path}','#{title}')"}
+      %img{:src=>"/images/favorite/baidu.gif"}
+    %a{:title=>"收藏到QQ书签", :href=>"javascript:Share.qq('#{path}','#{title}')"}
+      %img{:src=>"/images/favorite/qq.png"}
+    %a{:title=>"分享到校内网", :href=>"javascript:Share.xiaonei('#{path}','#{title}')"}
+      %img{:src=>"/images/favorite/xiaonei.png"}

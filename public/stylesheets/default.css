@@ -212,3 +212,9 @@ div.tooltip {
 
 .digg {
   float: right; }
+
+.shareit {
+  margin-left: 60px; }
+  .shareit span {
+    font-size: 14px;
+    color: #cccccc; }
