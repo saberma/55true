@@ -25,6 +25,13 @@ class QuestionsController < ApplicationController
     @question.destroy
   end
 
+  def show
+    question = Question.find(params[:id], :include => :answer)
+    @answer = question.answer
+    redirect_to home_path and return unless @answer
+    render :layout => "application"
+  end
+
   #顶
   def update
     if logged_in? && (current_user.score >= POPULATE_SCORE)

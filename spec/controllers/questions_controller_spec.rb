@@ -17,6 +17,14 @@ describe QuestionsController do
     users(:patpat).reload.score.should == PLAY_SCORE
   end
 
+  #显示单个已回答的问题
+  it "should show answered question" do
+    get :show, :id => questions(:po_q1)
+    response.should be_success
+    get :show, :id => questions(:patpat_q4)
+    response.should redirect_to(home_path)
+  end
+
   #按顶的数量显示记录
   it "should index" do
     answers(:patpat_a4).question.increment! :populate, 5
