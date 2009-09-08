@@ -8,4 +8,6 @@
     =link_to image_tag(answer.user.head, :class => "head"), answer.user, :target => '_blank'
     =link_to answer.user.login, answer.user, :target => '_blank'
     %span= h(answer.content)
-  .shareit= render :partial => 'home/shareit', :locals => { :path => question_url(answer.question), :title => "经典真心话##{answer.question.id}"}
+  .shareit
+    = render :partial => 'home/shareit', :locals => { :path => question_url(answer.question), :title => "经典真心话##{answer.question.id}"}
+    %span=question_url(answer.question)
