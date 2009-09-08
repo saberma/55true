@@ -4,7 +4,7 @@ user = User.find_by_login('ben')
 open "/users/#{user.id}"
 
 verify_text_present "ben的头像"
-verify_text_present "ben刚说了"
+verify_text_present "查看ben刚说的"
 verify_text_present "问题数：0"
 verify_text_present "回答数：0"
 verify_text_present "好友列表(1)"
@@ -21,5 +21,5 @@ open "/users/#{user.id}"
 verify_text_present "问题数：1"
 verify_text_present "回答数：1"
 
-click_and_wait "link=#{user.login}刚问了......"
+click_and_wait "link=查看#{user.login}刚问的"
 verify_text_present Question.find_by_user_id(user.id).content
