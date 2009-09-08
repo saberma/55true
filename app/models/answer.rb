@@ -29,7 +29,7 @@ class Answer < ActiveRecord::Base
   named_scope :populate, lambda {
     {
       :conditions => ["questions.populate >= 1"],
-      :order => "populate desc"
+      :order => "populate desc, id desc"
     }
   }
 
