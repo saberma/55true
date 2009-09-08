@@ -17,6 +17,7 @@
   .box
     = render :partial => 'home/can'
     %h4=link_to "查看顶得最多", questions_path, :target => '_blank'
+    .shareit= render :partial => 'home/shareit', :locals => { :path => home_url, :title => "好玩的真心话网", :show => "收藏分享本站"}
   .box
     - if logged_in?
       .clearfix

@@ -21,19 +21,19 @@ module UsersHelper
 
   #显示用户刚说了链接(类似link_to_unless_current)
   def answers_link
-    text = "#{@user.login}刚说了......"
+    text = "查看#{@user.login}刚说的"
     if action_name == 'show'
       return text
     end
-    link_to "#{@user.login}刚说了......", @user
+    link_to "查看#{@user.login}刚说的", @user
   end
   
   #显示用户刚问了
   def questions_link
-    text = "#{@user.login}刚问了......"
+    text = "查看#{@user.login}刚问的"
     if action_name == 'questions'
       return text
     end
-    link_to "#{@user.login}刚问了......", user_question_path(@user)
+    link_to "查看#{@user.login}刚问的", user_question_path(@user)
   end
 end

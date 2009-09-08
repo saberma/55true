@@ -1,15 +1,11 @@
 #profile.span-13
-  .span-3
-    %h4= answers_link
-  .span-7
-    %h4
-  .span-3.last
-    %h4= questions_link
-
-  .span-13
-    %ul.talk= render :partial => 'home/answer', :collection => @list
-    #paginate
-      =will_paginate @list
+  %h4
+    = answers_link
+    &nbsp;&nbsp;
+    = questions_link
+  %ul.talk= render :partial => 'home/answer', :collection => @list
+  #paginate
+    =will_paginate @list
 
 .span-6.last
   .box
@@ -25,5 +21,6 @@
       %h1
       .clearfix="问题数：#{@user.questions.size}"
       .clearfix="回答数：#{@user.answers.size}"
+      .shareit= render :partial => 'home/shareit', :locals => { :path => user_url(@user), :title => "#{@user.login}在玩真心话网", :show => "收藏分享TA"}
   .box
     = render :partial => 'home/friends', :object => @friends_list
