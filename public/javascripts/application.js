@@ -63,7 +63,7 @@ Share.yahoo = function(url,title){
   void(0);
 }
 Share.baidu = function(url,title){
-  var u='http://cang.baidu.com/do/add?c=&fr=ien#nw=1&iu='+url+'&it='+encodeURIComponent(title);
+  var u='http://cang.baidu.com/do/add?c=&fr=ien&nw=1&iu='+url+'&it='+encodeURIComponent(title);
   window.open(u,'baidu','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=430');
   void(0);
 }
