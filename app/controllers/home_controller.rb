@@ -40,6 +40,6 @@ class HomeController < ApplicationController
     @total_entries = memcache('total_entries') { Answer.with_question.size }
 
     #已登录会员页面的缓存不能太久，1分钟以内为佳
-    @answer_list = memcache("member_page}", 1.minute) { Answer.with_question }
+    @answer_list = memcache("member_page}", 1.minute) { Answer.with_question.limit(20) }
   end
 end
