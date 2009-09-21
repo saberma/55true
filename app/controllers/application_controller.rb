@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   include AuthenticatedSystem
   
-  before_filter :create_page_view if production?
+  #before_filter :create_page_view if production?
   before_filter :init_title
 
   # See ActionController::RequestForgeryProtection for details
