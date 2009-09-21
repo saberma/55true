@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_filter :check_xhr, :check_admin, :only => :destroy
   before_filter :get_user, :only => [:show, :questions]
   #缓存用户面板
-  caches_action :panel, :expires_in => 10.minutes
+  caches_action :panel, :show, :questions, :expires_in => 10.minutes
 
   def new
     if is_forbid_register?
@@ -38,12 +38,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    @list = Answer.with_question.of(@user).paginate(:page => params[:page])
+    @list = Answer.with_question.of(@user).limit(20)
     render :action => "show", :layout => "application"
   end
 
   def questions
-    @list = Answer.with_question.question_of(@user).paginate(:page => params[:page])
+    @list = Answer.with_question.question_of(@user).limit(20)
     render :action => "show", :layout => "application"
   end
 
