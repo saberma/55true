@@ -12,9 +12,9 @@
 ActiveRecord::Schema.define(:version => 20090904161035) do
 
   create_table "answers", :force => true do |t|
-    t.string   "content",     :default => "", :null => false
-    t.integer  "question_id",                 :null => false
-    t.integer  "user_id",                     :null => false
+    t.string   "content",     :null => false
+    t.integer  "question_id", :null => false
+    t.integer  "user_id",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20090904161035) do
   create_table "messages", :force => true do |t|
     t.integer  "user_id",                                      :null => false
     t.integer  "creator_id",                                   :null => false
-    t.string   "content",    :limit => 120, :default => "",    :null => false
+    t.string   "content",    :limit => 120,                    :null => false
     t.boolean  "is_readed",                 :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20090904161035) do
   end
 
   create_table "questions", :force => true do |t|
-    t.string   "content",     :default => "",    :null => false
+    t.string   "content",                        :null => false
     t.boolean  "is_answered", :default => false, :null => false
     t.integer  "user_id",                        :null => false
     t.datetime "created_at"
