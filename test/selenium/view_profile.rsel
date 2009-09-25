@@ -22,4 +22,4 @@ verify_text_present "问题数：1"
 verify_text_present "回答数：1"
 
 click_and_wait "link=查看#{user.login}刚问的"
-verify_text_present Question.find_by_user_id(user.id).content
+verify_text_present Question.find_by_user_id_and_is_answered(user.id, true).content
