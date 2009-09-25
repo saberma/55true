@@ -5,8 +5,12 @@ ben_to_po1:
   creator: ben
   content: what are you doing?
   is_readed: true
+  created_at: <%=1.minute.ago%>
+  updated_at: <%=1.minute.ago%>
 
 ben_to_po2:
   user: po
   creator: ben
   content: what are you doing?
+  created_at: <%=DateTime.now%>
+  updated_at: <%=DateTime.now%>

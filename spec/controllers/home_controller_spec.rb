@@ -40,7 +40,7 @@ describe HomeController do
   it "should show your friends" do
     login_as :po
     get :member
-    assigns[:friends_list].should == [users(:patpat), users(:ben)]
+    assigns[:friends_list].should == [users(:ben), users(:patpat)]
   end
 #  
 #  it "should deliver a reminder" do
