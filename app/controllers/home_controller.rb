@@ -33,7 +33,7 @@ class HomeController < ApplicationController
 
   def init
     #今天谁在玩
-    @today_users_size = memcache('today_users_size') { User.today.size }
+    @today_users_size = memcache('today_users_size') { User.today.count('distinct user_id') }
     @today_users = memcache('today_users') { User.today_top }
     @users_size = memcache('users_size') { User.all.size }
     #缓存总数，避免count查询
