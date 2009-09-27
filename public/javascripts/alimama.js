@@ -1,0 +1,10 @@
+alimama_pid="mm_14143528_2015642_8212118"; 
+alimama_type="f";
+alimama_sizecode ="tl_1x3_12"; 
+alimama_fontsize=12; 
+alimama_bordercolor="FFFFFF"; 
+alimama_bgcolor="FFFFFF"; 
+alimama_titlecolor="0078A7"; 
+alimama_underline=0; 
+alimama_height=22; 
+alimama_width=452; 

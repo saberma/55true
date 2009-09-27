@@ -9,7 +9,7 @@
       / [if IE]
         =stylesheet_link_tag "blueprint/ie"
       =stylesheet_link_tag "facebox", "default" 
-      =javascript_include_tag "jquery", "jquery-ui", "jrails", "jquery.timers", "jquery.tools.min", "facebox", "application" 
+      =javascript_include_tag "jquery", "jquery-ui", "jrails", "jquery.timers", "jquery.tools.min", "facebox", "alimama", "application"
 
   %body
     #tooltip.tooltip
@@ -59,10 +59,6 @@
           %noscript
             %a{:href=>"http://www.51.la/?2771507", :target=>"_blank"}
               %img{:alt=>"&#x6211;&#x8981;&#x5566;&#x514D;&#x8D39;&#x7EDF;&#x8BA1;", :src=>"http://img.users.51.la/2771507.asp", :style=>"border:none"}
-
-      
-      - if development?
-        .span-19=render :partial=>'shared/debug'
     
     :javascript
       j('a[rel*=facebox]').facebox();
