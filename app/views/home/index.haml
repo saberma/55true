@@ -1,4 +1,5 @@
 #newest.span-13
+  = link_to image_tag('/images/money/bangnitao.gif'), 'http://www.bangnitao.net', :target => '_blank'
   = link_to "开始玩", new_answer_path, :id => "play", :class => "btn_play strong large", :rel => "facebox"
   - if logged_in?
     %h4{:title => '这里显示其他人对你说的真心话(最近1条，点击可查看更多)'}=link_to "谁刚接到你的问题......", user_question_path(current_user), :target => '_blank'
@@ -8,7 +9,6 @@
     .clearfix
     = render :partial => 'message', :locals => { :message => @message } if @message
 
-  =javascript_include_tag "http://a.alimama.cn/inf.js"
   %h4 大家刚说了......
   %ul#all.talk= render :partial => 'answer', :collection => @answer_list
 
