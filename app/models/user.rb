@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
     {:limit => limit}
   }
 
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/pjpeg', 'image/png', 'image/x-png', 'image/gif']
   validates_attachment_size :photo, :less_than => 2.megabytes
   
   before_save :encrypt_password
