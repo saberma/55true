@@ -1,0 +1,15 @@
+.bundle
+db/*.sqlite3
+log/*.log
+tmp/**/*
+
+*.sw?
+
+#cucumber测试生成的临时文件
+capybara-*.html
+
+#上传的图片
+public/images/uploads/**
+
+#去掉编译后的css文件
+public/stylesheets/compiled/**
