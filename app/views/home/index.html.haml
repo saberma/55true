@@ -24,7 +24,7 @@
 
     jug.on("connect", function(){ show("Connected") });
     jug.on("disconnect", function(){ show("Disconnected") });
-    jug.on("reconnect", function(){ show("Reconnecting") });
+    //jug.on("reconnect", function(){ show("Reconnecting") });
 
     jug.subscribe("chat", function(data){
       show(data);
@@ -35,6 +35,7 @@
         send();
       }
     });
+
     function send(){
       var text = $("#entry > :text");
       var msg = text.val();
@@ -43,3 +44,5 @@
       }
       text.focus().val('');
     };
+
+    $('#msg').focus();
