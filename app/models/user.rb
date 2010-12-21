@@ -9,7 +9,7 @@ class User
   field :login
 
   def name
-    login.blank? ? email : login
+    login.blank? ? email.sub(/@.+/,'') : login
   end
 
 end

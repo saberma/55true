@@ -19,12 +19,19 @@
 
     var show = function(data){
       var li = $("<li />");
-      li.text(data);
+      var name = data['name'];
+      var time = data['time'];
+      var msg = data['msg'];
+      var text = '';
+      if(name) text = name + ':';
+      text += msg;
+      if(time) text = text + ' <span class="tip">' + time + '</span>';
+      li.html(text);
       $("#chats > ul").append(li);
     };
 
-    jug.on("connect", function(){ show("已连接服务器.") });
-    jug.on("disconnect", function(){ show("已与服务器断开连接.") });
+    jug.on("connect", function(){ show({msg:"已连接服务器."}) });
+    jug.on("disconnect", function(){ show({msg:"已与服务器断开连接."}) });
     //jug.on("reconnect", function(){ show("Reconnecting") });
 
     jug.subscribe("chat", function(data){

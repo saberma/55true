@@ -3,8 +3,6 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 
-*.sw?
-
 #cucumber测试生成的临时文件
 capybara-*.html
 

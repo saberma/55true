@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+
   def index
     @online = []
     ids = Redis.new.smembers('users')
@@ -6,7 +7,10 @@ class HomeController < ApplicationController
   end
 
   def publish
-    Juggernaut.publish "chat", params[:msg]
-    render :nothing => true
+    if user_signed_in?
+      Juggernaut.publish "chat", :name => current_user.name, :time => Time.now.to_s(:short), :msg => params[:msg]
+      render :nothing => true
+    else
+    end
   end
 end

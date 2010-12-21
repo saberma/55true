@@ -36,6 +36,8 @@ input:invalid, textarea:invalid {
 // Add your own custom styles below
 //-----------------------------------
 
+.tip { color: #c7c7c7 }
+
 body {
   line-height: 1;
   background-color: #9CCB47;
@@ -112,7 +114,7 @@ nav {
       input { padding: 5px; }
       #msg {
         border: 1px solid #fff;
-        width: 506px; } }
+        width: 504px; } }
   }
   aside {
     float: right;
