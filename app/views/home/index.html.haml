@@ -1,0 +1,34 @@
+#chats
+  %ul
+
+#entry
+  %p 说点：
+  =text_area_tag :msg, nil, :size => '80x5'
+  =button_to_function '提交', 'send()'
+
+=content_for :javascripts do
+  :javascript
+    var jug = new Juggernaut();
+
+    var show = function(data){
+      var li = $("<li />");
+      li.text(data);
+      $("#chats > ul").append(li);
+    };
+
+    jug.on("connect", function(){ show("Connected") });
+    jug.on("disconnect", function(){ show("Disconnected") });
+    jug.on("reconnect", function(){ show("Reconnecting") });
+
+    jug.subscribe("chat", function(data){
+      show(data);
+    });
+
+    function send(){
+      var text = $("#entry > textarea");
+      var msg = text.val();
+      if (msg != ''){ 
+        $.post('/publish', {msg: msg});
+      }
+      text.focus().val('');
+    };
