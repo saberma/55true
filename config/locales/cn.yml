@@ -1,0 +1,75 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+# Also see devise.cn.yml
+cn:
+  formtastic:
+    labels:
+      user:
+        login: 昵称
+        email: 用户名
+        password: 密码
+        password_confirmation: 确认密码
+        remember_me: 记住登录信息，下次自动登录
+    hints:
+      user:
+        email: 请填写有效的Email地址作为下次登录的用户名
+        password: 请设为6-20位字母或数字
+        password_confirmation: 再次输入密码
+        login: 请输入中英文、数字、下划线或它们的组合
+    actions:
+      confirm: 确定
+      create: 新增%{model}
+      update: 更新
+
+  activemodel:
+    errors:
+      template:
+        header: ""
+        body: ""
+      messages:
+        blank: 不能为空
+        taken: 已经存在
+        too_short: 长度不能少于%{count}个字符
+        too_long: 长度不能超过%{count}个字符
+        not_a_number: 只能是数字
+        invalid: 必须是有效的
+        at_least_one: 至少有一项必填
+        select: 尚未选择
+      models:
+        user:
+          attributes:
+            password:
+              confirmation: 确认密码要保持一致
+    #不要在此处增加错误提示的属性名称，应保持与formtastic中定义的label名称一致
+    #具体方法是在controller中增加interpolation_options，在model中include Formtastic::I18n::Naming，参考product相关文件
+    #@see: https://github.com/josevalim/inherited_resources/wiki
+
+  support:
+    array:
+      words_connector: ","
+      two_words_connector: ","
+      last_word_connector: ","
+
+  # inherited_resource flash message(use responders gem)
+  flash:
+    actions:
+      create:
+        notice: "%{resource_name}添加成功!"
+        alert: "%{resource_name}添加失败!"
+      update:
+        notice: "%{resource_name}更新成功!"
+        alert: "%{resource_name}更新失败!"
+      destroy:
+        notice: "%{resource_name}删除成功!"
+        alert: "%{resource_name}删除失败!"
+    #specify controller
+    #orders:
+    #  create:
+    #    notice: "%{resource_name}提交成功!"
+    #    alert: "%{resource_name}提交失败!"
+
+  carrierwave:
+    errors:
+      integrity: '不支持上传此类型的图片'
+      processing: 'Cannot resize image.'

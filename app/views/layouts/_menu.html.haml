@@ -1,5 +1,9 @@
 .menu
   %ul
-    %li=link_to '首页', root_path
-    %li=link_to '登录', root_path
-    %li=link_to '注册', root_path
+    - if user_signed_in?
+      %span==欢迎您:#{current_user.email}
+      %li=link_to '退出', destroy_user_session_path
+    - else
+      %li=link_to '首页', root_path
+      %li=link_to '登录', new_user_session_path
+      %li=link_to '注册', new_user_registration_path

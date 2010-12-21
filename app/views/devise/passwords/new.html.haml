@@ -1,0 +1,10 @@
+#content
+  .box
+    %h3 忘记密码了?
+    = semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name)) do |f|
+      =f.semantic_errors :email, :id => :error
+      =f.inputs do
+        =f.input :email, :hint => '用户名即为注册时填写的Email地址', :required => false
+      =f.buttons do
+        =f.commit_button '发送重置密码操作链接'
+    = render :partial => "devise/shared/links"

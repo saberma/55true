@@ -1,5 +1,5 @@
 #content
-  #chats
+  #chats.box
     %ul
 
   #entry
@@ -22,8 +22,8 @@
       $("#chats > ul").append(li);
     };
 
-    jug.on("connect", function(){ show("Connected") });
-    jug.on("disconnect", function(){ show("Disconnected") });
+    jug.on("connect", function(){ show("已连接服务器.") });
+    jug.on("disconnect", function(){ show("已与服务器断开连接.") });
     //jug.on("reconnect", function(){ show("Reconnecting") });
 
     jug.subscribe("chat", function(data){

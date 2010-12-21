@@ -86,12 +86,15 @@ nav {
   padding-bottom: 10px;
   background: #9CCB47;
   overflow: hidden;
+  #flash .alert p {color: red;}
+  #flash .notice p {color: green;}
   #content {
     float: left;
     width: 570px;
-    #chats {
+    .box {
       height: 410px;
       margin: 10px 0 10px 0;
+      padding: 20px 0 0 20px;
       background-color: #fff;
       overflow-y: auto;
       /* curved border radius */
@@ -99,7 +102,6 @@ nav {
       -webkit-border-radius: 10px;
       ul {
         margin: 0;
-        padding: 20px 0 0 20px;
         list-style: none;
         line-height: normal; 
         li {
