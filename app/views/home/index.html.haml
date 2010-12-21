@@ -1,10 +1,16 @@
-#chats
-  %ul
+#content
+  #chats
+    %ul
 
-#entry
-  %p 说点：
-  =text_area_tag :msg, nil, :size => '80x5'
-  =button_to_function '提交', 'send()'
+  #entry
+    =text_field_tag :msg, nil
+    =button_to_function '提交', 'send()', :id => :send_btn
+
+%aside
+  %section
+    %h2 在线用户
+    %ul
+      %li saberma
 
 =content_for :javascripts do
   :javascript
@@ -24,8 +30,13 @@
       show(data);
     });
 
+    $('#entry :text').keypress(function(e){
+      if(e.which == 13){
+        send();
+      }
+    });
     function send(){
-      var text = $("#entry > textarea");
+      var text = $("#entry > :text");
       var msg = text.val();
       if (msg != ''){ 
         $.post('/publish', {msg: msg});

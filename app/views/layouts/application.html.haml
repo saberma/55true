@@ -6,6 +6,8 @@
     #container
       %header#header
         = render :partial => 'layouts/header'
+      %nav
+        = render :partial => 'layouts/menu'
       #main
         = render :partial => 'layouts/flashes'
         = yield

@@ -36,12 +36,103 @@ input:invalid, textarea:invalid {
 // Add your own custom styles below
 //-----------------------------------
 
-body {}
+body {
+  line-height: 1;
+  background-color: #9CCB47;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  font-size: 14px;
+  line-height: 18px; }
 
-#container {}
+#container {
+  width: 790px;
+  margin: 0 auto;
+  margin-top: 5px;
+  margin-bottom: 5px; 
+}
 
 header {}
 
-#main {}
+nav {
+  width: 780px;
+  height: 30px;
+  margin: 0 auto;
+  background: #9CCB47;
+  .menu {
+    font-size: 14px;
+    font-weight: bold;
+    ul {
+      margin: 0;
+      padding: 17px 0 0 20px;
+      list-style: none;
+      line-height: normal; }
+    li {
+      display: block;
+      float: left; }
+    a {
+      display: block;
+      float: left;
+      margin-right: 5px;
+      padding: 0px 15px;
+      text-decoration: none;
+      color: #FFF;
+      &:hover {
+        font-style: italic; } } } }
+
+#main {
+  width: 780px;
+  margin: 0 auto;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #9CCB47;
+  overflow: hidden;
+  #content {
+    float: left;
+    width: 570px;
+    #chats {
+      height: 410px;
+      margin: 10px 0 10px 0;
+      background-color: #fff;
+      overflow-y: auto;
+      /* curved border radius */
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      ul {
+        margin: 0;
+        padding: 20px 0 0 20px;
+        list-style: none;
+        line-height: normal; 
+        li {
+          margin-bottom: 5px;
+        }}
+    }
+    #entry {
+      input { padding: 5px; }
+      #msg {
+        border: 1px solid #fff;
+        width: 506px; } }
+  }
+  aside {
+    float: right;
+    text-align: left;
+    width: 190px;
+    margin: 0;
+    padding: 0;
+
+    section {
+      height: 430px;
+      margin: 10px 0 0 0;
+      padding: 10px 10px;
+      background-color: #F5E9DF;
+      overflow-y: auto;
+      /* curved border radius */
+      -moz-border-radius: 10px;
+      -webkit-border-radius: 10px;
+      ul {
+        margin: 0 0 0 20px;
+        color: #307437;}
+      }
+  }
+}
 
 footer {}
