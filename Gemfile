@@ -39,6 +39,7 @@ gem 'compass'
 gem "awesome_print", :require => 'ap'
 
 group :development do
+  gem 'html5-boilerplate'
   gem 'rails3-generators'
   # jquery,haml已经独立出来
   gem "jquery-rails"

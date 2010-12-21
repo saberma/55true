@@ -5,7 +5,7 @@
  *
  * This rails.js file supports jQuery 1.4.3 and 1.4.4 .
  *
- */
+ */ 
 
 jQuery(function ($) {
     var csrf_token = $('meta[name=csrf-token]').attr('content'),
@@ -30,10 +30,12 @@ jQuery(function ($) {
         /**
          * Handles execution of remote calls. Provides following callbacks:
          *
-         * - ajax:beforeSend  - is executed before firing ajax call
+         * - ajax:before   - is execute before the whole thing begings
+         * - ajax:loading  - is executed before firing ajax call
          * - ajax:success  - is executed when status is success
-         * - ajax:complete - is executed when the request finishes, whether in failure or success.
-         * - ajax:error    - is execute in case of error
+         * - ajax:complete - is execute when status is complete
+         * - ajax:failure  - is execute in case of error
+         * - ajax:after    - is execute every single time at the end of ajax call 
          */
         callRemote: function () {
             var el      = this,
@@ -44,18 +46,15 @@ jQuery(function ($) {
             if (url === undefined) {
                 throw "No URL specified for remote call (action or href must be present).";
             } else {
-                    var $this = $(this), data = el.is('form') ? el.serializeArray() : [];
-
+                if (el.triggerAndReturn('ajax:before')) {
+                    var data = el.is('form') ? el.serializeArray() : [];
                     $.ajax({
                         url: url,
                         data: data,
                         dataType: dataType,
                         type: method.toUpperCase(),
                         beforeSend: function (xhr) {
-                            xhr.setRequestHeader("Accept", "text/javascript");
-                            if ($this.triggerHandler('ajax:beforeSend') === false) {
-                              return false;
-                            }
+                            el.trigger('ajax:loading', xhr);
                         },
                         success: function (data, status, xhr) {
                             el.trigger('ajax:success', [data, status, xhr]);
@@ -64,9 +63,12 @@ jQuery(function ($) {
                             el.trigger('ajax:complete', xhr);
                         },
                         error: function (xhr, status, error) {
-                            el.trigger('ajax:error', [xhr, status, error]);
+                            el.trigger('ajax:failure', [xhr, status, error]);
                         }
                     });
+                }
+
+                el.trigger('ajax:after');
             }
         }
     });
@@ -83,7 +85,7 @@ jQuery(function ($) {
             }
         }
     });
-
+  
 
 
     /**
@@ -99,11 +101,6 @@ jQuery(function ($) {
         e.preventDefault();
     });
 
-    /**
-     * <%= link_to "Delete", user_path(@user), :method => :delete, :confirm => "Are you sure?" %>
-     *
-     * <a href="/users/5" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
-     */
     $('a[data-method]:not([data-remote])').live('click.rails', function (e){
         var link = $(this),
             href = link.attr('href'),
@@ -152,9 +149,8 @@ jQuery(function ($) {
 
     var jqueryVersion = $().jquery;
 
-	if (!( (jqueryVersion === '1.4.3') || (jqueryVersion === '1.4.4'))){
-		alert('This rails.js does not support the jQuery version you are using. Please read documentation.');
-	}
-
+    if ( (jqueryVersion === '1.4') || (jqueryVersion === '1.4.1') || (jqueryVersion === '1.4.2') ){
+        alert('This rails.js does not support the jQuery version you are using. Please read documentation.');
+    }
 
 });
