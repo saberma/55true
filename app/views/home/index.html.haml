@@ -10,7 +10,8 @@
   %section
     %h2 在线用户
     %ul
-      %li saberma
+      -@online.each do |user|
+        %li=user.name
 
 =content_for :javascripts do
   :javascript

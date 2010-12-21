@@ -1,7 +1,7 @@
 .menu
   %ul
     - if user_signed_in?
-      %span==欢迎您:#{current_user.email}
+      %span==欢迎您:#{current_user.name}
       %li=link_to '退出', destroy_user_session_path
     - else
       %li=link_to '首页', root_path

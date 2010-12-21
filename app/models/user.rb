@@ -7,4 +7,9 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   field :login
+
+  def name
+    login.blank? ? email : login
+  end
+
 end

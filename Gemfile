@@ -13,6 +13,7 @@ gem 'unicorn'
 gem 'mongoid', '2.0.0.beta.19'
 gem 'bson_ext'
 gem 'devise'
+gem 'devise_invitable'
 
 # 文件上传
 # 2010.08.13 源版本不支持mongoid校验，已提交补丁，已合并至官方版本
