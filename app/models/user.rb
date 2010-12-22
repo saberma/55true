@@ -3,9 +3,10 @@ class User
   include Mongoid::Document
   #include Formtastic::I18n::Naming
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable and :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # :token_authenticatable, :recoverable, :confirmable and :timeoutable
+  devise :database_authenticatable, :lockable, :registerable,
+         :rememberable, :trackable, :validatable
+  self.unlock_strategy = :time
   references_many :codes
 
   field :login
