@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
   def add_online
-    Redis.new.sadd 'users', @user.id.to_s
+    track_user_id current_user.id.to_s
   end
 
 end

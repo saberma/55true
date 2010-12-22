@@ -6,11 +6,13 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
   def add_online
-    Redis.new.sadd 'users', current_user.id.to_s
+    track_user_id current_user.id.to_s
   end
 
   def del_online
-    Redis.new.srem 'users', current_user.id.to_s
+    keys_in_last_5_minutes.each do |key|
+      redis.srem key, current_user.id.to_s
+    end
   end
 
 end

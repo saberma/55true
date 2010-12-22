@@ -2,7 +2,7 @@ class HomeController < ApplicationController
 
   def index
     @online = []
-    ids = Redis.new.smembers('users')
+    ids = online_user_ids
     @online = User.find(ids) unless ids.empty?
   end
 
