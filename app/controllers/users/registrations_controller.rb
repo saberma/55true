@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
   def add_online
-    track_user_id current_user.id.to_s
+    track_user_id current_user.id.to_s if user_signed_in?
   end
 
 end

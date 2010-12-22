@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
 
   protected
   def add_online
-    track_user_id current_user.id.to_s
+    track_user_id current_user.id.to_s if user_signed_in?
   end
 
   def del_online

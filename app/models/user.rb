@@ -1,4 +1,5 @@
 class User
+  INVITE_CODE = 'bd6s79'
   include Mongoid::Document
   #include Formtastic::I18n::Naming
   # Include default devise modules. Others available are:
@@ -16,7 +17,9 @@ class User
   validate :validate_code
 
   def validate_code
-    errors.add(:code, I18n.t('activemodel.errors.messages.invite_mismatch')) if code.blank? or !Code.where(:code => code).first
+    if code.blank? or !Code.where(:code => code).first
+      errors.add(:code, I18n.t('activemodel.errors.messages.invite_mismatch')) unless code == INVITE_CODE
+    end
   end
 
   def name
@@ -24,12 +27,13 @@ class User
   end
 
   def del_code
-    Code.find(code).destroy
+    c = Code.where(:code => code).first
+    c.destroy if c
   end
 
   def get_codes
     10.times do
-      self.codes.create
+      self.codes.create :code => Code.random
     end
   end
 end
