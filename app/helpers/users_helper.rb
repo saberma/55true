@@ -19,6 +19,16 @@ module UsersHelper
   def track_user_id(id)
     key = current_key
     redis.sadd(key, id)
+    #redis will reset ttl after modified
+    redis.expire(key, 5.minutes)
+  end
+
+  # Delete an User
+  def lost_user_id(id)
+    keys_in_last_5_minutes.each do |key|
+      redis.srem key, id
+      redis.expire(key, 5.minutes)
+    end
   end
 
   # Who's online

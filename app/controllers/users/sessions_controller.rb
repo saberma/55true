@@ -10,9 +10,7 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def del_online
-    keys_in_last_5_minutes.each do |key|
-      redis.srem key, current_user.id.to_s
-    end
+    lost_user_id current_user.id.to_s
   end
 
 end

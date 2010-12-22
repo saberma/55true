@@ -38,6 +38,20 @@ input:invalid, textarea:invalid {
 
 .tip { color: #c7c7c7 }
 
+#notice {
+  border: 1px solid #1FDF00;
+  background-color: #bbffb6;
+
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+
+  text-align:center;
+  margin: 0 auto 15px;
+  padding: 4px;
+
+  display: none;
+}
+
 body {
   line-height: 1;
   background-color: #9CCB47;

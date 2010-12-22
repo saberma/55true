@@ -74,3 +74,6 @@ cn:
     errors:
       integrity: '不支持上传此类型的图片'
       processing: 'Cannot resize image.'
+
+  message:
+    submit_question: '刚提交了问题,内容稍候显示...'

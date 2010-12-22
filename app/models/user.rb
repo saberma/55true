@@ -8,6 +8,7 @@ class User
          :rememberable, :trackable, :validatable
   self.unlock_strategy = :time
   references_many :codes
+  references_many :qas
 
   field :login
   attr_accessor :code
