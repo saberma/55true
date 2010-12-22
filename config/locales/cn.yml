@@ -11,6 +11,7 @@ cn:
         password: 密码
         password_confirmation: 确认密码
         remember_me: 记住登录信息，下次自动登录
+        code: 邀请码
     hints:
       user:
         email: 请填写有效的Email地址作为下次登录的用户名
@@ -35,7 +36,7 @@ cn:
         not_a_number: 只能是数字
         invalid: 必须是有效的
         at_least_one: 至少有一项必填
-        select: 尚未选择
+        invite_mismatch: 无效或已经使用过了
       models:
         user:
           attributes:

@@ -3,7 +3,9 @@
     %h3 注册
     .user
       =semantic_form_for(resource, :url => registration_path(resource_name)) do |f|
-        =f.semantic_errors :email, :password, :password_confirmation, :login, :id => :error
+        =f.semantic_errors :code, :email, :password, :password_confirmation, :login, :id => :error
+        =f.inputs do
+          =f.input :code, :required => true
         =f.inputs :email, :password, :password_confirmation, :login
         =f.buttons do
           =f.commit_button '现在注册'

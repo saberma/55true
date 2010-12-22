@@ -1,9 +1,11 @@
 .menu
   %ul
+    %li=link_to '首页', root_path
     - if user_signed_in?
-      %span==欢迎您:#{current_user.name}
       %li=link_to '退出', destroy_user_session_path
+      %span
+        =link_to codes_path do
+          ==欢迎您:#{current_user.name}(剩#{current_user.codes.size}邀请码)
     - else
-      %li=link_to '首页', root_path
       %li=link_to '登录', new_user_session_path
       %li=link_to '注册', new_user_registration_path

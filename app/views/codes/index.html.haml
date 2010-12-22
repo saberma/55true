@@ -1,0 +1,8 @@
+#content
+  .box
+    %h2==您还有#{current_user.codes.size}个邀请码，邀请朋友一起来吧
+    .tip 将邀请码发送给朋友，注册时粘贴到[邀请码]输入项
+    %div
+      %ul
+        -collection.each do |code|
+          %li=code.id.to_s
