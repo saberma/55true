@@ -76,4 +76,4 @@ cn:
       processing: 'Cannot resize image.'
 
   message:
-    submit_question: '%{user}刚提交了问题,内容稍候显示...'
+    submit_question: '%{user}刚提交了问题,正在随机抽取在线用户回答...'

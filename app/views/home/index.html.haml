@@ -2,7 +2,8 @@
   #chats.box
     %ul
 
-  #notice 请回答ben的提问:你最喜欢哪个明星?
+  输入以#号开头的内容即可提问，并将随机抽取在线用户回答.
+  #notice
   #entry
     =text_field_tag :msg, nil
     =button_to_function '提交', 'Msg.send()', :id => :send_btn

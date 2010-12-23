@@ -14,7 +14,7 @@ module Receive
     av = ActionView::Base.new(Rails.configuration.view_path)
     content = av.render(:partial => "home/answering", :locals => {:a_user => user.name, :user => qa.user.name, :content => qa.content})
 
-    Juggernaut.publish "chat", :question => qa.content, :a_user_id => qa.user.id.to_s, :content => content
+    Juggernaut.publish "chat", :question => qa.content, :a_user_id => qa.a_user.id.to_s, :content => content
 
     #sleep 300
     sleep 5
