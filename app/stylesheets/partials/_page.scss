@@ -122,6 +122,9 @@ nav {
         line-height: normal; 
         li {
           margin-bottom: 8px;
+          &.system {
+            color: #666
+          }
         }}
     }
     #entry {

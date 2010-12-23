@@ -76,5 +76,4 @@ cn:
       processing: 'Cannot resize image.'
 
   message:
-    submit_question: '刚提交了问题,内容稍候显示...'
-    answering: '我刚接到%{user}的提问:%{content}'
+    submit_question: '%{user}刚提交了问题,内容稍候显示...'

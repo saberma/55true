@@ -2,10 +2,10 @@
   #chats.box
     %ul
 
-  #notice
+  #notice 请回答ben的提问:你最喜欢哪个明星?
   #entry
     =text_field_tag :msg, nil
-    =button_to_function '提交', 'send()', :id => :send_btn
+    =button_to_function '提交', 'Msg.send()', :id => :send_btn
 
 %aside
   %section
@@ -15,44 +15,4 @@
         %li=user.name
 
 =content_for :javascripts do
-  :javascript
-    var jug = new Juggernaut();
-
-    var show = function(data){
-      var li = $("<li />");
-      var name = data['name'];
-      var time = data['time'];
-      var msg = data['msg'];
-      var text = '';
-      if(name) text = name + ':';
-      text += msg;
-      if(time) text = text + ' <span class="tip">' + time + '</span>';
-      li.html(text);
-      $("#chats > ul").append(li);
-      $('#chats').scrollTop($('#chats').height());
-    };
-
-    jug.on("connect", function(){ show({msg:"已连接服务器."}) });
-    jug.on("disconnect", function(){ show({msg:"已与服务器断开连接."}) });
-    //jug.on("reconnect", function(){ show("Reconnecting") });
-
-    jug.subscribe("chat", function(data){
-      show(data);
-    });
-
-    $('#entry :text').keypress(function(e){
-      if(e.which == 13){
-        send();
-      }
-    });
-
-    function send(){
-      var text = $("#entry > :text");
-      var msg = text.val();
-      if (msg != ''){ 
-        $.post('/publish', {msg: msg});
-      }
-      text.focus().val('');
-    };
-
-    $('#msg').focus();
+  =javascript_include_tag 'home'

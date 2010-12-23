@@ -8,7 +8,9 @@ module Receive
     user_id = get_online_user_id_except(qa.user.id.to_s)
     user = User.find(user_id)
 
-    Juggernaut.publish "chat", :name => user.name, :time => Time.now.to_s(:short), :msg => I18n.t('message.answering', :user => qa.user.name, :content => qa.content)
+    av = ActionView::Base.new(Rails.configuration.view_path)
+    content = av.render(:partial => "home/answering", :locals => {:a_user => user.name, :user => qa.user.name, :content => qa.content})
+    Juggernaut.publish "chat", :system => content
     sleep 300
   end
 

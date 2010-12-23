@@ -9,13 +9,15 @@ class HomeController < ApplicationController
 
   def publish
     if user_signed_in?
-      msg = params[:msg]
+      content = params[:content]
+      name = current_user.name
       # question
-      if msg.start_with?('#')
-        @qa = current_user.qas.create :content => msg[1..-1]
-        Juggernaut.publish "chat", :name => current_user.name, :time => Time.now.to_s(:short), :msg => I18n.t('message.submit_question')
+      if content.start_with?('#')
+        @qa = current_user.qas.create :content => content[1..-1]
+        Juggernaut.publish "chat", :system => I18n.t('message.submit_question', :user => name)
       else
-        Juggernaut.publish "chat", :name => current_user.name, :time => Time.now.to_s(:short), :msg => params[:msg]
+        content = render_to_string(:partial => "message", :locals => {:user => name, :content => content})
+        Juggernaut.publish "chat", :content => content
       end
       render :nothing => true
     else
