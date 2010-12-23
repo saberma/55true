@@ -20,8 +20,10 @@ class HomeController < ApplicationController
         Juggernaut.publish "chat", :content => content
       # question
       elsif content.start_with?('#')
-        current_user.qas.create :content => content[1..-1]
-        Juggernaut.publish "chat", :system => I18n.t('message.submit_question', :user => name)
+        if current_user.qas.askable?
+          current_user.qas.create :content => content[1..-1]
+          Juggernaut.publish "chat", :system => I18n.t('message.submit_question', :user => name)
+        end
       else
         content = render_to_string(:partial => "message", :locals => {:user => name, :content => content})
         Juggernaut.publish "chat", :content => content

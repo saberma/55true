@@ -14,4 +14,7 @@ class Qa
     Resque.enqueue(Receive, self.id.to_s)
   end
 
+  def self.askable?
+    where(:a_user_id => nil).size < 5
+  end
 end

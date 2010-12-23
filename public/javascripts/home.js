@@ -7,7 +7,7 @@ var Msg = {
       this.show_question(data);
     else
       this.show(data);
-    $('#chats').scrollTop($('#chats').height());
+    $('#chats').scrollTop($('#chats')[0].scrollHeight);
   },
 
   show_question:function(data){
