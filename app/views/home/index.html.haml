@@ -29,6 +29,7 @@
       if(time) text = text + ' <span class="tip">' + time + '</span>';
       li.html(text);
       $("#chats > ul").append(li);
+      $('#chats').scrollTop($('#chats').height());
     };
 
     jug.on("connect", function(){ show({msg:"已连接服务器."}) });
