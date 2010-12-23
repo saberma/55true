@@ -7,4 +7,11 @@ class Qa
 
   field :content
   field :a_content
+
+  after_create :async_receive
+
+  def async_receive
+    Resque.enqueue(Receive, self.id.to_s)
+  end
+
 end

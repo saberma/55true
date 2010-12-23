@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_filter :add_online
 
   def index
     @online = []
@@ -19,5 +20,9 @@ class HomeController < ApplicationController
       render :nothing => true
     else
     end
+  end
+
+  def add_online
+    track_user_id current_user.id.to_s if user_signed_in?
   end
 end

@@ -37,6 +37,9 @@ gem "inherited_resources"
 ##### 样式相关 #####
 gem 'compass'
 
+##### 其他 #####
+gem 'resque'
+
 # 调试
 gem "awesome_print", :require => 'ap'
 

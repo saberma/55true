@@ -77,3 +77,4 @@ cn:
 
   message:
     submit_question: '刚提交了问题,内容稍候显示...'
+    answering: '我正在回答%{user}的提问:%{content}'
