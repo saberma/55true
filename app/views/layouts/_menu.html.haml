@@ -9,3 +9,6 @@
     - else
       %li=link_to '登录', new_user_session_path
       %li=link_to '注册', new_user_registration_path
+
+:javascript
+  var current_user_id = '#{current_user.id}';

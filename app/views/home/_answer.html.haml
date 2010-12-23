@@ -1,0 +1,5 @@
+%li
+  ==#{qa.a_user.name}回答了#{qa.user.name}的提问:#{qa.content}
+  %br
+  ==&nbsp;&nbsp;&nbsp;&nbsp;#{qa.a_content}
+  %span.tip=Time.now.to_s(:short)

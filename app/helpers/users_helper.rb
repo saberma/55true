@@ -36,6 +36,20 @@ module UsersHelper
     redis.sunion(*keys_in_last_minutes)
   end
 
+  def answering?(user_id)
+    redis.hexists 'answering', user_id.to_s
+  end
+
+  def answering(user_id, qa_id)
+    redis.hset 'answering', user_id.to_s, qa_id.to_s
+  end
+
+  def answering_qa_id(user_id)
+    qa_id = redis.hget 'answering', user_id.to_s
+    redis.hdel 'answering', user_id.to_s
+    qa_id
+  end
+
   def redis
     Redis.new
   end

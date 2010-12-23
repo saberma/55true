@@ -45,7 +45,6 @@ input:invalid, textarea:invalid {
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
 
-  text-align:center;
   margin: 0 auto 15px;
   padding: 4px;
 
@@ -122,7 +121,7 @@ nav {
         line-height: normal; 
         li {
           margin-bottom: 8px;
-          &.system {
+          &.system, &.question {
             color: #666
           }
         }}
