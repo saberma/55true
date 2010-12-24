@@ -61,3 +61,4 @@ $('#entry :text').keypress(function(e){
 });
 
 $('#msg').focus();
+if($('#notice').text()!='') $('#notice').show();

@@ -45,9 +45,7 @@ module UsersHelper
   end
 
   def answering_qa_id(user_id)
-    qa_id = redis.hget 'answering', user_id.to_s
-    redis.hdel 'answering', user_id.to_s
-    qa_id
+    redis.hget 'answering', user_id.to_s
   end
 
   def redis
