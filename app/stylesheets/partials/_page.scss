@@ -76,6 +76,8 @@ nav {
   .menu {
     font-size: 14px;
     font-weight: bold;
+    height: 30px;
+    #logo { float: right; }
     ul {
       margin: 0;
       padding: 17px 0 0 20px;
@@ -88,7 +90,7 @@ nav {
       display: block;
       float: left;
       margin-right: 5px;
-      padding: 0px 15px;
+      padding: 0px 10px;
       text-decoration: none;
       color: #FFF;
       &:hover {
@@ -97,7 +99,6 @@ nav {
 #main {
   width: 780px;
   margin: 0 auto;
-  padding-top: 10px;
   padding-bottom: 10px;
   background: #9CCB47;
   overflow: hidden;
