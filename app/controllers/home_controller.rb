@@ -32,8 +32,4 @@ class HomeController < ApplicationController
     else
     end
   end
-
-  def add_online
-    track_user_id current_user.id.to_s if user_signed_in?
-  end
 end

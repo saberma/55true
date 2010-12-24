@@ -11,4 +11,4 @@
       %li=link_to '注册', new_user_registration_path
 
 :javascript
-  var current_user_id = '#{current_user.id}';
+  var current_user_id = '#{current_user.try(:id)}';

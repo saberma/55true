@@ -5,9 +5,22 @@ var Msg = {
       this.show_system(data);
     else if(data['question'])
       this.show_question(data);
+    else if(data['online'])
+      this.online(data);
+    else if(data['offline'])
+      this.offline(data);
     else
       this.show(data);
     $('#chats').scrollTop($('#chats')[0].scrollHeight);
+  },
+
+  offline:function(data){
+    $(data['offline']).remove();
+  },
+
+  online:function(data){
+    if(!$(data['online'])[0])
+      $('#onlines').append(data['content']);
   },
 
   show_question:function(data){

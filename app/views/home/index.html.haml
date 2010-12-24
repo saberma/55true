@@ -12,9 +12,7 @@
   %section
     %h2 在线用户
     .tip 10分钟内有提问回答等操作
-    %ul
-      -@online.each do |user|
-        %li=user.name
+    %ul#onlines= render :partial => "user", :collection => @online
 
 =content_for :javascripts do
   =javascript_include_tag 'home'

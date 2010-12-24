@@ -51,6 +51,6 @@ module UsersHelper
   end
 
   def redis
-    Redis.new
+    Resque.redis
   end
 end
