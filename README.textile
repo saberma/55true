@@ -5,6 +5,7 @@ h2. Install
 h3. Node.js
 
 pre. 
+cd ~/Downloads
 wget http://nodejs.org/dist/node-v0.2.4.tar.gz
 tar -xzvf node-v0.2.4.tar.gz
 cd node-v0.2.4
@@ -15,20 +16,33 @@ sudo make install
 h3. Redis
 
 pre. 
-wget http://redis.googlecode.com/files/redis-2.0.3.tar.gz
-tar -xzvf redis-2.0.3.tar.gz
-cd redis-2.0.3
+wget https://github.com/antirez/redis/tarball/2.2.0-rc2
+tar -xzvf antirez-redis-2.2.0-rc2-0-g0540df2.tar.gz
+cd antirez-redis-b703b5d
 make
+sudo make install
 
 h3. 55true
 
+pre. 
+cd ~/Documents
 git clone git://github.com/saberma/55true.git
 cd 55true
 
 h2. Usage
 
+h3. 启动应用
+
 pre. 
+cd ~/Documents/55true
+redis-server &
+QUEUE=* rake resque:work &
 node server.js &
 bundle exec unicorn -p 8000 &
+
+h3. 调试resque后台任务
+
+pre. 
+resque-web
 
 open "http://localhost:8080":http://localhost:8080
