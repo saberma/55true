@@ -10,7 +10,7 @@ capybara-*.html
 public/images/uploads/**
 
 #去掉编译后的css文件
-public/stylesheets/compiled/**
+#public/stylesheets/compiled/**
 
 #redis db file
 dump.rdb
