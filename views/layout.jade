@@ -1,6 +1,42 @@
-!!!
-html
+!!! 5
+/if lt IE 7
+  <html class="no-js ie6" lang="en">
+/if IE 7
+  <html class="no-js ie7" lang="en">
+/if IE 8
+  <html class="no-js ie8" lang="en">
+//[if (gte IE 9)|!(IE)]><!
+html(class="no-js", lang="en")
+  //<![endif]
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+    title some Title
+    meta(name="description", content="")
+    meta(name="author", content="")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel="shortcut icon", href="/favicon.ico")
+    link(rel="apple-touch-icon", href="/apple-touch-icon.png")
+    link(rel="stylesheet", href="/stylesheets/style.css?v=1")
+    // link(rel="stylesheet", media="handheld", href="/stylesheets/handheld.css?v=1")
+    script(src="/javascripts/libs/modernizr-1.7.min.js")
+
+  body
+    #container
+      header
+      #main(role="main")!=body
+      footer
+
+    script(src="/javascripts/libs/zepto.min.js")
+    script(src="/javascripts/plugins.js")
+
+    /if lt IE 7
+      script(src="/javascripts/libs/dd_belatedpng.js")
+      script
+        DD_belatedPNG.fix('img, .png_bg')
+
+    script
+      var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+      g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+      s.parentNode.insertBefore(g,s)}(document,"script"));
