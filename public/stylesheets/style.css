@@ -2,10 +2,16 @@ body {
   width: 600px;
   margin: 0px auto;}
 
-.box {
+#main {
+  text-align: left;
+  margin: 5px;}
+#main .box {
   height: 460px;
-  border: 1px solid #999;
   background-color: white;}
-
-.panel {
-  text-align: left;}
+#main .box ul {
+  list-style: none;}
+#main #message {
+  margin: 5px 0;
+  width: 100%;
+  border: none;
+  height: 18px;}

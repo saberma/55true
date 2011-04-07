@@ -1,7 +1,6 @@
 //
 //Views
 //
-
 var ChatView = Backbone.View.extend({
     tagName: 'li',
 
@@ -61,7 +60,6 @@ var NodeChatView = Backbone.View.extend({
     }
 
     , sendMessage: function(){
-      alert('in');
         var inputField = $('input[name=message]');
         var chatEntry = new models.ChatEntry({text: inputField.val()});
         this.socket.send(chatEntry.xport());

@@ -3,11 +3,11 @@
 //
 var NodeChatController = {
     init: function() {
-        this.socket = new io.Socket(null, {port: 8000});
+        this.socket = new io.Socket(null, {port: 3000});
         var mysocket = this.socket;
 
         this.model = new models.NodeChatModel();
-        this.view = new NodeChatView({model: this.model, socket: this.socket, el: $('#content')});
+        this.view = new NodeChatView({model: this.model, socket: this.socket, el: $('#main')});
         var view = this.view;
 
         this.socket.on('message', function(msg) {view.msgReceived(msg)});
