@@ -18,7 +18,7 @@ html(class="no-js", lang="en")
     link(rel="shortcut icon", href="/favicon.ico")
     link(rel="apple-touch-icon", href="/apple-touch-icon.png")
     link(rel="stylesheet", href="/stylesheets/style-0054.min.css?v=1")
-    link(rel="stylesheet", href="/stylesheets/style.css?v=3")
+    link(rel="stylesheet", href="/stylesheets/style.css")
     // link(rel="stylesheet", media="handheld", href="/stylesheets/handheld.css?v=1")
     script(src="/javascripts/libs/modernizr-1.7.min.js")
 
@@ -28,8 +28,16 @@ html(class="no-js", lang="en")
       #main(role="main")!=body
       footer
 
+    script(src="/socket.io/socket.io.js")
     script(src="/javascripts/libs/zepto.min.js")
+    script(src="/javascripts/libs/json2.js")
+    script(src="/javascripts/libs/underscore-min.js")
+    script(src="/javascripts/libs/backbone-min.js")
+    script(type="text/javascript", src="/models/models.js")
+    script(type="text/javascript", src="/controllers/controllers.js")
+    script(type="text/javascript", src="/views/views.js")
     script(src="/javascripts/plugins.js")
+    script(src="/javascripts/application.js")
 
     /if lt IE 7
       script(src="/javascripts/libs/dd_belatedpng.js")
