@@ -1,5 +1,4 @@
 body {
-  width: 600px;
   margin: 0px auto;}
 
 #main {
@@ -7,11 +6,15 @@ body {
   margin: 5px;}
 #main .box {
   height: 460px;
-  background-color: white;}
+  background-color: white;
+  overflow-y: auto;}
 #main .box ul {
   list-style: none;}
 #main #message {
   margin: 5px 0;
   width: 100%;
   border: none;
-  height: 18px;}
+  height: 24px;
+  line-height: 24px;
+  padding: 3px 0;
+  font-size: 18px;}

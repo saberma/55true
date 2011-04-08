@@ -1,6 +1,12 @@
 /**
  * npm install express jade sass
  * npm install socket.io underscore backbone redis
+ * npm install connect-redis hash joose joosex-namespace-depended
+ */
+
+/**
+ * http://fzysqr.com/2011/02/28/nodechat-js-using-node-js-backbone-js-socket-io-and-redis-to-make-a-real-time-chat-app/
+ * http://fzysqr.com/2011/03/27/nodechat-js-continued-authentication-profiles-ponies-and-a-meaner-socket-io/
  */
 
 /**
