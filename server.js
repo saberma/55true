@@ -7,6 +7,13 @@
 /**
  * http://fzysqr.com/2011/02/28/nodechat-js-using-node-js-backbone-js-socket-io-and-redis-to-make-a-real-time-chat-app/
  * http://fzysqr.com/2011/03/27/nodechat-js-continued-authentication-profiles-ponies-and-a-meaner-socket-io/
+ * http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
+ */
+
+/**
+ * https://my.joyent.com/smartmachines
+ * ssh node@64.30.137.17
+ * git push node master
  */
 
 /**
