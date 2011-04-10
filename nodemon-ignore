@@ -3,3 +3,4 @@
 ./README.md   # a specific file
 *.css         # ignore any CSS files too
 *.coffee      # ignore any coffee-script files too
+*.rdb         # redis db file
