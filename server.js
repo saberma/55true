@@ -1,5 +1,10 @@
 /**
- * npm install express jade sass
+ * ~/redis-2.2.4/src/redis-server ~/redis-2.2.4/redis.conf
+ * nodemon server.js
+ */
+
+/**
+ * npm install express jade sass nodemon
  * npm install socket.io underscore backbone redis
  * npm install connect-redis hash joose joosex-namespace-depended
  */
