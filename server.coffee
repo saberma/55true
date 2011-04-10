@@ -1,8 +1,7 @@
 ###
 ~/redis-2.2.4/src/redis-server ~/redis-2.2.4/redis.conf
 coffee --bare --compile --watch *.coffee
-#nodemon server.js #发几条后就停止了
-node server.js
+nodemon server.js
 ###
 
 ###
@@ -38,16 +37,16 @@ models = require './models/models'
 # Configuration
 
 app.configure ->
-  app.set 'views', __dirname + '/views'
+  app.set 'views', "#{__dirname}/views"
   app.set 'view engine', 'jade'
   app.set 'view options', layout: false
   app.use express.bodyParser()
   app.use express.methodOverride()
   app.use express.cookieParser()
   app.use express.session secret: 'secret from 55true'
-  app.use express.compiler src: __dirname + '/public', enable: ['sass']
+  app.use express.compiler src: "#{__dirname}/public", enable: ['sass']
   app.use app.router
-  app.use express.static __dirname + '/public'
+  app.use express.static "#{__dirname}/public"
 
 app.configure 'development', ->
   app.use express.errorHandler dumpExceptions: true, showStack: true
@@ -57,7 +56,7 @@ app.configure 'production', ->
 
 #访问modes,controllers,views目录
 app.get '/*.(js|css)', (req, res) ->
-  res.sendfile './'+req.url
+  res.sendfile "./#{req.url}"
 
 # Socket
 activeClients = 0
@@ -66,13 +65,13 @@ nodeChatModel = new models.NodeChatModel()
 # 从redis中获取前10条消息
 rc.lrange 'chatentries', -10, -1, (err, data) ->
   if err
-    console.log 'Error: ' + err
+    console.log "Error: #{err}"
   else if data
     _.each data, (jsonChat) ->
       chat = new models.ChatEntry()
       chat.mport jsonChat
       nodeChatModel.chats.add chat
-    console.log 'Revived ' + nodeChatModel.chats.length + ' chats'
+    console.log "Revived #{nodeChatModel.chats.length} chats"
   else
     console.log 'No data returned for key'
 
@@ -95,8 +94,8 @@ chatMessage = (client, socket, msg) ->
     chat.set id: newId
     nodeChatModel.chats.add chat
 
-    expandedMsg = chat.get('id') + ' ' + chat.get('name') + ': ' + chat.get('text')
-    console.log '(' + client.sessionId + ') ' + expandedMsg
+    expandedMsg = "#{chat.get('id')} #{chat.get('name')}: #{chat.get('text')}"
+    console.log "(#{client.sessionId}) #{expandedMsg}"
 
     rc.rpush 'chatentries', chat.xport(), redis.print
     rc.bgsave()
