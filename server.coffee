@@ -104,7 +104,7 @@ chatMessage = (client, socket, msg) ->
 
 clientDisconnect = (client) ->
   activeClients -= 1
-  client.broadcast clients:activeClients
+  client.broadcast event: 'update', clients:activeClients
 
 # Routes
 

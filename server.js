@@ -27,7 +27,7 @@ redis = require('redis');
 rc = redis.createClient();
 models = require('./models/models');
 app.configure(function() {
-  app.set('views', __dirname + '/views');
+  app.set('views', "" + __dirname + "/views");
   app.set('view engine', 'jade');
   app.set('view options', {
     layout: false
@@ -39,11 +39,11 @@ app.configure(function() {
     secret: 'secret from 55true'
   }));
   app.use(express.compiler({
-    src: __dirname + '/public',
+    src: "" + __dirname + "/public",
     enable: ['sass']
   }));
   app.use(app.router);
-  return app.use(express.static(__dirname + '/public'));
+  return app.use(express.static("" + __dirname + "/public"));
 });
 app.configure('development', function() {
   return app.use(express.errorHandler({
@@ -55,13 +55,13 @@ app.configure('production', function() {
   return app.use(express.errorHandler());
 });
 app.get('/*.(js|css)', function(req, res) {
-  return res.sendfile('./' + req.url);
+  return res.sendfile("./" + req.url);
 });
 activeClients = 0;
 nodeChatModel = new models.NodeChatModel();
 rc.lrange('chatentries', -10, -1, function(err, data) {
   if (err) {
-    return console.log('Error: ' + err);
+    return console.log("Error: " + err);
   } else if (data) {
     _.each(data, function(jsonChat) {
       var chat;
@@ -69,7 +69,7 @@ rc.lrange('chatentries', -10, -1, function(err, data) {
       chat.mport(jsonChat);
       return nodeChatModel.chats.add(chat);
     });
-    return console.log('Revived ' + nodeChatModel.chats.length + ' chats');
+    return console.log("Revived " + nodeChatModel.chats.length + " chats");
   } else {
     return console.log('No data returned for key');
   }
@@ -101,8 +101,8 @@ chatMessage = function(client, socket, msg) {
       id: newId
     });
     nodeChatModel.chats.add(chat);
-    expandedMsg = chat.get('id') + ' ' + chat.get('name') + ': ' + chat.get('text');
-    console.log('(' + client.sessionId + ') ' + expandedMsg);
+    expandedMsg = "" + (chat.get('id')) + " " + (chat.get('name')) + ": " + (chat.get('text'));
+    console.log("(" + client.sessionId + ") " + expandedMsg);
     rc.rpush('chatentries', chat.xport(), redis.print);
     rc.bgsave();
     return socket.broadcast({
@@ -114,6 +114,7 @@ chatMessage = function(client, socket, msg) {
 clientDisconnect = function(client) {
   activeClients -= 1;
   return client.broadcast({
+    event: 'update',
     clients: activeClients
   });
 };
