@@ -22,14 +22,14 @@ NodeChatView = Backbone.View.extend
     this.socket = options.socket
     this.clientCountView = new ClientCountView(model: new models.ClientCountModel(), el: $('#client_count'))
 
-  , events:
+  events:
     "submit #messageForm" : "sendMessage"
 
-  , addChat: (chat) ->
+  addChat: (chat) ->
     view = new ChatView(model: chat)
     $('#chat_list').append view.render().el
 
-  , msgReceived: (message) ->
+  msgReceived: (message) ->
     switch message.event
       when 'initial' then this.model.mport message.data
       when 'update' then this.clientCountView.model.updateClients message.clients
@@ -38,7 +38,7 @@ NodeChatView = Backbone.View.extend
         newChatEntry.mport message.data
         this.model.chats.add newChatEntry
 
-  , sendMessage: ->
+  sendMessage: ->
     inputField = $('input[name=message]')
     chatEntry = new models.ChatEntry(text: inputField.val())
     this.socket.send chatEntry.xport()
