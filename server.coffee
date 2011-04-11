@@ -1,6 +1,6 @@
 ###
 ~/redis-2.2.4/src/redis-server ~/redis-2.2.4/redis.conf
-coffee --bare --compile --watch *.coffee
+coffee --bare --compile --watch *.coffee *\/*.coffee
 nodemon server.js
 ###
 
@@ -32,6 +32,7 @@ app = module.exports = express.createServer()
 socket = require('socket.io').listen app
 redis = require 'redis'
 rc = redis.createClient()
+_ = require('underscore')._
 models = require './models/models'
 
 # Configuration

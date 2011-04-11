@@ -1,6 +1,6 @@
 /*
 ~/redis-2.2.4/src/redis-server ~/redis-2.2.4/redis.conf
-coffee --bare --compile --watch *.coffee
+coffee --bare --compile --watch *.coffee *\/*.coffee
 nodemon server.js
 */
 /*
@@ -19,12 +19,13 @@ http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
 https://my.joyent.com/smartmachines
 ssh node@64.30.137.17
 git push node master
-*/var activeClients, app, chatMessage, clientDisconnect, express, models, nodeChatModel, rc, redis, socket;
+*/var activeClients, app, chatMessage, clientDisconnect, express, models, nodeChatModel, rc, redis, socket, _;
 express = require('express');
 app = module.exports = express.createServer();
 socket = require('socket.io').listen(app);
 redis = require('redis');
 rc = redis.createClient();
+_ = require('underscore')._;
 models = require('./models/models');
 app.configure(function() {
   app.set('views', "" + __dirname + "/views");
