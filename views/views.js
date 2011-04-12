@@ -22,7 +22,7 @@ ChatsView = Backbone.View.extend({
     view = new ChatView({
       model: chat
     });
-    return $('#chat_list').append(view.render().el);
+    return $('#chat_list').prepend(view.render().el);
   },
   received: function(message) {
     var chat;

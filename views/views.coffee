@@ -22,7 +22,7 @@ ChatsView = Backbone.View.extend
 
   addOne: (chat) ->
     view = new ChatView(model: chat)
-    $('#chat_list').append view.render().el
+    $('#chat_list').prepend view.render().el
 
   received: (message) ->
     switch message.event
