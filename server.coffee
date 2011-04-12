@@ -44,7 +44,7 @@ app.configure ->
   app.use express.bodyParser()
   app.use express.methodOverride()
   app.use express.cookieParser()
-  app.use express.session secret: 'secret from 55true'
+  app.use express.session secret: 'secret 55true'
   app.use express.compiler src: "#{__dirname}/public", enable: ['sass']
   app.use app.router
   app.use express.static "#{__dirname}/public"
@@ -61,18 +61,18 @@ app.get '/*.(js|css)', (req, res) ->
 
 # Socket
 activeClients = 0
-nodeChatModel = new models.NodeChatModel()
+chats = new models.Chats()
 
 # 从redis中获取前10条消息
+#rc.del 'chatentries'
 rc.lrange 'chatentries', -10, -1, (err, data) ->
   if err
     console.log "Error: #{err}"
   else if data
     _.each data, (jsonChat) ->
-      chat = new models.ChatEntry()
-      chat.mport jsonChat
-      nodeChatModel.chats.add chat
-    console.log "Revived #{nodeChatModel.chats.length} chats"
+      chat = new models.Chat(JSON.parse(jsonChat))
+      chats.add chat
+    console.log "Revived #{chats.length} chats"
   else
     console.log 'No data returned for key'
 
@@ -80,32 +80,22 @@ rc.lrange 'chatentries', -10, -1, (err, data) ->
 socket.on 'connection', (client) ->
   activeClients += 1
   client.on 'disconnect', ->
-    clientDisconnect client
+    activeClients -= 1
+    client.broadcast event: 'update', clients:activeClients
   client.on 'message', (msg) ->
     chatMessage client, socket, msg
-  client.send event: 'initial', data: nodeChatModel.xport()
+  client.send event: 'initial', data: chats.toJSON()
   socket.broadcast event: 'update', clients: activeClients
 
 #聊天内容
 chatMessage = (client, socket, msg) ->
-  chat = new models.ChatEntry()
-  chat.mport msg
-
+  chat = new models.Chat(msg)
   rc.incr 'next.chatentry.id', (err, newId) ->
     chat.set id: newId
-    nodeChatModel.chats.add chat
-
-    expandedMsg = "#{chat.get('id')} #{chat.get('name')}: #{chat.get('text')}"
-    console.log "(#{client.sessionId}) #{expandedMsg}"
-
-    rc.rpush 'chatentries', chat.xport(), redis.print
-    rc.bgsave()
-
-    socket.broadcast event: 'chat', data:chat.xport()
-
-clientDisconnect = (client) ->
-  activeClients -= 1
-  client.broadcast event: 'update', clients:activeClients
+    console.log chat.toJSON()
+    chats.add chat
+    rc.rpush 'chatentries', JSON.stringify(chat.toJSON()), redis.print
+    socket.broadcast event: 'chat', data: chat.toJSON()
 
 # Routes
 

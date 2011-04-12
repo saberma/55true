@@ -1,45 +1,39 @@
+# li
 ChatView = Backbone.View.extend
+
   tagName: 'li'
+
   initialize: (options) ->
     _.bindAll this, 'render'
-    # 关联的model变化时调用render渲染视图
-    this.model.bind 'all', this.render
+
   render: ->
     $(this.el).html "#{this.model.get('name')}: #{this.model.get('text')}"
     return this
 
-ClientCountView = Backbone.View.extend
-  initialize: (options) ->
-    _.bindAll this, 'render'
-    this.model.bind 'all', this.render
-  render: ->
-    this.el.html this.model.get("clients")
-    return this
+# ul
+ChatsView = Backbone.View.extend
 
-NodeChatView = Backbone.View.extend
   initialize: (options) ->
-    this.model.chats.bind 'add', this.addChat
+    this.model.bind 'add', this.addOne
     this.socket = options.socket
-    this.clientCountView = new ClientCountView(model: new models.ClientCountModel(), el: $('#client_count'))
 
   events:
     "submit #messageForm" : "sendMessage"
 
-  addChat: (chat) ->
+  addOne: (chat) ->
     view = new ChatView(model: chat)
     $('#chat_list').append view.render().el
 
-  msgReceived: (message) ->
+  received: (message) ->
     switch message.event
-      when 'initial' then this.model.mport message.data
-      when 'update' then this.clientCountView.model.updateClients message.clients
+      when 'initial' then this.model.add message.data
+      #when 'update' then this.clientCountView.model.updateClients message.clients
       when 'chat'
-        newChatEntry = new models.ChatEntry()
-        newChatEntry.mport message.data
-        this.model.chats.add newChatEntry
+        chat = new models.Chat message.data
+        this.model.add chat
 
   sendMessage: ->
     inputField = $('input[name=message]')
-    chatEntry = new models.ChatEntry(text: inputField.val())
-    this.socket.send chatEntry.xport()
+    chat = new models.Chat(text: inputField.val())
+    this.socket.send chat.toJSON()
     inputField.val ''

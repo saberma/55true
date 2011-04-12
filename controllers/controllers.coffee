@@ -3,11 +3,11 @@ NodeChatController =
   init: ->
     this.socket = new io.Socket null, port: 3000
 
-    this.model = new models.NodeChatModel()
-    this.view = new NodeChatView model: this.model, socket: this.socket, el: $('#main')
+    this.model = new models.Chats()
+    this.view = new ChatsView model: this.model, socket: this.socket, el: $('#main')
     view = this.view
 
-    this.socket.on 'message', (msg) -> view.msgReceived msg
+    this.socket.on 'message', (msg) -> view.received msg
     this.socket.connect()
 
     this.view.render()

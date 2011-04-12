@@ -19,7 +19,7 @@ http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
 https://my.joyent.com/smartmachines
 ssh node@64.30.137.17
 git push node master
-*/var activeClients, app, chatMessage, clientDisconnect, express, models, nodeChatModel, rc, redis, socket, _;
+*/var activeClients, app, chatMessage, chats, express, models, rc, redis, socket, _;
 express = require('express');
 app = module.exports = express.createServer();
 socket = require('socket.io').listen(app);
@@ -37,7 +37,7 @@ app.configure(function() {
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.session({
-    secret: 'secret from 55true'
+    secret: 'secret 55true'
   }));
   app.use(express.compiler({
     src: "" + __dirname + "/public",
@@ -59,18 +59,17 @@ app.get('/*.(js|css)', function(req, res) {
   return res.sendfile("./" + req.url);
 });
 activeClients = 0;
-nodeChatModel = new models.NodeChatModel();
+chats = new models.Chats();
 rc.lrange('chatentries', -10, -1, function(err, data) {
   if (err) {
     return console.log("Error: " + err);
   } else if (data) {
     _.each(data, function(jsonChat) {
       var chat;
-      chat = new models.ChatEntry();
-      chat.mport(jsonChat);
-      return nodeChatModel.chats.add(chat);
+      chat = new models.Chat(JSON.parse(jsonChat));
+      return chats.add(chat);
     });
-    return console.log("Revived " + nodeChatModel.chats.length + " chats");
+    return console.log("Revived " + chats.length + " chats");
   } else {
     return console.log('No data returned for key');
   }
@@ -78,14 +77,18 @@ rc.lrange('chatentries', -10, -1, function(err, data) {
 socket.on('connection', function(client) {
   activeClients += 1;
   client.on('disconnect', function() {
-    return clientDisconnect(client);
+    activeClients -= 1;
+    return client.broadcast({
+      event: 'update',
+      clients: activeClients
+    });
   });
   client.on('message', function(msg) {
     return chatMessage(client, socket, msg);
   });
   client.send({
     event: 'initial',
-    data: nodeChatModel.xport()
+    data: chats.toJSON()
   });
   return socket.broadcast({
     event: 'update',
@@ -94,29 +97,18 @@ socket.on('connection', function(client) {
 });
 chatMessage = function(client, socket, msg) {
   var chat;
-  chat = new models.ChatEntry();
-  chat.mport(msg);
+  chat = new models.Chat(msg);
   return rc.incr('next.chatentry.id', function(err, newId) {
-    var expandedMsg;
     chat.set({
       id: newId
     });
-    nodeChatModel.chats.add(chat);
-    expandedMsg = "" + (chat.get('id')) + " " + (chat.get('name')) + ": " + (chat.get('text'));
-    console.log("(" + client.sessionId + ") " + expandedMsg);
-    rc.rpush('chatentries', chat.xport(), redis.print);
-    rc.bgsave();
+    console.log(chat.toJSON());
+    chats.add(chat);
+    rc.rpush('chatentries', JSON.stringify(chat.toJSON()), redis.print);
     return socket.broadcast({
       event: 'chat',
-      data: chat.xport()
+      data: chat.toJSON()
     });
-  });
-};
-clientDisconnect = function(client) {
-  activeClients -= 1;
-  return client.broadcast({
-    event: 'update',
-    clients: activeClients
   });
 };
 app.get('/', function(req, res) {
