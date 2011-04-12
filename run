@@ -1,0 +1,6 @@
+#!/bin/bash
+# run this in guest host
+cd /vagrant
+~/redis-2.2.4/src/redis-server ~/redis-2.2.4/redis.conf
+coffee --bare --compile --watch *.coffee */*.coffee &
+nodemon server.js
