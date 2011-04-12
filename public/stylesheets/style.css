@@ -1,20 +1,7 @@
-body {
-  margin: 0px auto;}
-
-#main {
-  text-align: left;
-  margin: 5px;}
-#main .box {
-  height: 460px;
-  background-color: white;
-  overflow-y: auto;}
-#main .box ul {
-  list-style: none;}
-#main #message {
-  margin: 5px 0;
-  width: 100%;
-  border: none;
-  height: 24px;
-  line-height: 24px;
-  padding: 3px 0;
-  font-size: 18px;}
+body{margin:0 auto}
+#main{text-align:left;margin:5px;}
+#main .box{height:460px;background-color:#fff;overflow-y:auto;}
+#main .box ul{list-style:none}
+#main #message{margin:5px 0;width:100%;border:none;height:24px;line-height:24px;padding:3px 0;font-size:18px}
+@media all and (min-width:800px){body{width:800px}
+}

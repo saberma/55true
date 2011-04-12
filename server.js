@@ -4,7 +4,7 @@ coffee --bare --compile --watch *.coffee *\/*.coffee
 nodemon server.js
 */
 /*
-npm install express jade sass
+npm install express jade stylus
 npm install socket.io underscore backbone redis
 npm install connect-redis hash joose joosex-namespace-depended
 ***** development *****
@@ -39,9 +39,9 @@ app.configure(function() {
   app.use(express.session({
     secret: 'secret 55true'
   }));
-  app.use(express.compiler({
+  app.use(require("stylus").middleware({
     src: "" + __dirname + "/public",
-    enable: ['sass']
+    compress: true
   }));
   app.use(app.router);
   return app.use(express.static("" + __dirname + "/public"));
