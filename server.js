@@ -4,7 +4,7 @@ coffee --bare --compile --watch *.coffee *\/*.coffee
 nodemon server.js
 */
 /*
-npm install express jade stylus
+npm install express jade stylus oauth connect-auth
 npm install socket.io underscore backbone redis
 npm install connect-redis hash joose joosex-namespace-depended
 ***** development *****
@@ -19,8 +19,10 @@ http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
 https://my.joyent.com/smartmachines
 ssh node@64.30.137.17
 git push node master
-*/var activeClients, app, chatMessage, chats, express, models, rc, redis, socket, _;
+*/var activeClients, app, auth, chatMessage, chats, connect, express, models, rc, redis, socket, _;
 express = require('express');
+connect = require('connect');
+auth = require('connect-auth');
 app = module.exports = express.createServer();
 socket = require('socket.io').listen(app);
 redis = require('redis');
@@ -43,8 +45,15 @@ app.configure(function() {
     src: "" + __dirname + "/public",
     compress: true
   }));
-  app.use(app.router);
-  return app.use(express.static("" + __dirname + "/public"));
+  app.use(express.static("" + __dirname + "/public"));
+  app.use(auth([
+    auth.Sina({
+      consumerKey: '2066541529',
+      consumerSecret: 'aa6435d22f24ce118ccccd4e7c9f103d',
+      callback: 'http://localhost:3000/sign_in'
+    })
+  ]));
+  return app.use(app.router);
 });
 app.configure('development', function() {
   return app.use(express.errorHandler({
@@ -116,6 +125,18 @@ app.get('/', function(req, res) {
     title: 'Express',
     layout: true
   });
+});
+app.get('/sign_in', function(req, res) {
+  return req.authenticate(['sina'], function(error, authenticated) {
+    if (authenticated) {
+      console.log(req.session.auth["sina_oauth_token"]);
+      console.log(req.session.auth["sina_oauth_token_secret"]);
+      return res.redirect('/');
+    }
+  });
+});
+app.get('/auth/sina', function(req, res) {
+  return req.authenticate(['sina'], function(error, authenticated) {});
 });
 if (!module.parent) {
   app.listen(3000);

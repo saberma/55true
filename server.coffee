@@ -5,7 +5,7 @@ nodemon server.js
 ###
 
 ###
-npm install express jade stylus
+npm install express jade stylus oauth connect-auth
 npm install socket.io underscore backbone redis
 npm install connect-redis hash joose joosex-namespace-depended
 ***** development *****
@@ -27,6 +27,8 @@ git push node master
 # Module dependencies.
 
 express = require 'express'
+connect= require 'connect'
+auth= require 'connect-auth'
 
 app = module.exports = express.createServer()
 socket = require('socket.io').listen app
@@ -45,9 +47,12 @@ app.configure ->
   app.use express.methodOverride()
   app.use express.cookieParser()
   app.use express.session secret: 'secret 55true'
-  app.use require("stylus").middleware(src: "#{__dirname}/public", compress: true)
-  app.use app.router
+  app.use require("stylus").middleware src: "#{__dirname}/public", compress: true
   app.use express.static "#{__dirname}/public"
+  #put auth before app.router, or we will get:
+  #TypeError: Object #<IncomingMessage> has no method 'authenticate'
+  app.use auth [ auth.Sina consumerKey: '2066541529', consumerSecret: 'aa6435d22f24ce118ccccd4e7c9f103d', callback: 'http://localhost:3000/sign_in' ]
+  app.use app.router
 
 app.configure 'development', ->
   app.use express.errorHandler dumpExceptions: true, showStack: true
@@ -101,6 +106,18 @@ chatMessage = (client, socket, msg) ->
 
 app.get '/', (req, res) ->
   res.render 'index', title: 'Express', layout: true
+
+app.get '/sign_in', (req, res) ->
+  req.authenticate ['sina'], (error, authenticated) ->
+    if authenticated
+      console.log req.session.auth["sina_oauth_token"]
+      console.log req.session.auth["sina_oauth_token_secret"]
+      res.redirect '/'
+
+#should use /auth/sina_callback, but get this error.
+#Error: Can't render headers after they are sent to the client.
+app.get '/auth/sina', (req, res) ->
+  req.authenticate ['sina'], (error, authenticated) ->
 
 # Only listen on $ node app.js
 
