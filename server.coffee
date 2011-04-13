@@ -6,8 +6,7 @@ nodemon server.js
 
 ###
 npm install express jade stylus oauth connect-auth
-npm install socket.io underscore backbone redis
-npm install connect-redis hash joose joosex-namespace-depended
+npm install socket.io underscore backbone redis connect-redis
 ***** development *****
 npm install nodemon coffee-script
 ###
@@ -39,6 +38,7 @@ catch error
 express = require 'express'
 OAuth = require('oauth').OAuth
 connect= require 'connect'
+RedisStore = require 'connect-redis'
 auth= require 'connect-auth'
 
 app = module.exports = express.createServer()
@@ -57,7 +57,7 @@ app.configure ->
   app.use express.bodyParser()
   app.use express.methodOverride()
   app.use express.cookieParser()
-  app.use express.session secret: 'secret 55true'
+  app.use express.session secret: 'secret 55true', store: new RedisStore(maxAge: 24 * 60 * 60 * 1000)
   app.use require("stylus").middleware src: "#{__dirname}/public", compress: true
   app.use express.static "#{__dirname}/public"
   #put auth before app.router, or we will get:

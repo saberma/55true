@@ -5,8 +5,7 @@ nodemon server.js
 */
 /*
 npm install express jade stylus oauth connect-auth
-npm install socket.io underscore backbone redis
-npm install connect-redis hash joose joosex-namespace-depended
+npm install socket.io underscore backbone redis connect-redis
 ***** development *****
 npm install nodemon coffee-script
 */
@@ -19,7 +18,7 @@ http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
 https://my.joyent.com/smartmachines
 ssh node@64.30.137.17
 git push node master
-*/var OAuth, activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, sina_auth, socket, value, _;
+*/var OAuth, RedisStore, activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, sina_auth, socket, value, _;
 try {
   keys = require('./keys_file');
   for (key in keys) {
@@ -33,6 +32,7 @@ try {
 express = require('express');
 OAuth = require('oauth').OAuth;
 connect = require('connect');
+RedisStore = require('connect-redis');
 auth = require('connect-auth');
 app = module.exports = express.createServer();
 socket = require('socket.io').listen(app);
@@ -50,7 +50,10 @@ app.configure(function() {
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.session({
-    secret: 'secret 55true'
+    secret: 'secret 55true',
+    store: new RedisStore({
+      maxAge: 24 * 60 * 60 * 1000
+    })
   }));
   app.use(require("stylus").middleware({
     src: "" + __dirname + "/public",
