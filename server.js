@@ -19,7 +19,7 @@ http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
 https://my.joyent.com/smartmachines
 ssh node@64.30.137.17
 git push node master
-*/var activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, socket, value, _;
+*/var OAuth, activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, sina_auth, socket, value, _;
 try {
   keys = require('./keys_file');
   for (key in keys) {
@@ -31,6 +31,7 @@ try {
   return;
 }
 express = require('express');
+OAuth = require('oauth').OAuth;
 connect = require('connect');
 auth = require('connect-auth');
 app = module.exports = express.createServer();
@@ -74,6 +75,7 @@ app.configure('development', function() {
 app.configure('production', function() {
   return app.use(express.errorHandler());
 });
+sina_auth = new OAuth("http://api.t.sina.com.cn/oauth/request_token", "http://api.t.sina.com.cn/oauth/access_token", sinaConsumerKey, sinaConsumerSecret, "1.0", sinaCallbackAddress, "HMAC-SHA1");
 app.get('/*.(js|css)', function(req, res) {
   return res.sendfile("./" + req.url);
 });
@@ -130,9 +132,6 @@ chatMessage = function(client, socket, msg) {
   });
 };
 app.get('/', function(req, res) {
-  rc.hgetall("users:" + req.session.user_id, function(err, obj) {
-    return console.log(obj);
-  });
   return res.render('index', {
     title: 'Express',
     layout: true
@@ -146,15 +145,34 @@ app.get('/logout', function(req, res) {
   return res.end('');
 });
 app.get('/auth/sina', function(req, res) {
-  if (req.isAuthenticated()) {
-    rc.hmset("users:" + (req.getAuthDetails().user.user_id), {
-      access_token: req.session.auth["sina_oauth_token"],
-      secret_token: req.session.auth["sina_oauth_token_secret"]
-    });
-    req.session.user_id = req.getAuthDetails().user.user_id;
-    return res.redirect('/');
-  } else {
-    return req.authenticate(['sina'], function(error, authenticated) {});
+  return req.authenticate(['sina'], function(error, authenticated) {
+    if (authenticated) {
+      return sina_auth.getProtectedResource('http://api.t.sina.com.cn/account/verify_credentials.json', 'GET', req.getAuthDetails()['sina_oauth_token'], req.getAuthDetails()['sina_oauth_token_secret'], function(err, data) {
+        var user;
+        if (err) {
+          return res.end("<html><pre>error = " + (util.inspect(err)) + "</pre></html>");
+        } else {
+          user = JSON.parse(data);
+          rc.hmset("users:" + user.id, {
+            access_token: req.session.auth["sina_oauth_token"],
+            secret_token: req.session.auth["sina_oauth_token_secret"],
+            name: user.name,
+            screen_name: user.screen_name
+          });
+          req.session.user = user;
+          return res.redirect('/');
+        }
+      });
+    }
+  });
+});
+app.dynamicHelpers({
+  current_user: function(req, res) {
+    if (req.session.user) {
+      return req.session.user;
+    } else {
+      return {};
+    }
   }
 });
 if (!module.parent) {

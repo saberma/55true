@@ -37,6 +37,7 @@ catch error
 # Module dependencies.
 
 express = require 'express'
+OAuth = require('oauth').OAuth
 connect= require 'connect'
 auth= require 'connect-auth'
 
@@ -69,6 +70,11 @@ app.configure 'development', ->
 
 app.configure 'production', ->
   app.use express.errorHandler()
+
+sina_auth = new OAuth "http://api.t.sina.com.cn/oauth/request_token",
+  "http://api.t.sina.com.cn/oauth/access_token",
+  sinaConsumerKey, sinaConsumerSecret,
+  "1.0", sinaCallbackAddress, "HMAC-SHA1"
 
 #访问modes,controllers,views目录
 app.get '/*.(js|css)', (req, res) ->
@@ -115,8 +121,6 @@ chatMessage = (client, socket, msg) ->
 # Routes
 
 app.get '/', (req, res) ->
-  rc.hgetall "users:#{req.session.user_id}", (err, obj) ->
-    console.log obj
   res.render 'index', title: 'Express', layout: true
 
 app.get '/logout', (req, res) ->
@@ -124,16 +128,24 @@ app.get '/logout', (req, res) ->
   res.writeHead 303, 'Location': "/"
   res.end ''
 
-#should use /auth/sina_callback, but get this error.
-#Error: Can't render headers after they are sent to the client.
 app.get '/auth/sina', (req, res) ->
-  # fixed: dead loop. /auth/sina_callback will redirect to request.url which is /auth/sina
-  if req.isAuthenticated()
-    rc.hmset "users:#{req.getAuthDetails().user.user_id}", access_token: req.session.auth["sina_oauth_token"], secret_token: req.session.auth["sina_oauth_token_secret"]
-    req.session.user_id = req.getAuthDetails().user.user_id
-    res.redirect '/'
-  else
-    req.authenticate ['sina'], (error, authenticated) ->
+  req.authenticate ['sina'], (error, authenticated) ->
+    if authenticated
+      sina_auth.getProtectedResource 'http://api.t.sina.com.cn/account/verify_credentials.json', 'GET', req.getAuthDetails()['sina_oauth_token'], req.getAuthDetails()['sina_oauth_token_secret'], (err, data)->
+          if err then res.end "<html><pre>error = #{util.inspect(err)}</pre></html>"
+          else
+            user = JSON.parse data
+            rc.hmset "users:#{user.id}", access_token: req.session.auth["sina_oauth_token"], secret_token: req.session.auth["sina_oauth_token_secret"], name: user.name, screen_name: user.screen_name
+            req.session.user = user
+            res.redirect '/'
+
+# Helpers
+app.dynamicHelpers
+  current_user: (req, res) ->
+    if req.session.user
+      req.session.user
+    else
+      return {}
 
 # Only listen on $ node app.js
 
