@@ -26,7 +26,11 @@ ChatsView = Backbone.View.extend
 
   received: (message) ->
     switch message.event
-      when 'initial' then this.model.add message.data
+      when 'initial' 
+        chats = this.model
+        _.each message.data, (chat) ->
+          unless chats.get(chat.id)?
+            chats.add chat
       #when 'update' then this.clientCountView.model.updateClients message.clients
       when 'chat'
         chat = new models.Chat message.data

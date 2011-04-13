@@ -25,10 +25,15 @@ ChatsView = Backbone.View.extend({
     return $('#chat_list').prepend(view.render().el);
   },
   received: function(message) {
-    var chat;
+    var chat, chats;
     switch (message.event) {
       case 'initial':
-        return this.model.add(message.data);
+        chats = this.model;
+        return _.each(message.data, function(chat) {
+          if (chats.get(chat.id) == null) {
+            return chats.add(chat);
+          }
+        });
       case 'chat':
         chat = new models.Chat(message.data);
         return this.model.add(chat);
