@@ -1,7 +1,5 @@
-a(href='/')= current_user.name
-a(href='/auth/sina') 用新浪帐号登录
-.panel
-  form(method="post", action="#", onsubmit="return false")#messageForm
-    input(id='message', name='message')
-#box
-  ul#chat_list
+.session
+  a(href='/')= current_user.name
+  a(href='/logout') 退出
+.buttons
+  a(href='/party/new') 创建party

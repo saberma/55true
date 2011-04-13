@@ -15,6 +15,7 @@ npm install nodemon coffee-script
 http://fzysqr.com/2011/02/28/nodechat-js-using-node-js-backbone-js-socket-io-and-redis-to-make-a-real-time-chat-app/
 http://fzysqr.com/2011/03/27/nodechat-js-continued-authentication-profiles-ponies-and-a-meaner-socket-io/
 http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
+https://gist.github.com/771828
 ###
 
 ###
@@ -121,12 +122,14 @@ chatMessage = (client, socket, msg) ->
 # Routes
 
 app.get '/', (req, res) ->
-  res.render 'index', title: 'Express', layout: true
+  if req.session.user
+    res.render 'index', layout: true
+  else
+    res.render 'login', layout: true
 
 app.get '/logout', (req, res) ->
-  req.logout()
-  res.writeHead 303, 'Location': "/"
-  res.end ''
+  req.session.destroy ->
+    res.redirect '/'
 
 app.get '/auth/sina', (req, res) ->
   req.authenticate ['sina'], (error, authenticated) ->
@@ -142,10 +145,7 @@ app.get '/auth/sina', (req, res) ->
 # Helpers
 app.dynamicHelpers
   current_user: (req, res) ->
-    if req.session.user
-      req.session.user
-    else
-      return {}
+    req.session.user or {}
 
 # Only listen on $ node app.js
 

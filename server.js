@@ -13,6 +13,7 @@ npm install nodemon coffee-script
 http://fzysqr.com/2011/02/28/nodechat-js-using-node-js-backbone-js-socket-io-and-redis-to-make-a-real-time-chat-app/
 http://fzysqr.com/2011/03/27/nodechat-js-continued-authentication-profiles-ponies-and-a-meaner-socket-io/
 http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
+https://gist.github.com/771828
 */
 /*
 https://my.joyent.com/smartmachines
@@ -135,17 +136,20 @@ chatMessage = function(client, socket, msg) {
   });
 };
 app.get('/', function(req, res) {
-  return res.render('index', {
-    title: 'Express',
-    layout: true
-  });
+  if (req.session.user) {
+    return res.render('index', {
+      layout: true
+    });
+  } else {
+    return res.render('login', {
+      layout: true
+    });
+  }
 });
 app.get('/logout', function(req, res) {
-  req.logout();
-  res.writeHead(303, {
-    'Location': "/"
+  return req.session.destroy(function() {
+    return res.redirect('/');
   });
-  return res.end('');
 });
 app.get('/auth/sina', function(req, res) {
   return req.authenticate(['sina'], function(error, authenticated) {
@@ -171,11 +175,7 @@ app.get('/auth/sina', function(req, res) {
 });
 app.dynamicHelpers({
   current_user: function(req, res) {
-    if (req.session.user) {
-      return req.session.user;
-    } else {
-      return {};
-    }
+    return req.session.user || {};
   }
 });
 if (!module.parent) {
