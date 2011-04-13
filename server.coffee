@@ -24,6 +24,16 @@ ssh node@64.30.137.17
 git push node master
 ###
 
+# Confnig
+try
+  keys = require './keys_file'
+  for key, value of keys
+    global[key] = value
+catch error
+  console.log 'Unable to locate the keys_file.js file.  Please copy and ammend the example_keys_file.js as appropriate'
+  return
+
+
 # Module dependencies.
 
 express = require 'express'
@@ -51,7 +61,7 @@ app.configure ->
   app.use express.static "#{__dirname}/public"
   #put auth before app.router, or we will get:
   #TypeError: Object #<IncomingMessage> has no method 'authenticate'
-  app.use auth [ auth.Sina consumerKey: '2066541529', consumerSecret: 'aa6435d22f24ce118ccccd4e7c9f103d', callback: 'http://localhost:3000/sign_in' ]
+  app.use auth [ auth.Sina consumerKey: sinaConsumerKey, consumerSecret: sinaConsumerSecret, callback: sinaCallbackAddress ]
   app.use app.router
 
 app.configure 'development', ->
@@ -97,7 +107,7 @@ chatMessage = (client, socket, msg) ->
   chat = new models.Chat(msg)
   rc.incr 'next.chatentry.id', (err, newId) ->
     chat.set id: newId
-    console.log chat.toJSON()
+    #console.log chat.toJSON()
     chats.add chat
     rc.rpush 'chatentries', JSON.stringify(chat.toJSON()), redis.print
     socket.broadcast event: 'chat', data: chat.toJSON()
@@ -105,19 +115,25 @@ chatMessage = (client, socket, msg) ->
 # Routes
 
 app.get '/', (req, res) ->
+  rc.hgetall "users:#{req.session.user_id}", (err, obj) ->
+    console.log obj
   res.render 'index', title: 'Express', layout: true
 
-app.get '/sign_in', (req, res) ->
-  req.authenticate ['sina'], (error, authenticated) ->
-    if authenticated
-      console.log req.session.auth["sina_oauth_token"]
-      console.log req.session.auth["sina_oauth_token_secret"]
-      res.redirect '/'
+app.get '/logout', (req, res) ->
+  req.logout()
+  res.writeHead 303, 'Location': "/"
+  res.end ''
 
 #should use /auth/sina_callback, but get this error.
 #Error: Can't render headers after they are sent to the client.
 app.get '/auth/sina', (req, res) ->
-  req.authenticate ['sina'], (error, authenticated) ->
+  # fixed: dead loop. /auth/sina_callback will redirect to request.url which is /auth/sina
+  if req.isAuthenticated()
+    rc.hmset "users:#{req.getAuthDetails().user.user_id}", access_token: req.session.auth["sina_oauth_token"], secret_token: req.session.auth["sina_oauth_token_secret"]
+    req.session.user_id = req.getAuthDetails().user.user_id
+    res.redirect '/'
+  else
+    req.authenticate ['sina'], (error, authenticated) ->
 
 # Only listen on $ node app.js
 

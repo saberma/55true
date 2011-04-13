@@ -19,7 +19,17 @@ http://joyeur.com/2010/09/15/installing-a-node-service-on-a-joyent-smartmachine/
 https://my.joyent.com/smartmachines
 ssh node@64.30.137.17
 git push node master
-*/var activeClients, app, auth, chatMessage, chats, connect, express, models, rc, redis, socket, _;
+*/var activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, socket, value, _;
+try {
+  keys = require('./keys_file');
+  for (key in keys) {
+    value = keys[key];
+    global[key] = value;
+  }
+} catch (error) {
+  console.log('Unable to locate the keys_file.js file.  Please copy and ammend the example_keys_file.js as appropriate');
+  return;
+}
 express = require('express');
 connect = require('connect');
 auth = require('connect-auth');
@@ -48,9 +58,9 @@ app.configure(function() {
   app.use(express.static("" + __dirname + "/public"));
   app.use(auth([
     auth.Sina({
-      consumerKey: '2066541529',
-      consumerSecret: 'aa6435d22f24ce118ccccd4e7c9f103d',
-      callback: 'http://localhost:3000/sign_in'
+      consumerKey: sinaConsumerKey,
+      consumerSecret: sinaConsumerSecret,
+      callback: sinaCallbackAddress
     })
   ]));
   return app.use(app.router);
@@ -111,7 +121,6 @@ chatMessage = function(client, socket, msg) {
     chat.set({
       id: newId
     });
-    console.log(chat.toJSON());
     chats.add(chat);
     rc.rpush('chatentries', JSON.stringify(chat.toJSON()), redis.print);
     return socket.broadcast({
@@ -121,22 +130,32 @@ chatMessage = function(client, socket, msg) {
   });
 };
 app.get('/', function(req, res) {
+  rc.hgetall("users:" + req.session.user_id, function(err, obj) {
+    return console.log(obj);
+  });
   return res.render('index', {
     title: 'Express',
     layout: true
   });
 });
-app.get('/sign_in', function(req, res) {
-  return req.authenticate(['sina'], function(error, authenticated) {
-    if (authenticated) {
-      console.log(req.session.auth["sina_oauth_token"]);
-      console.log(req.session.auth["sina_oauth_token_secret"]);
-      return res.redirect('/');
-    }
+app.get('/logout', function(req, res) {
+  req.logout();
+  res.writeHead(303, {
+    'Location': "/"
   });
+  return res.end('');
 });
 app.get('/auth/sina', function(req, res) {
-  return req.authenticate(['sina'], function(error, authenticated) {});
+  if (req.isAuthenticated()) {
+    rc.hmset("users:" + (req.getAuthDetails().user.user_id), {
+      access_token: req.session.auth["sina_oauth_token"],
+      secret_token: req.session.auth["sina_oauth_token_secret"]
+    });
+    req.session.user_id = req.getAuthDetails().user.user_id;
+    return res.redirect('/');
+  } else {
+    return req.authenticate(['sina'], function(error, authenticated) {});
+  }
 });
 if (!module.parent) {
   app.listen(3000);
