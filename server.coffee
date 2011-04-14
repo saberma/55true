@@ -166,6 +166,10 @@ app.post '/partys/new', requireLogin, (req, res) ->
   rc.expire "party:#{id}", 10
   res.redirect '/home'
 
+app.get '/:party_id', requireLogin, (req, res) ->
+  rc.get "party:#{req.params.party_id}", (error, party) ->
+    res.render 'party'
+
 
 # Helpers
 app.dynamicHelpers

@@ -204,6 +204,11 @@ app.post('/partys/new', requireLogin, function(req, res) {
   rc.expire("party:" + id, 10);
   return res.redirect('/home');
 });
+app.get('/:party_id', requireLogin, function(req, res) {
+  return rc.get("party:" + req.params.party_id, function(error, party) {
+    return res.render('party');
+  });
+});
 app.dynamicHelpers({
   current_user: function(req, res) {
     return req.session.user || {};
