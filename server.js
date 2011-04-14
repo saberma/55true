@@ -19,7 +19,8 @@ https://gist.github.com/771828
 https://my.joyent.com/smartmachines
 ssh node@64.30.137.17
 git push node master
-*/var OAuth, RedisStore, activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, requireLogin, sina_auth, socket, value, _;
+*/var ID_RANGE, OAuth, RedisStore, activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, requireLogin, sina_auth, socket, value, _;
+ID_RANGE = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 try {
   keys = require('./keys_file');
   for (key in keys) {
@@ -150,7 +151,14 @@ app.get('/', function(req, res) {
   }
 });
 app.get('/home', requireLogin, function(req, res) {
-  return res.render('home');
+  return rc.get("user:" + req.session.user.id + ":party_id", function(error, party_id) {
+    return rc.get("party:" + party_id, function(error, party) {
+      return res.render('home', {
+        party: JSON.parse(party),
+        host: req.header('Host')
+      });
+    });
+  });
 });
 app.get('/logout', function(req, res) {
   return req.session.destroy(function() {
@@ -179,7 +187,23 @@ app.get('/auth/sina', function(req, res) {
     }
   });
 });
-app.get('/partys/new', requireLogin, function(req, res) {});
+app.post('/partys/new', requireLogin, function(req, res) {
+  var id, user;
+  id = _.map([0, 1, 2, 3], function(n) {
+    return ID_RANGE[Math.floor(Math.random() * ID_RANGE.length)];
+  }).join('');
+  user = req.session.user;
+  rc.set("user:" + user.id + ":party_id", "" + id);
+  rc.set("party:" + id, JSON.stringify({
+    id: id,
+    user_id: user.id,
+    user_name: user.name,
+    created_at: new Date()
+  }));
+  rc.expire("user:" + user.id + ":party_id", 10);
+  rc.expire("party:" + id, 10);
+  return res.redirect('/home');
+});
 app.dynamicHelpers({
   current_user: function(req, res) {
     return req.session.user || {};

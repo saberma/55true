@@ -1,5 +1,12 @@
 .session
   a(href='/')= current_user.name
   a(href='/logout') 退出
-.buttons
-  a(href='/partys/new') 创建party
+- if (party)
+  .partys
+    p party已经创建，访问地址如下:
+    p #{host}/#{party.id}
+    a(href=party.id) 进入Party
+- else
+  .buttons
+    form(method="post", action="/partys/new")
+      input(type='submit', value='创建party')

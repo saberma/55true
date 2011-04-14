@@ -2,3 +2,6 @@
 
 #oauth
 keys_file.js
+
+#nodemon
+.monitor

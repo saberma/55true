@@ -24,6 +24,8 @@ ssh node@64.30.137.17
 git push node master
 ###
 
+ID_RANGE=[0,1,2,3,4,5,6,7,8,9,'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
 # Confnig
 try
   keys = require './keys_file'
@@ -135,7 +137,9 @@ app.get '/', (req, res) ->
     res.render 'index'
 
 app.get '/home', requireLogin, (req, res) ->
-  res.render 'home'
+  rc.get "user:#{req.session.user.id}:party_id", (error, party_id) ->
+    rc.get "party:#{party_id}", (error, party) ->
+      res.render 'home', party: JSON.parse(party), host: req.header('Host')
 
 app.get '/logout', (req, res) ->
   req.session.destroy ->
@@ -153,13 +157,21 @@ app.get '/auth/sina', (req, res) ->
             res.redirect '/'
 
 # Party
-app.get '/partys/new', requireLogin, (req, res) ->
+app.post '/partys/new', requireLogin, (req, res) ->
+  id = _.map([0,1,2,3], (n) -> ID_RANGE[ Math.floor(Math.random() * ID_RANGE.length) ]).join ''
+  user = req.session.user
+  rc.set "user:#{user.id}:party_id", "#{id}"
+  rc.set "party:#{id}", JSON.stringify(id: id, user_id: user.id, user_name: user.name, created_at: new Date())
+  rc.expire "user:#{user.id}:party_id", 10
+  rc.expire "party:#{id}", 10
+  res.redirect '/home'
 
 
 # Helpers
 app.dynamicHelpers
   current_user: (req, res) ->
     req.session.user or {}
+
 
 # Only listen on $ node app.js
 
