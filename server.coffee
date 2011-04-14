@@ -54,7 +54,7 @@ models = require './models/models'
 app.configure ->
   app.set 'views', "#{__dirname}/views"
   app.set 'view engine', 'jade'
-  app.set 'view options', layout: false
+  app.set 'view options', layout: true
   app.use express.bodyParser()
   app.use express.methodOverride()
   app.use express.cookieParser()
@@ -119,13 +119,23 @@ chatMessage = (client, socket, msg) ->
     rc.rpush 'chatentries', JSON.stringify(chat.toJSON()), redis.print
     socket.broadcast event: 'chat', data: chat.toJSON()
 
+# MiddleWares
+requireLogin = (req, res, next) ->
+  if req.session.user
+    next()
+  else
+    res.redirect '/'
+
 # Routes
 
 app.get '/', (req, res) ->
   if req.session.user
-    res.render 'index', layout: true
+    res.redirect '/home'
   else
-    res.render 'login', layout: true
+    res.render 'index'
+
+app.get '/home', requireLogin, (req, res) ->
+  res.render 'home'
 
 app.get '/logout', (req, res) ->
   req.session.destroy ->
@@ -141,6 +151,10 @@ app.get '/auth/sina', (req, res) ->
             rc.hmset "users:#{user.id}", access_token: req.session.auth["sina_oauth_token"], secret_token: req.session.auth["sina_oauth_token_secret"], name: user.name, screen_name: user.screen_name
             req.session.user = user
             res.redirect '/'
+
+# Party
+app.get '/partys/new', requireLogin, (req, res) ->
+
 
 # Helpers
 app.dynamicHelpers

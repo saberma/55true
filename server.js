@@ -19,7 +19,7 @@ https://gist.github.com/771828
 https://my.joyent.com/smartmachines
 ssh node@64.30.137.17
 git push node master
-*/var OAuth, RedisStore, activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, sina_auth, socket, value, _;
+*/var OAuth, RedisStore, activeClients, app, auth, chatMessage, chats, connect, express, key, keys, models, rc, redis, requireLogin, sina_auth, socket, value, _;
 try {
   keys = require('./keys_file');
   for (key in keys) {
@@ -45,7 +45,7 @@ app.configure(function() {
   app.set('views', "" + __dirname + "/views");
   app.set('view engine', 'jade');
   app.set('view options', {
-    layout: false
+    layout: true
   });
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -135,16 +135,22 @@ chatMessage = function(client, socket, msg) {
     });
   });
 };
+requireLogin = function(req, res, next) {
+  if (req.session.user) {
+    return next();
+  } else {
+    return res.redirect('/');
+  }
+};
 app.get('/', function(req, res) {
   if (req.session.user) {
-    return res.render('index', {
-      layout: true
-    });
+    return res.redirect('/home');
   } else {
-    return res.render('login', {
-      layout: true
-    });
+    return res.render('index');
   }
+});
+app.get('/home', requireLogin, function(req, res) {
+  return res.render('home');
 });
 app.get('/logout', function(req, res) {
   return req.session.destroy(function() {
@@ -173,6 +179,7 @@ app.get('/auth/sina', function(req, res) {
     }
   });
 });
+app.get('/partys/new', requireLogin, function(req, res) {});
 app.dynamicHelpers({
   current_user: function(req, res) {
     return req.session.user || {};
