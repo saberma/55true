@@ -1,7 +1,7 @@
 Vagrant::Config.run do |config|
   config.vm.box = "lucid32"
 
-  config.vm.forward_port "nodejs", 3000, 3000
+  config.vm.forward_port "nodejs", 4000, 4000
 
   #config.vm.provision :chef_solo do |chef|
   #  #chef.recipe_url = "https://dl.dropbox.com/u/19519145/shopqi/chef-solo.tar.gz"

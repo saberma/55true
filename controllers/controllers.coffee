@@ -1,7 +1,7 @@
 # Controllers
 NodeChatController =
   init: ->
-    this.socket = new io.Socket null, port: 3000
+    this.socket = new io.Socket null, port: 4000
 
     this.model = new models.Chats()
     this.view = new ChatsView model: this.model, socket: this.socket, el: $('#main')

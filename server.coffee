@@ -180,5 +180,5 @@ app.dynamicHelpers
 # Only listen on $ node app.js
 
 unless module.parent
-  app.listen 3000
+  app.listen 4000
   console.log "Express server listening on port %d", app.address().port
